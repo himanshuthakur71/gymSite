@@ -1,4 +1,4 @@
-<header class="navbar relative w-full overflow-x-hidden bg-transparent py-4">
+<header class="navbar relative w-full bg-transparent py-4">
 	<div class="flex-1">
 		<a href="/" class="flex h-[141px] w-[190px]">
 			<img
@@ -74,7 +74,7 @@
 			</a>
 		</div>
 		<div class="flex w-full items-center gap-1">
-			<div class="dropdown">
+			<div class="dropdown dropdown-end">
 				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
 					Why Us
 					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
@@ -89,7 +89,7 @@
 					<li><a href="/">Item 2</a></li>
 				</ul>
 			</div>
-			<div class="dropdown">
+			<div class="dropdown dropdown-end">
 				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
 					What’s Included?
 					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
@@ -104,7 +104,7 @@
 					<li><a href="/">Item 2</a></li>
 				</ul>
 			</div>
-			<div class="dropdown">
+			<div class="dropdown dropdown-end">
 				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
 					Memberships
 					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
@@ -119,7 +119,7 @@
 					<li><a href="/">Item 2</a></li>
 				</ul>
 			</div>
-			<div class="dropdown">
+			<div class="dropdown dropdown-end">
 				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
 					For Members
 					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
@@ -134,7 +134,7 @@
 					<li><a href="/">Item 2</a></li>
 				</ul>
 			</div>
-			<div class="dropdown">
+			<div class="dropdown dropdown-end">
 				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
 					Offers
 					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
