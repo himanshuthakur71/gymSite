@@ -20,7 +20,7 @@
 	</div>
 </section>
 
-<section class="w-full bg-base-300 py-8">
+<section class="w-full bg-base-300 py-16">
 	<div class="w-full">
 		<h2
 			class="relative z-[3] flex items-center justify-center bg-base-300 pb-8 text-center text-3xl md:text-4xl lg:text-5xl"
@@ -34,17 +34,87 @@
 			></span>
 			<a
 				href="/"
-				class="link-hover flex items-center justify-center rounded-md bg-[url(https://www.advancedwellness.com/wp-content/uploads/capsule-fitness_fans-orange.jpg)] py-28 text-2xl font-semibold uppercase shadow-md hover:opacity-85 lg:text-3xl"
+				class="link-hover flex items-center justify-center rounded-md bg-[url(/images/capsule-fitness_fans-orange.jpg)] py-28 text-2xl font-semibold uppercase shadow-md hover:opacity-85 lg:text-3xl"
 			>
 				<span>For Fitness Fans</span>
 			</a>
 
 			<a
 				href="/"
-				class="link-hover flex items-center justify-center rounded-md bg-[url(https://www.advancedwellness.com/wp-content/uploads/capsule-athletes-blue.jpg)] py-28 text-2xl font-semibold uppercase shadow-md hover:opacity-85 lg:text-3xl"
+				class="link-hover flex items-center justify-center rounded-md bg-[url(/images/capsule-athletes-blue.jpg)] py-28 text-2xl font-semibold uppercase shadow-md hover:opacity-85 lg:text-3xl"
 			>
 				<span>For Athletes</span>
 			</a>
+		</div>
+	</div>
+</section>
+
+<section class="w-full bg-base-100 py-32" data-theme="fantasy">
+	<div class="hms-container">
+		<div class="grid w-full grid-cols-1 gap-16">
+			{#each Array(5) as blog, i}
+				{#if i % 2 == 0}
+					<div class="w-full shadow">
+						<div class="grid grid-cols-1 gap-4 overflow-hidden rounded bg-base-200 lg:grid-cols-2">
+							<figure class="flex h-full w-full">
+								<img
+									src="/images/i-TL6V8z7-X3-570x300.jpg"
+									alt="A CUSTOMIZED FITNESS PROGRAM – JUST FOR YOU"
+									class="h-full w-full"
+								/>
+							</figure>
+							<div class="h-full w-full p-4">
+								<div class="flex h-full w-full flex-col justify-center gap-4">
+									<div class="w-full">
+										<h2 class=" mb-[10px] text-2xl font-bold md:text-3xl">
+											Lorem ipsum dolor sit amet.
+										</h2>
+										<p>
+											Lorem ipsum dolor sit, amet consectetur adipisicing elit. At nihil hic
+											repudiandae voluptates vitae! Magni labore cumque aut iste amet!
+										</p>
+									</div>
+									<div class="">
+										<button class="btn btn-primary">Learn more</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{:else if i % 2 != 0}
+					<div class="w-full shadow">
+						<div class="grid grid-cols-1 gap-4 overflow-hidden rounded bg-base-200 lg:grid-cols-2">
+							<div class="h-full w-full p-4">
+								<div class="flex h-full w-full flex-col justify-center gap-4">
+									<div class="w-full">
+										<h2 class=" mb-[10px] text-2xl font-bold md:text-3xl">
+											Lorem ipsum dolor sit amet.
+										</h2>
+										<p>
+											Lorem ipsum dolor sit, amet consectetur adipisicing elit. At nihil hic
+											repudiandae voluptates vitae! Magni labore cumque aut iste amet!
+										</p>
+									</div>
+									<div class="">
+										<button class="btn btn-primary">Learn more</button>
+									</div>
+								</div>
+							</div>
+							<figure class="flex h-full w-full">
+								<img
+									src="/images/i-TL6V8z7-X3-570x300.jpg"
+									alt="A CUSTOMIZED FITNESS PROGRAM – JUST FOR YOU"
+									class="h-full w-full"
+								/>
+							</figure>
+						</div>
+					</div>
+				{/if}
+			{/each}
+		</div>
+
+		<div class=" mt-16 flex items-center justify-center">
+			<a href="/" class="btn btn-accent btn-lg btn-block max-w-[320px]">See More</a>
 		</div>
 	</div>
 </section>
