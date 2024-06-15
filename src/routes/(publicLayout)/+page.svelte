@@ -22,8 +22,16 @@
 
 <section class="w-full bg-base-300 py-8">
 	<div class="w-full">
-		<h2 class="mb-8 text-center text-3xl md:text-4xl lg:text-5xl">Ready to get started?</h2>
-		<div class="grid w-full grid-cols-1 lg:grid-cols-[1fr_1fr]">
+		<h2
+			class="relative z-[3] flex items-center justify-center bg-base-300 pb-8 text-center text-3xl md:text-4xl lg:text-5xl"
+		>
+			<span class="realtive">Ready to get started?</span>
+		</h2>
+
+		<div class="relative grid w-full grid-cols-1 gap-[15px] bg-primary lg:grid-cols-[1fr_1fr]">
+			<span
+				class=" absolute -top-[50px] left-[calc(50%-49px)] z-[2] flex h-[100px] w-[100px] rotate-45 bg-primary"
+			></span>
 			<a
 				href="/"
 				class="link-hover flex items-center justify-center rounded-md bg-[url(https://www.advancedwellness.com/wp-content/uploads/capsule-fitness_fans-orange.jpg)] py-28 text-2xl font-semibold uppercase shadow-md hover:opacity-85 lg:text-3xl"
