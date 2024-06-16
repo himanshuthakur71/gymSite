@@ -80,11 +80,11 @@
 		</div>
 		<div class="flex w-full items-center gap-1">
 			<a href="/why-us" class="btn btn-ghost font-semibold uppercase">Why Us</a>
-			<a href="/" class="btn btn-ghost font-semibold uppercase">What’s Included?</a>
-			<a href="/" class="btn btn-ghost font-semibold uppercase">Memberships</a>
-			<a href="/" class="btn btn-ghost font-semibold uppercase">Offers</a>
-			<a href="/" class="btn btn-ghost font-semibold uppercase">Gallery</a>
-			<a href="/" class="btn btn-primary btn-sm rounded font-bold uppercase"> Join us </a>
+			<a href="/whats-included" class="btn btn-ghost font-semibold uppercase">What’s Included?</a>
+			<a href="/memberships" class="btn btn-ghost font-semibold uppercase">Memberships</a>
+			<a href="/special-offers" class="btn btn-ghost font-semibold uppercase">Offers</a>
+			<a href="/gallery" class="btn btn-ghost font-semibold uppercase">Gallery</a>
+			<a href="/join" class="btn btn-primary btn-sm rounded font-bold uppercase"> Join us </a>
 		</div>
 	</div>
 </header>

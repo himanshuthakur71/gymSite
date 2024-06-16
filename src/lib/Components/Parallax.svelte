@@ -17,6 +17,11 @@
 								fitness coaches and community members are here to help you be your best self, every
 								day.
 							</p>
+							<div class="mt-8">
+								<a href="/join" class="px btn btn-success btn-lg rounded px-8 text-3xl uppercase"
+									>Join Us</a
+								>
+							</div>
 						</div>
 						<div class="w-full">
 							<div class="mx-auto w-full max-w-[320px] bg-black shadow-xl lg:max-w-[400px]">

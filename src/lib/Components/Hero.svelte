@@ -15,7 +15,7 @@
 				<span>In your hood.</span>
 				<span>Focused 100% on you.</span>
 			</h1>
-			<a href="/" class="px btn btn-success btn-lg rounded px-8 text-3xl uppercase">Join Us</a>
+			<a href="/join" class="px btn btn-success btn-lg rounded px-8 text-3xl uppercase">Join Us</a>
 		</div>
 	</div>
 </div>
