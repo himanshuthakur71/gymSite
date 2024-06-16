@@ -1,16 +1,17 @@
-<section class="mb-16 w-full lg:mb-32">
+<section class="w-full">
 	<div class="parallax bg-cover">
 		<div class="w-full">
 			<div class="hms-container">
-				<div class="relative z-[2] w-full py-16">
+				<div class="relative z-[2] w-full py-16 lg:py-32">
 					<div class="grid grid-cols-1 lg:grid-cols-2">
 						<div class="w-full">
 							<h3
-								class="mb-6 border-l-[5px] border-primary py-1 pl-[10px] text-3xl font-bold md:text-4xl lg:text-5xl"
+								class="mb-6 border-l-[10px] border-primary py-1 pl-[10px] text-3xl font-bold md:text-4xl lg:text-5xl"
 							>
-								WE’RE NOT LIKE ANY OTHER GYM IN <span class=" text-primary">xxLOCATIONxx.</span>
+								WE’RE NOT LIKE ANY OTHER GYM IN <span class=" font-black italic">xxLOCATIONxx.</span
+								>
 							</h3>
-							<p class="text-lg">
+							<p class="md:text-lg">
 								Whether you want to get in shape with a personalized fitness training plan, break a
 								sweat in a team environment, or reach peak athletic performance, our group of expert
 								fitness coaches and community members are here to help you be your best self, every
