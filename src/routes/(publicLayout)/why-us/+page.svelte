@@ -3,6 +3,15 @@
 	import WhyUsFaq from '$lib/Components/WhyUsFAQ.svelte';
 </script>
 
+<svelte:head>
+	<title>Why Fitness Academy? - Fitness Academy</title>
+	<meta
+		name="description"
+		content="We know you have lots of choices when it comes to fitness options in a coaching team and gym. But here’s why we believe we have pioneered a new way of training which delivers better results for our members."
+	/>
+	<link rel="canonical" href="https://www.fitnessacademygym.com/why-us" />
+</svelte:head>
+
 <div
 	class="relative w-full border-b-[20px] border-primary bg-[url(/images/i-RPPt4xk-X3-1500x900.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:block before:h-[110px] before:w-full before:bg-[rgba(0,0,0,0.6)] lg:before:h-[170px]"
 >
