@@ -97,7 +97,11 @@
 								</div>
 							</li>
 							<li class="mt-2">
-								<p class="flex items-center gap-4">
+								<a
+									target="_blank"
+									href="https://www.google.com/maps?ll=28.96233,77.302274&z=15&t=h&hl=en&gl=IN&mapclient=embed&cid=5118534048128552301"
+									class="flex items-center gap-4"
+								>
 									<figure class=" flex items-center justify-center rounded-full bg-accent p-2">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +117,7 @@
 									</figure>
 
 									Meetli, Baghpat (UP) INDIA
-								</p>
+								</a>
 							</li>
 						</ul>
 					</div>

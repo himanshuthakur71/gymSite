@@ -64,7 +64,11 @@
 				</svg>
 				+91.9058884985
 			</a>
-			<p class="flex items-center gap-1">
+			<a
+				target="_blank"
+				href="https://www.google.com/maps?ll=28.96233,77.302274&z=15&t=h&hl=en&gl=IN&mapclient=embed&cid=5118534048128552301"
+				class="flex items-center gap-1 hover:link-primary"
+			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
 					<path
 						fill="currentColor"
@@ -72,7 +76,7 @@
 					/>
 				</svg>
 				Meetli, Baghpat (UP) INDIA
-			</p>
+			</a>
 			<a href="/blog" class="hover:link-primary">Fitness Tips Blog</a>
 			<a href="/contact-us" class="hover:link-primary">Contact</a>
 			<a
