@@ -17,10 +17,10 @@
 					Our Approach to Fitness Gets Results.
 				</h2>
 				<p class="mb-4 text-center text-lg font-[500]">
-					At Advanced Wellness, we know that customized fitness programs deliver superior results.
+					At FITNESS ACADEMY, we know that customized fitness programs deliver superior results.
 				</p>
 				<p class="text-center">
-					We have pioneered a boutique fitness program at our xxGymNamexx gym which uses a
+					We have pioneered a boutique fitness program at our FITNESS ACADEMY gym which uses a
 					personalized workout to get you fit faster and trains you more effectively than
 					traditional mainstream fitness programs. If you are ready to transform your body, health,
 					and athletic performance goals into a reality, join our awesome community of fitness fans,
