@@ -3,7 +3,7 @@
 		<div class="w-full">
 			<div class="hms-container">
 				<div class="relative z-[2] w-full py-16 lg:py-32">
-					<div class="grid grid-cols-1 lg:grid-cols-2">
+					<div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2">
 						<div class="w-full">
 							<h3
 								class="mb-6 border-l-[10px] border-primary py-1 pl-[10px] text-3xl font-bold md:text-4xl lg:text-5xl"
@@ -24,13 +24,13 @@
 							</div>
 						</div>
 						<div class="w-full">
-							<div class="mx-auto w-full max-w-[320px] bg-black shadow-xl lg:max-w-[400px]">
+							<div class="mx-auto w-full bg-black shadow-xl lg:max-w-[400px]">
 								<div class=" relative flex w-full justify-center">
 									<h4 class=" w-full bg-[#EADEDA] py-4 text-center text-xl font-black text-black">
 										SPECIAL TRIAL OFFER
 									</h4>
 								</div>
-								<div class="mx-auto w-full max-w-[340px] p-4">
+								<div class="mx-auto w-full p-4 lg:max-w-[340px]">
 									<p class=" mb-6 text-center">
 										Sign up to begin your 1-week trial membership for only ₹99.
 									</p>
