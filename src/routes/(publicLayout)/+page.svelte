@@ -1,3 +1,7 @@
+<script>
+	import Parallax from '$lib/Components/Parallax.svelte';
+</script>
+
 <section class="w-full py-16 lg:py-32">
 	<div class="hms-container">
 		<div class="w-full">
@@ -118,3 +122,5 @@
 		</div>
 	</div>
 </section>
+
+<Parallax />
