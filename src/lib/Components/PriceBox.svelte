@@ -18,7 +18,7 @@
 					<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
 						<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
 							<sup class="text-primary">₹</sup>
-							0000
+							700
 						</p>
 						<h4 class=" lg:3xl text-center text-2xl">MONTHLY PACK</h4>
 
@@ -35,7 +35,7 @@
 					<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
 						<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
 							<sup class="text-primary">₹</sup>
-							0000
+							1800
 						</p>
 						<h4 class=" lg:3xl text-center text-2xl">QUARTERLY PACK</h4>
 
@@ -53,7 +53,7 @@
 					<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
 						<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
 							<sup class="text-primary">₹</sup>
-							0000
+							3000
 						</p>
 						<h4 class=" lg:3xl text-center text-2xl">HALF YEARLY PACK</h4>
 
@@ -70,7 +70,7 @@
 					<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
 						<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
 							<sup class="text-primary">₹</sup>
-							0000
+							5000
 						</p>
 						<h4 class=" lg:3xl text-center text-2xl">YEARLY PACK</h4>
 

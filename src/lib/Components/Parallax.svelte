@@ -33,7 +33,7 @@
 								</div>
 								<div class="mx-auto w-full p-4 lg:max-w-[340px]">
 									<p class=" mb-6 text-center">
-										Sign up to begin your 1-week trial membership for only ₹99.
+										Sign up to begin your 1-week trial membership for only ₹399.
 									</p>
 									<form>
 										<div class="grid w-full grid-cols-1 gap-4">
