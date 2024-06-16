@@ -1,10 +1,10 @@
 <section>
 	<footer class="footer footer-center rounded bg-base-200 p-10 text-base-content">
 		<nav class="grid grid-flow-col gap-4">
-			<a href="/" class="link-hover link">Why us</a>
-			<a href="/" class="link-hover link">Contact</a>
-			<a href="/" class="link-hover link">Gallery</a>
-			<a href="/" class="link-hover link font-bold underline">Join Us</a>
+			<a href="/why-us" class="link-hover link">Why us</a>
+			<a href="/contact-us" class="link-hover link">Contact</a>
+			<a href="/gallery" class="link-hover link">Gallery</a>
+			<a href="/join" class="link-hover link font-bold underline">Join Us</a>
 		</nav>
 		<nav>
 			<div class="grid grid-flow-col gap-4">
