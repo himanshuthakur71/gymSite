@@ -31,7 +31,7 @@
 								<div class="flex h-full w-full flex-col justify-center gap-4">
 									<div class="w-full">
 										<h2 class=" mb-[10px] text-2xl font-bold md:text-3xl">
-											{blog?.title}
+											<a href="/blog/{blog?.slug}.html">{blog?.title}</a>
 										</h2>
 										<p>
 											{blog?.demoContent}
@@ -51,7 +51,7 @@
 								<div class="flex h-full w-full flex-col justify-center gap-4">
 									<div class="w-full">
 										<h2 class=" mb-[10px] text-2xl font-bold md:text-3xl">
-											{blog?.title}
+											<a href="/blog/{blog?.slug}.html">{blog?.title}</a>
 										</h2>
 										<p>
 											{blog?.demoContent}
@@ -63,7 +63,9 @@
 								</div>
 							</div>
 							<figure class="flex h-full w-full">
-								<img src={blog?.faceIamge} alt={blog?.title} class="h-full w-full" />
+								<a href="/blog/{blog?.slug}.html">
+									<img src={blog?.faceIamge} alt={blog?.title} class="h-full w-full" />
+								</a>
 							</figure>
 						</div>
 					</div>
