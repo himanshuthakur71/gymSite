@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="relative w-full border-b-[20px] border-primary bg-[url(/images/i-RPPt4xk-X3-1500x900.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:block before:h-[170px] before:w-full before:bg-[rgba(0,0,0,0.6)]"
+	class="relative w-full border-b-[20px] border-primary bg-[url(/images/i-RPPt4xk-X3-1500x900.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:block before:h-[110px] before:w-full before:bg-[rgba(0,0,0,0.6)] lg:before:h-[170px]"
 >
 	<Header />
 	<div class="flex min-h-[calc(100vh-195px)] w-full items-center">
