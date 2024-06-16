@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
+
 	let menu = false;
 </script>
 
@@ -32,6 +34,23 @@
 				</svg>
 			{/if}
 		</button>
+		{#if menu}
+			<div
+				class="absolute right-[15px] top-[120px] w-full max-w-[200px] bg-base-100 p-4"
+				transition:fly={{ x: 130 }}
+			>
+				<div class=" grid grid-cols-1 place-content-start">
+					<a href="/why-us" class="btn btn-ghost font-semibold uppercase">Why Us</a>
+					<a href="/whats-included" class="btn btn-ghost font-semibold uppercase"
+						>What’s Included?</a
+					>
+					<a href="/memberships" class="btn btn-ghost font-semibold uppercase">Memberships</a>
+					<a href="/special-offers" class="btn btn-ghost font-semibold uppercase">Offers</a>
+					<a href="/gallery" class="btn btn-ghost font-semibold uppercase">Gallery</a>
+					<a href="/join" class="btn btn-primary btn-sm rounded font-bold uppercase"> Join us </a>
+				</div>
+			</div>
+		{/if}
 	</div>
 
 	<div class="hidden flex-none flex-col gap-2 lg:flex">
