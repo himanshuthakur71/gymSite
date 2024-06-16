@@ -14,3 +14,40 @@
 		</div>
 	</div>
 </div>
+
+<section class="my-16 lg:my-32">
+	<div class="hms-container">
+		<div class="grid w-full grid-cols-1 gap-4 text-lg lg:text-xl">
+			<p>
+				Our boutique fitness gym offers members three flexible <a
+					href="/memberships"
+					class="link-hover link-primary">membership packages</a
+				> (Live Coaching 8, 12 & 16) with different levels of benefits so that you can choose the right
+				mix and frequency of workout options which meet your budget and your needs.
+			</p>
+
+			<p>Each of our membership packages includes:</p>
+
+			<ul class=" list-disc pl-4">
+				<li>
+					A custom, personalized workout plan tailored to your current fitness capabilities, goals &
+					requirements
+				</li>
+
+				<li class="mt-2">
+					The Advanced Wellness proprietary suite of fitness services led by our professional team
+					of fitness experts:
+					<ul class=" mt-2 list-disc pl-8">
+						<li class="mt-2">A one-on-one introductory training sessions</li>
+						<li class="mt-2">A customized, individual workout plan</li>
+						<li class="mt-2">A Nutrition Tips Session</li>
+						<li class="mt-2">Semi-private training sessions: 6:1 client-to-trainer ratio</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="pt-16">
+			<a href="/" class="btn btn-primary px-8 text-xl font-[600] uppercase">Back</a>
+		</div>
+	</div>
+</section>
