@@ -15,6 +15,7 @@
 		name="description"
 		content="Fitness Academy is a unique Meetli, Baghpat fitness gym offering an innovative, highly-individualized performance program with personal training, and semi-private training sessions and group fitness team training for athletes and fitness fans at all levels of ability."
 	/>
+	<link rel="canonical" href="https://www.fitnessacademygym.com/" />
 </svelte:head>
 
 <Hero />
