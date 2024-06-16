@@ -1,5 +1,6 @@
 <script>
 	import Header from '$lib/Components/Header.svelte';
+	import WhyUsFaq from '$lib/Components/WhyUsFAQ.svelte';
 </script>
 
 <div
@@ -14,3 +15,19 @@
 		</div>
 	</div>
 </div>
+
+<section class="w-full py-16 lg:py-32">
+	<div class="hms-container">
+		<div class="w-full">
+			<p class="text-lg">
+				We know you have lots of choices when it comes to fitness options in a coaching team and
+				gym. But here’s why we believe we have pioneered a new way of training which delivers better
+				results for our members.
+			</p>
+
+			<div class="mt-16 w-full">
+				<WhyUsFaq />
+			</div>
+		</div>
+	</div>
+</section>

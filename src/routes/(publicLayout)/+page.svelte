@@ -2,6 +2,7 @@
 	import Hero from '$lib/Components/Hero.svelte';
 	import Parallax from '$lib/Components/Parallax.svelte';
 	import PriceBox from '$lib/Components/PriceBox.svelte';
+	import WhyUsFaq from '$lib/Components/WhyUsFAQ.svelte';
 </script>
 
 <Hero />
@@ -132,4 +133,10 @@
 
 	<Parallax />
 	<PriceBox />
+
+	<section class="my-16 w-full lg:my-32">
+		<div class="hms-container">
+			<WhyUsFaq />
+		</div>
+	</section>
 </main>
