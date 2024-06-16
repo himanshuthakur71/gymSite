@@ -8,7 +8,8 @@
 							<h3
 								class="mb-6 border-l-[10px] border-primary py-1 pl-[10px] text-3xl font-bold md:text-4xl lg:text-5xl"
 							>
-								WE’RE NOT LIKE ANY OTHER GYM IN <span class=" font-black italic">xxLOCATIONxx.</span
+								WE’RE NOT LIKE ANY OTHER GYM IN <span class=" font-black italic"
+									>Meetli, Baghpat.</span
 								>
 							</h3>
 							<p class="md:text-lg">
