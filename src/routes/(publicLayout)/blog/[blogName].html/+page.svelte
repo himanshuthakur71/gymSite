@@ -51,9 +51,34 @@
 	<Header />
 	<div class="flex min-h-[calc(100vh-195px)] w-full items-center">
 		<div class="flex w-full flex-col items-end gap-8 bg-[rgba(0,0,0,0.6)] px-[15px] py-4">
-			<h1 class=" w-full border-primary py-1 text-center text-4xl font-black md:text-5xl">
+			<p class=" w-full border-primary py-1 text-center text-4xl font-black md:text-5xl">
 				FITNESS TIPS FROM <span class="text-primary">OUR TRAINERS</span>
-			</h1>
+			</p>
 		</div>
 	</div>
 </div>
+
+<section class="w-full bg-base-100 pb-32 pt-4" data-theme="fantasy">
+	<div class="hms-container">
+		<div class="w-full">
+			<div class="breadcrumbs text-sm">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/blog">Blogs</a></li>
+					<li>{meta?.title}</li>
+				</ul>
+			</div>
+
+			<div class="mt-6">
+				<div class="date"><samp>{meta?.date}</samp></div>
+				<div class="blog_cntt mt-4" style="width: 100%;">
+					<svelte:component this={content} />
+				</div>
+			</div>
+
+			<div class="hms-container pt-16">
+				<a href="/" class="btn btn-accent px-8 text-xl font-[600] uppercase">Back</a>
+			</div>
+		</div>
+	</div>
+</section>
