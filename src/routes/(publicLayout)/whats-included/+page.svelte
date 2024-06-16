@@ -2,6 +2,12 @@
 	import Header from '$lib/Components/Header.svelte';
 </script>
 
+<svelte:head>
+	<title>What's Included? - Fitness Academy</title>
+
+	<link rel="canonical" href="https://www.fitnessacademygym.com/whats-included" />
+</svelte:head>
+
 <div
 	class="relative w-full border-b-[20px] border-primary bg-[url(/images/i-SCP7Pp2-X3-1599x900.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:block before:h-[110px] before:w-full before:bg-[rgba(0,0,0,0.6)] lg:before:h-[170px]"
 >

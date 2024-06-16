@@ -3,6 +3,11 @@
 	import Header from '$lib/Components/Header.svelte';
 </script>
 
+<svelte:head>
+	<title>Contact Us - Fitness Academy</title>
+	<link rel="canonical" href="https://www.fitnessacademygym.com/contact-us" />
+</svelte:head>
+
 <div
 	class="relative w-full border-b-[20px] border-primary bg-[url(/images/i-WQmMjBX-X3-1600x695.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:block before:h-[110px] before:w-full before:bg-[rgba(0,0,0,0.6)] lg:before:h-[170px]"
 >

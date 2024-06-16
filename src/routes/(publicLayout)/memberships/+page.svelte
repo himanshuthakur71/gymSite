@@ -3,6 +3,11 @@
 	import PriceBox from '$lib/Components/PriceBox.svelte';
 </script>
 
+<svelte:head>
+	<title>Memberships - Fitness Academy</title>
+	<link rel="canonical" href="https://www.fitnessacademygym.com/memberships" />
+</svelte:head>
+
 <div
 	class="relative w-full border-b-[20px] border-primary bg-[url(/images/i-NWHVHpG-X3-1-1600x900.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:block before:h-[110px] before:w-full before:bg-[rgba(0,0,0,0.6)] lg:before:h-[170px]"
 >

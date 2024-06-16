@@ -2,6 +2,11 @@
 	import Header from '$lib/Components/Header.svelte';
 </script>
 
+<svelte:head>
+	<title>Gallery - Fitness Academy</title>
+	<link rel="canonical" href="https://www.fitnessacademygym.com/gallery" />
+</svelte:head>
+
 <div
 	class="relative w-full border-b-[20px] border-primary bg-[url(/images/i-Ww5PW6r-X3-1600x900.jpg)] bg-cover bg-center bg-no-repeat before:absolute before:block before:h-[110px] before:w-full before:bg-[rgba(0,0,0,0.6)] lg:before:h-[170px]"
 >
