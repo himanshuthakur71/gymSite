@@ -1,6 +1,13 @@
-<header class="navbar relative w-full bg-transparent py-4">
+<script lang="ts">
+	let menu = false;
+</script>
+
+<header class="navbar relative w-full bg-transparent lg:py-4">
 	<div class="flex-1">
-		<a href="/" class="flex h-[141px] w-[141px]">
+		<a
+			href="/"
+			class="flex h-[90px] w-[90px] items-center justify-center lg:h-[141px] lg:w-[141px]"
+		>
 			<img
 				src="/images/logo_gym-removebg-preview.png"
 				alt="logo"
@@ -10,8 +17,24 @@
 			/>
 		</a>
 	</div>
+	<div class="lg:hidden">
+		<button type="button" on:click={() => (menu = !menu)}>
+			{#if menu}
+				<svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24">
+					<path
+						fill="currentColor"
+						d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"
+					/>
+				</svg>
+			{:else}
+				<svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24">
+					<path fill="currentColor" d="M3 18v-2h18v2zm0-5v-2h18v2zm0-5V6h18v2z" />
+				</svg>
+			{/if}
+		</button>
+	</div>
 
-	<div class="flex-none flex-col gap-2">
+	<div class="hidden flex-none flex-col gap-2 lg:flex">
 		<div class="flex w-full items-center justify-end gap-4 border-b pb-2 font-bold uppercase">
 			<a href="tel:+000000000000" class="flex items-center gap-1 hover:link-primary">
 				<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
