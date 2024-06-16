@@ -1,5 +1,6 @@
 <script>
 	import Header from '$lib/Components/Header.svelte';
+	import PriceBox from '$lib/Components/PriceBox.svelte';
 </script>
 
 <div
@@ -12,5 +13,13 @@
 				MEMBERSHIPS: <span class="text-primary">JOIN US!</span>
 			</h1>
 		</div>
+	</div>
+</div>
+
+<div class="">
+	<PriceBox />
+
+	<div class="hms-container py-16">
+		<a href="/" class="btn btn-primary px-8 text-xl font-[600] uppercase">Back</a>
 	</div>
 </div>
