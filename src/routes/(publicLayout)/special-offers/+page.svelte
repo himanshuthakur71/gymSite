@@ -1,5 +1,6 @@
 <script>
 	import Header from '$lib/Components/Header.svelte';
+	import Parallax from '$lib/Components/Parallax.svelte';
 </script>
 
 <div
@@ -12,5 +13,13 @@
 				SPECIAL <span class="text-primary">OFFERS</span>
 			</h1>
 		</div>
+	</div>
+</div>
+
+<div class="">
+	<Parallax />
+
+	<div class="hms-container py-16">
+		<a href="/" class="btn btn-primary px-8 text-xl font-[600] uppercase">Back</a>
 	</div>
 </div>
