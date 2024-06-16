@@ -9,6 +9,14 @@
 	const { blogs } = data;
 </script>
 
+<svelte:head>
+	<title>Fitness Academy Gym | Personal Trainers & Coaches | Fitness Academy</title>
+	<meta
+		name="description"
+		content="Fitness Academy is a unique Meetli, Baghpat fitness gym offering an innovative, highly-individualized performance program with personal training, and semi-private training sessions and group fitness team training for athletes and fitness fans at all levels of ability."
+	/>
+</svelte:head>
+
 <Hero />
 
 <main>
