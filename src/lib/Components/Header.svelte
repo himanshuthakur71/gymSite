@@ -33,7 +33,12 @@
 			</p>
 			<a href="/" class="hover:link-primary">Fitness Tips Blog</a>
 			<a href="/" class="hover:link-primary">Contact</a>
-			<a href="http://" target="_blank" rel="noopener noreferrer" class="flex">
+			<a
+				href="https://www.instagram.com/fa_fitnessacademy_gym/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="flex"
+			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 256">
 					<g fill="none">
 						<rect width="256" height="256" fill="url(#skillIconsInstagram0)" rx="60" />
@@ -74,81 +79,11 @@
 			</a>
 		</div>
 		<div class="flex w-full items-center gap-1">
-			<div class="dropdown dropdown-end">
-				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
-					Why Us
-					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
-						<path fill="currentColor" d="M7.5 12L0 4h15z" />
-					</svg>
-				</div>
-				<ul
-					tabindex="-1"
-					class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
-				>
-					<li><a href="/">Item 1</a></li>
-					<li><a href="/">Item 2</a></li>
-				</ul>
-			</div>
-			<div class="dropdown dropdown-end">
-				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
-					What’s Included?
-					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
-						<path fill="currentColor" d="M7.5 12L0 4h15z" />
-					</svg>
-				</div>
-				<ul
-					tabindex="-1"
-					class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
-				>
-					<li><a href="/">Item 1</a></li>
-					<li><a href="/">Item 2</a></li>
-				</ul>
-			</div>
-			<div class="dropdown dropdown-end">
-				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
-					Memberships
-					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
-						<path fill="currentColor" d="M7.5 12L0 4h15z" />
-					</svg>
-				</div>
-				<ul
-					tabindex="-1"
-					class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
-				>
-					<li><a href="/">Item 1</a></li>
-					<li><a href="/">Item 2</a></li>
-				</ul>
-			</div>
-			<div class="dropdown dropdown-end">
-				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
-					For Members
-					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
-						<path fill="currentColor" d="M7.5 12L0 4h15z" />
-					</svg>
-				</div>
-				<ul
-					tabindex="-1"
-					class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
-				>
-					<li><a href="/">Item 1</a></li>
-					<li><a href="/">Item 2</a></li>
-				</ul>
-			</div>
-			<div class="dropdown dropdown-end">
-				<div tabindex="-1" role="button" class="btn btn-ghost font-semibold uppercase">
-					Offers
-					<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 15 15">
-						<path fill="currentColor" d="M7.5 12L0 4h15z" />
-					</svg>
-				</div>
-				<ul
-					tabindex="-1"
-					class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
-				>
-					<li><a href="/">Item 1</a></li>
-					<li><a href="/">Item 2</a></li>
-				</ul>
-			</div>
+			<a href="/" class="btn btn-ghost font-semibold uppercase">Why Us</a>
+			<a href="/" class="btn btn-ghost font-semibold uppercase">What’s Included?</a>
+			<a href="/" class="btn btn-ghost font-semibold uppercase">Memberships</a>
+			<a href="/" class="btn btn-ghost font-semibold uppercase">Offers</a>
+			<a href="/" class="btn btn-ghost font-semibold uppercase">Gallery</a>
 			<a href="/" class="btn btn-primary btn-sm rounded font-bold uppercase"> Join us </a>
 		</div>
 	</div>
