@@ -74,6 +74,39 @@
 				<div class="blog_cntt mt-4" style="width: 100%;">
 					<svelte:component this={content} />
 				</div>
+				{#if meta?.authorName}
+					<div
+						class=" relative mt-[30px] flex items-center gap-[20px] pt-[15px] after:absolute after:left-0 after:top-0 after:block after:h-[2px] after:w-[30%] after:bg-primary"
+					>
+						{#if meta?.authorPhoto}
+							<a href={meta?.linkedin} target="_blank">
+								<figure
+									class="h-[80px] w-[80px] overflow-hidden rounded-full border-4 border-primary"
+								>
+									<img
+										src={meta?.authorPhoto}
+										width="80"
+										height="80"
+										alt="article author"
+										loading="lazy"
+										class="h-full w-full object-cover"
+									/>
+								</figure>
+							</a>
+						{/if}
+						<div class="flex flex-col gap-0">
+							<i id="author-label">Author</i>
+							<p>
+								<a href={meta?.linkedin} target="_blank" class=" link hover:text-amber-700">
+									<b>{meta?.authorName}</b>
+								</a>
+								<a href={meta?.linkedin} target="_blank" class="linkLink">
+									<img src="/images/linkedin-48.png" alt="linkedin" width="30px" height="30px" />
+								</a>
+							</p>
+						</div>
+					</div>
+				{/if}
 			</div>
 
 			<div class="hms-container pt-16">
