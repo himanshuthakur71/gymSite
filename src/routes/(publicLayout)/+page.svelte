@@ -1,8 +1,12 @@
-<script>
+<script lang="ts">
+	import BlogsSections from '$lib/Components/BlogsSections.svelte';
 	import Hero from '$lib/Components/Hero.svelte';
 	import Parallax from '$lib/Components/Parallax.svelte';
 	import PriceBox from '$lib/Components/PriceBox.svelte';
 	import WhyUsFaq from '$lib/Components/WhyUsFAQ.svelte';
+
+	export let data;
+	const { blogs } = data;
 </script>
 
 <Hero />
@@ -59,72 +63,7 @@
 
 	<section class="w-full bg-base-100 py-32" data-theme="fantasy">
 		<div class="hms-container">
-			<div class="grid w-full grid-cols-1 gap-16">
-				{#each Array(5) as blog, i}
-					{#if i % 2 == 0}
-						<div class="w-full shadow">
-							<div
-								class="grid grid-cols-1 gap-4 overflow-hidden rounded bg-base-200 lg:grid-cols-2"
-							>
-								<figure class="flex h-full w-full">
-									<img
-										src="/images/i-TL6V8z7-X3-570x300.jpg"
-										alt="A CUSTOMIZED FITNESS PROGRAM – JUST FOR YOU"
-										class="h-full w-full"
-									/>
-								</figure>
-								<div class="h-full w-full p-4">
-									<div class="flex h-full w-full flex-col justify-center gap-4">
-										<div class="w-full">
-											<h2 class=" mb-[10px] text-2xl font-bold md:text-3xl">
-												Lorem ipsum dolor sit amet.
-											</h2>
-											<p>
-												Lorem ipsum dolor sit, amet consectetur adipisicing elit. At nihil hic
-												repudiandae voluptates vitae! Magni labore cumque aut iste amet!
-											</p>
-										</div>
-										<div class="">
-											<button class="btn btn-primary">Learn more</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					{:else if i % 2 != 0}
-						<div class="w-full shadow">
-							<div
-								class="grid grid-cols-1 gap-4 overflow-hidden rounded bg-base-200 lg:grid-cols-2"
-							>
-								<div class="h-full w-full p-4">
-									<div class="flex h-full w-full flex-col justify-center gap-4">
-										<div class="w-full">
-											<h2 class=" mb-[10px] text-2xl font-bold md:text-3xl">
-												Lorem ipsum dolor sit amet.
-											</h2>
-											<p>
-												Lorem ipsum dolor sit, amet consectetur adipisicing elit. At nihil hic
-												repudiandae voluptates vitae! Magni labore cumque aut iste amet!
-											</p>
-										</div>
-										<div class="">
-											<button class="btn btn-primary">Learn more</button>
-										</div>
-									</div>
-								</div>
-								<figure class="flex h-full w-full">
-									<img
-										src="/images/i-TL6V8z7-X3-570x300.jpg"
-										alt="A CUSTOMIZED FITNESS PROGRAM – JUST FOR YOU"
-										class="h-full w-full"
-									/>
-								</figure>
-							</div>
-						</div>
-					{/if}
-				{/each}
-			</div>
-
+			<BlogsSections {blogs} />
 			<div class=" mt-16 flex items-center justify-center">
 				<a href="/blog" class="btn btn-accent btn-lg btn-block max-w-[320px]">See More</a>
 			</div>
