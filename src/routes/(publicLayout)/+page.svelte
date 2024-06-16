@@ -1,5 +1,6 @@
 <script>
 	import Parallax from '$lib/Components/Parallax.svelte';
+	import PriceBox from '$lib/Components/PriceBox.svelte';
 </script>
 
 <section class="w-full py-16 lg:py-32">
@@ -124,3 +125,4 @@
 </section>
 
 <Parallax />
+<PriceBox />
