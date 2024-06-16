@@ -120,7 +120,7 @@
 				</svg>
 			</a>
 		</div>
-		<div class="flex w-full items-center gap-1">
+		<div class="flex w-full items-center justify-end gap-1">
 			<a href="/why-us" class="btn btn-ghost font-semibold uppercase">Why Us</a>
 			<a href="/whats-included" class="btn btn-ghost font-semibold uppercase">What’s Included?</a>
 			<a href="/memberships" class="btn btn-ghost font-semibold uppercase">Memberships</a>

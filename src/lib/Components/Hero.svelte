@@ -9,7 +9,7 @@
 	<div class="flex min-h-[calc(100vh-195px)] w-full items-center">
 		<div class="flex w-full flex-col items-end gap-8 bg-[rgba(0,0,0,0.6)] px-[15px] py-4">
 			<h1
-				class="flex w-full flex-col items-end border-r-8 border-primary py-1 pr-4 text-4xl font-black md:text-5xl"
+				class="flex w-full flex-col items-end border-r-8 border-primary py-1 pr-4 text-end text-4xl font-black md:text-5xl"
 			>
 				<span>A fun Fitness Gym.</span>
 				<span>In your hood.</span>
