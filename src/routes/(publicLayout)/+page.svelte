@@ -127,7 +127,7 @@
 			</div>
 
 			<div class=" mt-16 flex items-center justify-center">
-				<a href="/" class="btn btn-accent btn-lg btn-block max-w-[320px]">See More</a>
+				<a href="/blog" class="btn btn-accent btn-lg btn-block max-w-[320px]">See More</a>
 			</div>
 		</div>
 	</section>

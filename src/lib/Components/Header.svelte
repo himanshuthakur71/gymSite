@@ -1,11 +1,11 @@
 <header class="navbar relative w-full bg-transparent py-4">
 	<div class="flex-1">
-		<a href="/" class="flex h-[141px] w-[190px]">
+		<a href="/" class="flex h-[141px] w-[141px]">
 			<img
-				src="https://www.advancedwellness.com/wp-content/themes/zecreative-iconic-single/assets/img/logo.svg"
+				src="/images/logo_gym-removebg-preview.png"
 				alt="logo"
-				width="91"
-				height="72"
+				width="141"
+				height="141"
 				class="h-full w-full"
 			/>
 		</a>
@@ -31,8 +31,8 @@
 				</svg>
 				XX xxxxxx xxxxx.(UP) INDIA
 			</p>
-			<a href="/" class="hover:link-primary">Fitness Tips Blog</a>
-			<a href="/" class="hover:link-primary">Contact</a>
+			<a href="/blog" class="hover:link-primary">Fitness Tips Blog</a>
+			<a href="/contact-us" class="hover:link-primary">Contact</a>
 			<a
 				href="https://www.instagram.com/fa_fitnessacademy_gym/"
 				target="_blank"
