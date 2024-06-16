@@ -41,19 +41,17 @@
 				<span
 					class=" absolute -top-[50px] left-[calc(50%-49px)] z-[2] flex h-[100px] w-[100px] rotate-45 bg-primary"
 				></span>
-				<a
-					href="/"
-					class="link-hover flex items-center justify-center rounded-md bg-[url(/images/capsule-fitness_fans-orange.jpg)] py-28 text-2xl font-semibold uppercase shadow-md hover:opacity-85 lg:text-3xl"
+				<div
+					class=" flex items-center justify-center rounded-md bg-[url(/images/capsule-fitness_fans-orange.jpg)] py-28 text-2xl font-semibold uppercase shadow-md lg:text-3xl"
 				>
 					<span>For Fitness Fans</span>
-				</a>
+				</div>
 
-				<a
-					href="/"
-					class="link-hover flex items-center justify-center rounded-md bg-[url(/images/capsule-athletes-blue.jpg)] py-28 text-2xl font-semibold uppercase shadow-md hover:opacity-85 lg:text-3xl"
+				<div
+					class=" flex items-center justify-center rounded-md bg-[url(/images/capsule-athletes-blue.jpg)] py-28 text-2xl font-semibold uppercase shadow-md lg:text-3xl"
 				>
 					<span>For Athletes</span>
-				</a>
+				</div>
 			</div>
 		</div>
 	</section>
