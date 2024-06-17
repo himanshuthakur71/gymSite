@@ -53,5 +53,12 @@
 				</tbody>
 			</table>
 		</div>
+
+		<div class=" mt-32">
+			<a
+				href="/admin/dashboard"
+				class="btn btn-outline btn-primary btn-block max-w-[120px] text-xl font-[500]">Back</a
+			>
+		</div>
 	</div>
 </section>
