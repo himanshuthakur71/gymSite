@@ -24,6 +24,13 @@
 				>
 					Manage Gallery
 				</a>
+
+				<a
+					href="/admin/dashboard/contact-us"
+					class="flex w-full items-center justify-center rounded bg-base-200 p-4 px-4 py-16 text-center text-2xl font-bold text-primary shadow hover:bg-base-300 hover:underline"
+				>
+					Forms Details
+				</a>
 			</div>
 		</div>
 	</div>
