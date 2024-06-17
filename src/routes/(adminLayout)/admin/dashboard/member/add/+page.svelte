@@ -1,3 +1,21 @@
+<script lang="ts">
+	let formfields = {
+		first_name: '',
+		last_name: '',
+		phone_number: '',
+		email: '',
+		gender: '',
+		aadhar_number: '',
+		age: '',
+		gym_time: '',
+		fee_pm: '',
+		fee_recived: '',
+		father_name: '',
+		monther_name: '',
+		address: ''
+	};
+</script>
+
 <section class="h-full w-full">
 	<div class="hms-container">
 		<div class="my-16">
@@ -15,6 +33,7 @@
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							required
+							bind:value={formfields.first_name}
 						/>
 					</label>
 					<label class="form-control w-full">
@@ -26,6 +45,7 @@
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							required
+							bind:value={formfields.last_name}
 						/>
 					</label>
 					<label class="form-control w-full">
@@ -37,6 +57,7 @@
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							required
+							bind:value={formfields.phone_number}
 						/>
 					</label>
 					<label class="form-control w-full">
@@ -48,6 +69,7 @@
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							required
+							bind:value={formfields.email}
 						/>
 					</label>
 					<label class="form-control w-full">
@@ -55,7 +77,7 @@
 							<span class="label-text">Gender *</span>
 						</div>
 
-						<select class="select select-bordered">
+						<select class="select select-bordered" bind:value={formfields.gender}>
 							<option disabled selected value="">Select</option>
 							<option value="male">Male</option>
 							<option value="female">Female</option>
@@ -66,19 +88,29 @@
 						<div class="label">
 							<span class="label-text">Aadhar number(Unique ID)</span>
 						</div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+						<input
+							type="text"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.aadhar_number}
+						/>
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
 							<span class="label-text">Age</span>
 						</div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+						<input
+							type="text"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.age}
+						/>
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
 							<span class="label-text">Gym Time</span>
 						</div>
-						<select class="select select-bordered" required>
+						<select class="select select-bordered" required bind:value={formfields.gym_time}>
 							<option disabled selected value="">Select</option>
 							<option value="morning">Morning </option>
 							<option value="afternoon">Afternoon </option>
@@ -94,6 +126,7 @@
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							required
+							bind:value={formfields.fee_pm}
 						/>
 					</label>
 					<label class="form-control w-full">
@@ -105,6 +138,7 @@
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							required
+							bind:value={formfields.fee_recived}
 						/>
 					</label>
 
@@ -112,21 +146,36 @@
 						<div class="label">
 							<span class="label-text">Father's name</span>
 						</div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+						<input
+							type="text"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.father_name}
+						/>
 					</label>
 
 					<label class="form-control w-full">
 						<div class="label">
 							<span class="label-text">Mother's name</span>
 						</div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+						<input
+							type="text"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.monther_name}
+						/>
 					</label>
 				</div>
 				<label class="form-control w-full">
 					<div class="label">
 						<span class="label-text">Address</span>
 					</div>
-					<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+					<input
+						type="text"
+						placeholder="Type here"
+						class="input input-bordered w-full"
+						bind:value={formfields.address}
+					/>
 				</label>
 			</div>
 
