@@ -1,6 +1,5 @@
 import { supabase } from '$lib/supabaseClient';
-
-import type { LayoutLoad } from './admin/$types';
+import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async () => {
 	const getSession = async () => {
