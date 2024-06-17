@@ -53,7 +53,7 @@
 						<ul>
 							<li>
 								<a
-									href="tel:+919058884985"
+									href="tel:+919058884925"
 									class="flex items-center gap-4 text-lg hover:link-primary"
 								>
 									<figure class=" flex items-center justify-center rounded-full bg-accent p-2">
@@ -69,7 +69,7 @@
 											/>
 										</svg>
 									</figure>
-									+91.9058884985
+									+91.9058884925
 								</a>
 							</li>
 							<li class="mt-2">
