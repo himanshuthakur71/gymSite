@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { supabase } from '$lib/supabaseClient';
+
 	let formfields = {
 		first_name: '',
 		last_name: '',
@@ -9,10 +11,26 @@
 		age: '',
 		gym_time: '',
 		fee_pm: '',
-		fee_recived: '',
+		fee_received: '',
 		father_name: '',
-		monther_name: '',
+		mother_name: '',
 		address: ''
+	};
+	let loading = false;
+	let saveSucess = false;
+
+	const add_member = async () => {
+		loading = true;
+
+		try {
+			const { data, error } = await supabase.from('members').insert([formfields]).select();
+
+			if (data) {
+				saveSucess = true;
+			}
+		} finally {
+			loading = false;
+		}
 	};
 </script>
 
@@ -21,7 +39,8 @@
 		<div class="my-16">
 			<h1 class=" text-2xl lg:text-3xl">Add New Members</h1>
 		</div>
-		<form>
+
+		<form on:submit|preventDefault={add_member}>
 			<div class="grid w-full grid-cols-1 gap-4 bg-base-200 p-4">
 				<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
 					<label class="form-control w-full">
@@ -138,7 +157,7 @@
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							required
-							bind:value={formfields.fee_recived}
+							bind:value={formfields.fee_received}
 						/>
 					</label>
 
@@ -162,7 +181,7 @@
 							type="text"
 							placeholder="Type here"
 							class="input input-bordered w-full"
-							bind:value={formfields.monther_name}
+							bind:value={formfields.mother_name}
 						/>
 					</label>
 				</div>
@@ -181,9 +200,15 @@
 
 			<div class="mt-6 flex justify-between">
 				<button
+					disabled={loading}
 					type="submit"
-					class="btn btn-primary btn-lg btn-block max-w-[140px] text-2xl font-[600]">Save</button
+					class="btn btn-primary btn-lg btn-block max-w-[140px] text-2xl font-[600]"
 				>
+					Save
+					{#if loading}
+						<span class="loading"></span>
+					{/if}
+				</button>
 
 				<a
 					href="/admin/dashboard/member"
@@ -195,3 +220,15 @@
 		</form>
 	</div>
 </section>
+
+{#if saveSucess}
+	<dialog id="my_modal_1" class="modal" open>
+		<div class="modal-box bg-base-300">
+			<h3 class="text-lg font-bold">Sucess</h3>
+			<p class="py-4">Member add sucessfully</p>
+			<div class=" mt-8 flex justify-center">
+				<a href="/admin/dashboard/member" class="btn btn-primary btn-wide">Continue</a>
+			</div>
+		</div>
+	</dialog>
+{/if}
