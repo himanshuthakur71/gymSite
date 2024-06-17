@@ -8,6 +8,7 @@
 		email: 'himanshu@mail.com',
 		gender: 'male',
 		joining_date: '2024-06-17',
+		end_date: '',
 		aadhar_number: '7855sdjhjhsd89955',
 		age: '26',
 		gym_time: 'evening',
@@ -15,7 +16,8 @@
 		fee_received: '0',
 		father_name: 'Satish Pundir',
 		mother_name: 'Babita Pundir',
-		address: 'Vill/Post: Pipalshah, Charthawal'
+		address: 'Vill/Post: Pipalshah, Charthawal',
+		is_paid: false
 	};
 	let loading = false;
 	let saveSucess = false;
@@ -33,6 +35,32 @@
 			loading = false;
 		}
 	};
+
+	const checkPayment = () => {
+		if (formfields?.fee_pm == formfields?.fee_received) {
+			formfields.is_paid = true;
+		}
+	};
+
+	// function getOneMonthLaterDate() {
+	// 	// Parse the selected date
+	// 	const date = new Date(formfields.joining_date);
+
+	// 	// Add one month
+	// 	date.setMonth(date.getMonth() + 1);
+
+	// 	// Handle edge cases where adding a month exceeds the month's days
+	// 	if (date.getDate() < new Date(formfields.joining_date).getDate()) {
+	// 		date.setDate(0); // Set to the last day of the previous month
+	// 	}
+
+	// 	// Format the date to yyyy-mm-dd
+	// 	const year = date.getFullYear();
+	// 	const month = String(date.getMonth() + 1).padStart(2, '0');
+	// 	const day = String(date.getDate()).padStart(2, '0');
+
+	// 	formfields.end_date = `${year}-${month}-${day}`;
+	// }
 </script>
 
 <section class="h-full w-full">
@@ -40,7 +68,7 @@
 		<div class="my-16">
 			<h1 class=" text-2xl lg:text-3xl">Add New Members</h1>
 		</div>
-
+		{formfields.is_paid}
 		<form on:submit|preventDefault={add_member}>
 			<div class="grid w-full grid-cols-1 gap-4 bg-base-200 p-4">
 				<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
@@ -92,6 +120,32 @@
 							bind:value={formfields.email}
 						/>
 					</label>
+
+					<label class="form-control w-full">
+						<div class="label">
+							<span class="label-text">Joining Date *</span>
+						</div>
+						<input
+							type="date"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.joining_date}
+							required
+						/>
+					</label>
+					<label class="form-control w-full">
+						<div class="label">
+							<span class="label-text">End Date *</span>
+						</div>
+						<input
+							type="date"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.end_date}
+							required
+						/>
+					</label>
+
 					<label class="form-control w-full">
 						<div class="label">
 							<span class="label-text">Gender *</span>
@@ -104,28 +158,7 @@
 							<option value="other">other</option>
 						</select>
 					</label>
-					<label class="form-control w-full">
-						<div class="label">
-							<span class="label-text">Joining Date</span>
-						</div>
-						<input
-							type="date"
-							placeholder="Type here"
-							class="input input-bordered w-full"
-							bind:value={formfields.joining_date}
-						/>
-					</label>
-					<label class="form-control w-full">
-						<div class="label">
-							<span class="label-text">Address</span>
-						</div>
-						<input
-							type="text"
-							placeholder="Type here"
-							class="input input-bordered w-full"
-							bind:value={formfields.address}
-						/>
-					</label>
+
 					<label class="form-control w-full">
 						<div class="label">
 							<span class="label-text">Aadhar number(Unique ID)</span>
@@ -169,6 +202,7 @@
 							class="input input-bordered w-full"
 							required
 							bind:value={formfields.fee_pm}
+							on:change={checkPayment}
 						/>
 					</label>
 					<label class="form-control w-full">
@@ -181,6 +215,7 @@
 							class="input input-bordered w-full"
 							required
 							bind:value={formfields.fee_received}
+							on:change={checkPayment}
 						/>
 					</label>
 
@@ -208,6 +243,17 @@
 						/>
 					</label>
 				</div>
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">Address</span>
+					</div>
+					<input
+						type="text"
+						placeholder="Type here"
+						class="input input-bordered w-full"
+						bind:value={formfields.address}
+					/>
+				</label>
 			</div>
 
 			<div class="mt-6 flex justify-between">
