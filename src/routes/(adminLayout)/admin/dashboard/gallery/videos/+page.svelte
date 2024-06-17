@@ -67,10 +67,10 @@
 		</div>
 
 		<div class="w-full">
-			<div class="flex w-full flex-wrap gap-8">
+			<div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{#if showImage}
 					<div
-						class="z-depth-2-hover z-depth-1 relative flex h-[166px] w-full max-w-[231px] flex-shrink-0 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
+						class="z-depth-2-hover z-depth-1 relative flex w-full flex-shrink-0 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
 					>
 						<button
 							type="button"
@@ -90,19 +90,25 @@
 								/>
 							</svg>
 						</button>
-						<img src={showImage} alt="uploaded_imge" class="h-full w-full" />
+
+						<!-- svelte-ignore a11y-media-has-caption -->
+						<video controls>
+							<source src={showImage} type="video/mp4" />
+
+							Your browser does not support the video tag.
+						</video>
 					</div>
 				{:else}
 					<label
 						for="avatar"
-						class="z-depth-2-hover z-depth-1 relative flex h-[166px] w-full max-w-[231px] flex-shrink-0 cursor-pointer flex-col items-center justify-center rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
+						class="z-depth-2-hover z-depth-1 relative flex w-full flex-shrink-0 cursor-pointer flex-col items-center justify-center rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
 					>
 						{#if loading}
 							<span class="loading absolute top-6"></span>
 						{/if}
 
 						<input
-							accept="image/png, image/jpeg"
+							accept="video/mp4"
 							id="avatar"
 							name="avatar"
 							type="file"
@@ -113,14 +119,14 @@
 						/>
 						<iconify-icon icon="line-md:upload-loop" width="5em" height="5em" class="text-primary"
 						></iconify-icon>
-						<p class="text-2xl font-bold">Upload Image</p>
+						<p class="text-2xl font-bold">Upload mp4</p>
 						<p>or Drag and Drop</p>
 					</label>
 				{/if}
 
 				{#each galleryVideos as item}
 					<div
-						class="z-depth-2-hover z-depth-1 relative flex h-[166px] w-full max-w-[231px] flex-shrink-0 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
+						class="z-depth-2-hover z-depth-1 relative flex w-full flex-shrink-0 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
 					>
 						<button
 							type="button"
@@ -140,11 +146,16 @@
 								/>
 							</svg>
 						</button>
-						<img
-							src={`https://itkrfzkrbqgsscxcveae.supabase.co/storage/v1/object/public/gallery/images/${item?.name}`}
-							alt="uploaded_imge"
-							class="h-full w-full"
-						/>
+
+						<!-- svelte-ignore a11y-media-has-caption -->
+						<video controls>
+							<source
+								src={`https://itkrfzkrbqgsscxcveae.supabase.co/storage/v1/object/public/gallery/video/${item?.name}`}
+								type="video/mp4"
+							/>
+
+							Your browser does not support the video tag.
+						</video>
 					</div>
 				{/each}
 			</div>
