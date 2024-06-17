@@ -10,20 +10,13 @@
 
 	let showImage: any = '';
 
+	let loading = false;
+
 	async function onChange() {
 		const file = input.files[0];
 
-		const { data, error } = await supabase.storage
-			.from('gallery')
-			.upload(`images/${file.name}`, file);
-
-		if (error) {
-			console.error('Error uploading file:', error);
-		} else {
-			console.log('File uploaded successfully:', data);
-		}
-
 		if (file) {
+			uploadToServer(file);
 			const reader = new FileReader();
 			reader.addEventListener('load', function () {
 				showImage = reader.result;
@@ -47,6 +40,24 @@
 			browser && window.location.reload();
 		}
 	}
+
+	async function uploadToServer(fil: any) {
+		loading = true;
+		try {
+			const { data, error } = await supabase.storage
+				.from('gallery')
+				.upload(`images/${fil.name}`, fil);
+
+			if (error) {
+				console.error('Error uploading file:', error);
+			}
+			if (data) {
+				browser && window.location.reload();
+			}
+		} finally {
+			loading = false;
+		}
+	}
 </script>
 
 <section class="h-full w-full">
@@ -56,7 +67,7 @@
 		</div>
 
 		<div class="w-full">
-			<div class="w-full">
+			<div class="flex w-full flex-wrap gap-8">
 				{#if showImage}
 					<div
 						class="z-depth-2-hover z-depth-1 relative flex h-[166px] w-full max-w-[231px] flex-shrink-0 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
@@ -86,6 +97,10 @@
 						for="avatar"
 						class="z-depth-2-hover z-depth-1 relative flex h-[166px] w-full max-w-[231px] flex-shrink-0 cursor-pointer flex-col items-center justify-center rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
 					>
+						{#if loading}
+							<span class="loading absolute top-6"></span>
+						{/if}
+
 						<input
 							accept="image/png, image/jpeg"
 							id="avatar"
@@ -94,6 +109,7 @@
 							class="absolute z-[2] h-full w-full cursor-pointer opacity-0"
 							bind:this={input}
 							on:change={onChange}
+							disabled={loading}
 						/>
 						<iconify-icon icon="line-md:upload-loop" width="5em" height="5em" class="text-primary"
 						></iconify-icon>
