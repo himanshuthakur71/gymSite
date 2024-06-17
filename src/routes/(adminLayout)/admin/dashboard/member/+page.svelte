@@ -13,7 +13,7 @@
 	let filterFirstName = '';
 	let filterEmail = '';
 	let filterPhone = '';
-	let filterIsPaid: any = '';
+	let filterIsPaid = false;
 
 	// Function to filter Members based on criteria
 	function filterMembers() {
@@ -22,8 +22,7 @@
 			return (
 				(!filterFirstName || member?.first_name.includes(filterFirstName)) &&
 				(!filterEmail || member?.email.includes(filterEmail)) &&
-				(!filterPhone || member?.phone_number.includes(filterPhone)) &&
-				(filterIsPaid || !member?.is_paid)
+				(!filterPhone || member?.phone_number.includes(filterPhone))
 			);
 		});
 	}
@@ -33,8 +32,15 @@
 		filterFirstName = '';
 		filterEmail = '';
 		filterPhone = '';
-		filterIsPaid = '';
+		filterIsPaid = false;
 	}
+
+	const showUnPaidOnly = () => {
+		members = data?.members || [];
+		members = members.filter((member: any) => {
+			return !filterIsPaid || !member?.is_paid;
+		});
+	};
 </script>
 
 <section class="h-full w-full">
@@ -48,7 +54,7 @@
 		</div>
 
 		<div class="mb-8 w-full bg-base-300 p-4">
-			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-4">
+			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-3">
 				<label class="form-control w-full">
 					<div class="label">
 						<span class="label-text">First name</span>
@@ -87,18 +93,18 @@
 						on:input={filterMembers}
 					/>
 				</label>
+			</div>
+		</div>
 
-				<label class="form-control w-full">
-					<div class="label">
-						<span class="label-text">Total Payment</span>
-					</div>
-
-					<select class="select select-bordered" bind:value={filterIsPaid} on:input={filterMembers}>
-						<option value="">Select</option>
-						<option value={true}>NO</option>
-						<!-- <option value={false}>No</option> -->
-					</select>
-				</label>
+		<div class="my-4 flex justify-end">
+			<div class=" text-end">
+				<span class="label-text mb-2 block">Unpaid only</span>
+				<input
+					type="checkbox"
+					class="toggle"
+					bind:checked={filterIsPaid}
+					on:change={showUnPaidOnly}
+				/>
 			</div>
 		</div>
 
