@@ -2,19 +2,20 @@
 	import { supabase } from '$lib/supabaseClient';
 
 	let formfields = {
-		first_name: '',
-		last_name: '',
-		phone_number: '',
-		email: '',
-		gender: '',
-		aadhar_number: '',
-		age: '',
-		gym_time: '',
-		fee_pm: '',
-		fee_received: '',
-		father_name: '',
-		mother_name: '',
-		address: ''
+		first_name: 'Himanshu',
+		last_name: 'Thakur',
+		phone_number: '7500073815',
+		email: 'himanshu@mail.com',
+		gender: 'male',
+		joining_date: '2024-06-17',
+		aadhar_number: '7855sdjhjhsd89955',
+		age: '26',
+		gym_time: 'evening',
+		fee_pm: '700',
+		fee_received: '0',
+		father_name: 'Satish Pundir',
+		mother_name: 'Babita Pundir',
+		address: 'Vill/Post: Pipalshah, Charthawal'
 	};
 	let loading = false;
 	let saveSucess = false;
@@ -105,6 +106,28 @@
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
+							<span class="label-text">Joining Date</span>
+						</div>
+						<input
+							type="date"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.joining_date}
+						/>
+					</label>
+					<label class="form-control w-full">
+						<div class="label">
+							<span class="label-text">Address</span>
+						</div>
+						<input
+							type="text"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.address}
+						/>
+					</label>
+					<label class="form-control w-full">
+						<div class="label">
 							<span class="label-text">Aadhar number(Unique ID)</span>
 						</div>
 						<input
@@ -185,17 +208,6 @@
 						/>
 					</label>
 				</div>
-				<label class="form-control w-full">
-					<div class="label">
-						<span class="label-text">Address</span>
-					</div>
-					<input
-						type="text"
-						placeholder="Type here"
-						class="input input-bordered w-full"
-						bind:value={formfields.address}
-					/>
-				</label>
 			</div>
 
 			<div class="mt-6 flex justify-between">
