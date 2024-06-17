@@ -20,6 +20,42 @@
 			</h1>
 		</div>
 
+		<div class="mb-8 w-full bg-base-300 p-4">
+			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-4">
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">First name</span>
+					</div>
+					<input type="text" placeholder="Type here" class="input input-bordered w-full" required />
+				</label>
+
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">Email</span>
+					</div>
+					<input type="text" placeholder="Type here" class="input input-bordered w-full" required />
+				</label>
+
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">Phone Number</span>
+					</div>
+					<input type="text" placeholder="Type here" class="input input-bordered w-full" required />
+				</label>
+
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">Is Paid</span>
+					</div>
+					<select class="select select-bordered">
+						<option disabled selected value="">Select</option>
+						<option value={true}>Yes</option>
+						<option value={false}>No</option>
+					</select>
+				</label>
+			</div>
+		</div>
+
 		<div class="w-full bg-base-200 p-4">
 			<table class="w-full text-left text-[18px]">
 				<thead class=" text-primary">
