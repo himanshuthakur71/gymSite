@@ -3,11 +3,38 @@
 
 	export let data;
 
-	const members: any = data?.members || [];
+	let members: any = data?.members || [];
 
 	const onClickGoTo = (id: string) => {
 		goto(`/admin/dashboard/member/${id}`);
 	};
+
+	// Filter criteria
+	let filterFirstName = '';
+	let filterEmail = '';
+	let filterPhone = '';
+	let filterIsPaid: any = '';
+
+	// Function to filter Members based on criteria
+	function filterMembers() {
+		members = data?.members || [];
+		members = members.filter((member: any) => {
+			return (
+				(!filterFirstName || member?.first_name.includes(filterFirstName)) &&
+				(!filterEmail || member?.email.includes(filterEmail)) &&
+				(!filterPhone || member?.phone_number.includes(filterPhone)) &&
+				(filterIsPaid || !member?.is_paid)
+			);
+		});
+	}
+
+	// Function to clear all filters
+	function clearFilters() {
+		filterFirstName = '';
+		filterEmail = '';
+		filterPhone = '';
+		filterIsPaid = '';
+	}
 </script>
 
 <section class="h-full w-full">
@@ -26,31 +53,50 @@
 					<div class="label">
 						<span class="label-text">First name</span>
 					</div>
-					<input type="text" placeholder="Type here" class="input input-bordered w-full" required />
+					<input
+						type="text"
+						placeholder="Type here"
+						class="input input-bordered w-full"
+						bind:value={filterFirstName}
+						on:input={filterMembers}
+					/>
 				</label>
 
 				<label class="form-control w-full">
 					<div class="label">
 						<span class="label-text">Email</span>
 					</div>
-					<input type="text" placeholder="Type here" class="input input-bordered w-full" required />
+					<input
+						type="text"
+						placeholder="Type here"
+						class="input input-bordered w-full"
+						bind:value={filterEmail}
+						on:input={filterMembers}
+					/>
 				</label>
 
 				<label class="form-control w-full">
 					<div class="label">
 						<span class="label-text">Phone Number</span>
 					</div>
-					<input type="text" placeholder="Type here" class="input input-bordered w-full" required />
+					<input
+						type="text"
+						placeholder="Type here"
+						class="input input-bordered w-full"
+						bind:value={filterPhone}
+						on:input={filterMembers}
+					/>
 				</label>
 
 				<label class="form-control w-full">
 					<div class="label">
-						<span class="label-text">Is Paid</span>
+						<span class="label-text">Total Payment</span>
 					</div>
-					<select class="select select-bordered">
-						<option disabled selected value="">Select</option>
-						<option value={true}>Yes</option>
-						<option value={false}>No</option>
+
+					<select class="select select-bordered" bind:value={filterIsPaid} on:input={filterMembers}>
+						<option value="">Select</option>
+						<option value={true}>NO</option>
+						<!-- <option value={false}>No</option> -->
 					</select>
 				</label>
 			</div>
@@ -74,6 +120,7 @@
 						<tr
 							on:click={() => onClickGoTo(member?.id)}
 							class="cursor-pointer hover:link-info hover:bg-base-100"
+							class:!bg-success={member?.fee_pm == member?.fee_received}
 						>
 							<td class="border-b border-r p-2">{member?.first_name}</td>
 							<td class="border-b border-r p-2">{member?.last_name}</td>
