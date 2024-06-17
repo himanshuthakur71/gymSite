@@ -3,18 +3,6 @@
 	import { userStore } from '$lib/Stores/userStore';
 	import { supabase } from '$lib/supabaseClient';
 
-	// const user_signup = async (email: string, password: string) => {
-	// 	let { data, error } = await supabase.auth.signUp({
-	// 		email: email,
-	// 		password: password
-	// 	});
-
-	// 	console.log({
-	// 		data,
-	// 		error
-	// 	});
-	// };
-
 	let formFields = { email: '', password: '' };
 
 	let authError = '';
@@ -40,17 +28,7 @@
 			loading = false;
 		}
 	};
-
-	// const getSession = async () => {
-	// 	const { data, error } = await supabase.auth.getSession();
-	// 	console.log({
-	// 		data,
-	// 		error
-	// 	});
-	// };
 </script>
-
-<!-- <button type="button" class=" btn" on:click={getSession}>GET SESSSION</button> -->
 
 <!-- himanshupundir71@gmail.com -->
 <!-- password@fitnessacademygym -->

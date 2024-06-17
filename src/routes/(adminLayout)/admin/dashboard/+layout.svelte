@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { userStore } from '$lib/Stores/userStore';
 	import Footer from '$lib/Components/Footer.svelte';
 	import { goto } from '$app/navigation';
 	import { supabase } from '$lib/supabaseClient';
+	import { onMount } from 'svelte';
 
 	const logout = async () => {
 		let { error } = await supabase.auth.signOut();
@@ -9,6 +11,12 @@
 			goto('/admin/login');
 		}
 	};
+
+	onMount(async () => {
+		if (!$userStore?.user_metadata?.first_name) {
+			goto('/admin/login');
+		}
+	});
 </script>
 
 <div class="grid h-full min-h-screen w-full grid-rows-[auto_1fr_auto]">
