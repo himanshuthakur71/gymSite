@@ -29,16 +29,16 @@
 
 /* Custom NProgress styles */
 #nprogress .bar {
-	background: #8f0847; /* Change this to your desired color */
+	background: #ff8f00; /* Change this to your desired color */
 }
 
 #nprogress .peg {
 	box-shadow:
-		0 0 10px #8f0847,
-		0 0 5px #8f0847; /* Change this to your desired color */
+		0 0 10px #ff8f00,
+		0 0 5px #ff8f00; /* Change this to your desired color */
 }
 
 #nprogress .spinner-icon {
-	border-top-color: #8f0847; /* Change this to your desired color */
-	border-left-color: #8f0847; /* Change this to your desired color */
+	border-top-color: #ff8f00; /* Change this to your desired color */
+	border-left-color: #ff8f00; /* Change this to your desired color */
 }
