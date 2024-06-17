@@ -1,7 +1,13 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	export let data;
-	const { members } = data;
-	console.log(members);
+
+	const members: any = data?.members || [];
+
+	const onClickGoTo = (id: string) => {
+		goto(`/admin/dashboard/member/${id}`);
+	};
 </script>
 
 <section class="h-full w-full">
@@ -14,18 +20,37 @@
 			</h1>
 		</div>
 
-		<div class="w-full">
-			<table class="w-full text-left text-[16px]">
-				<thead>
-					<th>First name</th>
-					<th>Last name</th>
-					<th>Phone number</th>
-					<th>Email</th>
-					<th>Gender</th>
-					<th>Joining Date</th>
-					<th>Free P/M</th>
-					<th>Free Paid</th>
+		<div class="w-full bg-base-200 p-4">
+			<table class="w-full text-left text-[18px]">
+				<thead class=" text-primary">
+					<th class="border-b border-r p-2 pb-4">First name</th>
+					<th class="border-b border-r p-2 pb-4">Last name</th>
+					<th class="border-b border-r p-2 pb-4">Phone number</th>
+					<th class="border-b border-r p-2 pb-4">Email</th>
+					<th class="border-b border-r p-2 pb-4">Gender</th>
+					<th class="border-b border-r p-2 pb-4">Joining Date</th>
+					<th class="border-b border-r p-2 pb-4">Free P/M</th>
+					<th class="border-b border-r p-2 pb-4">Free Received</th>
+					<th class="border-b p-2 pb-4">Timing</th>
 				</thead>
+				<tbody>
+					{#each members as member}
+						<tr
+							on:click={() => onClickGoTo(member?.id)}
+							class="cursor-pointer hover:link-info hover:bg-base-100"
+						>
+							<td class="border-b border-r p-2">{member?.first_name}</td>
+							<td class="border-b border-r p-2">{member?.last_name}</td>
+							<td class="border-b border-r p-2">{member?.phone_number}</td>
+							<td class="border-b border-r p-2">{member?.email}</td>
+							<td class="border-b border-r p-2">{member?.gender}</td>
+							<td class="border-b border-r p-2">{member?.joining_date}</td>
+							<td class="border-b border-r p-2">{member?.fee_pm}</td>
+							<td class="border-b border-r p-2">{member?.fee_received}</td>
+							<td class="border-b p-2">{member?.gym_time}</td>
+						</tr>
+					{/each}
+				</tbody>
 			</table>
 		</div>
 	</div>

@@ -239,7 +239,9 @@
 			<h3 class="text-lg font-bold">Sucess</h3>
 			<p class="py-4">Member add sucessfully</p>
 			<div class=" mt-8 flex justify-center">
-				<a href="/admin/dashboard/member" class="btn btn-primary btn-wide">Continue</a>
+				<a data-sveltekit-reload href="/admin/dashboard/member" class="btn btn-primary btn-wide"
+					>Continue</a
+				>
 			</div>
 		</div>
 	</dialog>
