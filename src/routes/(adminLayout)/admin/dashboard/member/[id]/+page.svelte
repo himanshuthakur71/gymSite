@@ -8,22 +8,22 @@
 	console.log(member);
 
 	let formfields = {
-		first_name: '',
-		last_name: '',
-		phone_number: '',
-		email: '',
-		gender: '',
-		joining_date: '',
-		end_date: '',
-		aadhar_number: '',
-		age: '',
-		gym_time: '',
-		fee_pm: '',
-		fee_received: '',
-		father_name: '',
-		mother_name: '',
-		address: '',
-		is_paid: false
+		first_name: member?.first_name || '',
+		last_name: member?.last_name || '',
+		phone_number: member?.phone_number || '',
+		email: member?.email || '',
+		gender: member?.gender || '',
+		joining_date: member?.joining_date || '',
+		end_date: member?.end_date || '',
+		aadhar_number: member?.aadhar_number || '',
+		age: member?.age || '',
+		gym_time: member?.gym_time || '',
+		fee_pm: member?.fee_pm || '',
+		fee_received: member?.fee_received || '',
+		father_name: member?.father_name || '',
+		mother_name: member?.mother_name || '',
+		address: member?.address || '',
+		is_paid: member?.is_paid || false
 	};
 	let loading = false;
 	let saveSucess = false;
@@ -32,17 +32,19 @@
 		loading = true;
 
 		try {
-			// const { data, error } = await supabase.from('members').insert([formfields]).select();
-
-			const { data, error } = await supabase
+			let { data, error } = await supabase
 				.from('members')
-				.update({ formfields })
-				.eq('some_column', 'someValue')
+				.update(formfields)
+				.eq('id', member?.id)
 				.select();
 
 			if (data) {
 				saveSucess = true;
 			}
+			console.log({
+				error,
+				data
+			});
 		} finally {
 			loading = false;
 		}
@@ -298,7 +300,7 @@
 	<dialog id="my_modal_1" class="modal" open>
 		<div class="modal-box bg-base-300">
 			<h3 class="text-lg font-bold">Sucess</h3>
-			<p class="py-4">Member add sucessfully</p>
+			<p class="py-4">Member Updated sucessfully</p>
 			<div class=" mt-8 flex justify-center">
 				<a data-sveltekit-reload href="/admin/dashboard/member" class="btn btn-primary btn-wide"
 					>Continue</a
