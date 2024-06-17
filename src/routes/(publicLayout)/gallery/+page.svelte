@@ -2,7 +2,7 @@
 	import Header from '$lib/Components/Header.svelte';
 
 	export let data;
-	const { galleryImages } = data;
+	const { galleryImages, galleryVideos } = data;
 </script>
 
 <svelte:head>
@@ -32,10 +32,33 @@
 					<div class="grid grid-cols-1 place-items-center gap-3 p-4 md:grid-cols-2 lg:grid-cols-3">
 						{#each galleryImages as item, i}
 							<img
-								class="hover:opacity-75"
+								class="shadow-md hover:opacity-75"
 								src={`https://itkrfzkrbqgsscxcveae.supabase.co/storage/v1/object/public/gallery/images/${item?.name}`}
 								alt="gallery image {i}"
+								width="100%"
+								height="100%"
 							/>
+						{/each}
+					</div>
+				</div>
+			</div>
+		{/if}
+
+		{#if galleryVideos?.length}
+			<div class="mt-8 w-full">
+				<h2 class="text-xl font-semibold md:text-2xl lg:text-3xl">Video Gallery</h2>
+				<div class="mt-2 w-full">
+					<div class="grid grid-cols-1 place-items-center gap-3 p-4 md:grid-cols-2 lg:grid-cols-3">
+						{#each galleryVideos as item, i}
+							<!-- svelte-ignore a11y-media-has-caption -->
+							<video controls class=" shadow-md">
+								<source
+									src={`https://itkrfzkrbqgsscxcveae.supabase.co/storage/v1/object/public/gallery/video/${item?.name}`}
+									type="video/mp4"
+								/>
+
+								Your browser does not support the video tag.
+							</video>
 						{/each}
 					</div>
 				</div>
