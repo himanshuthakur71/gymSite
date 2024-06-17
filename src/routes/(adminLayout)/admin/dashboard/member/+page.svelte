@@ -127,6 +127,7 @@
 							on:click={() => onClickGoTo(member?.id)}
 							class="cursor-pointer hover:link-info hover:bg-base-100"
 							class:!bg-success={member?.fee_pm == member?.fee_received}
+							class:text-success-content={member?.fee_pm == member?.fee_received}
 						>
 							<td class="border-b border-r p-2">{member?.first_name}</td>
 							<td class="border-b border-r p-2">{member?.last_name}</td>

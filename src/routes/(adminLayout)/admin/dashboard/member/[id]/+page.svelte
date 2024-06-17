@@ -1,6 +1,12 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
 
+	export let data;
+
+	const member = data?.member;
+
+	console.log(member);
+
 	let formfields = {
 		first_name: '',
 		last_name: '',
@@ -26,7 +32,13 @@
 		loading = true;
 
 		try {
-			const { data, error } = await supabase.from('members').insert([formfields]).select();
+			// const { data, error } = await supabase.from('members').insert([formfields]).select();
+
+			const { data, error } = await supabase
+				.from('members')
+				.update({ formfields })
+				.eq('some_column', 'someValue')
+				.select();
 
 			if (data) {
 				saveSucess = true;
