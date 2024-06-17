@@ -2,21 +2,21 @@
 	import { supabase } from '$lib/supabaseClient';
 
 	let formfields = {
-		first_name: 'Himanshu',
-		last_name: 'Thakur',
-		phone_number: '7500073815',
-		email: 'himanshu@mail.com',
-		gender: 'male',
-		joining_date: '2024-06-17',
+		first_name: '',
+		last_name: '',
+		phone_number: '',
+		email: '',
+		gender: '',
+		joining_date: '',
 		end_date: '',
-		aadhar_number: '7855sdjhjhsd89955',
-		age: '26',
-		gym_time: 'evening',
-		fee_pm: '700',
-		fee_received: '0',
-		father_name: 'Satish Pundir',
-		mother_name: 'Babita Pundir',
-		address: 'Vill/Post: Pipalshah, Charthawal',
+		aadhar_number: '',
+		age: '',
+		gym_time: '',
+		fee_pm: '',
+		fee_received: '',
+		father_name: '',
+		mother_name: '',
+		address: '',
 		is_paid: false
 	};
 	let loading = false;
