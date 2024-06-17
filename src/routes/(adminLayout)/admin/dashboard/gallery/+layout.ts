@@ -1,7 +1,8 @@
 import { supabase } from '$lib/supabaseClient';
-import type { PageLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
+import type { LayoutLoad } from './$types';
 
-export const load: PageLoad = async () => {
+export const load: LayoutLoad = async () => {
 	async function getAllFilesInImagesFolder() {
 		// Retrieve the list of files in the 'images' folder of the 'gallery' bucket
 		const { data, error } = await supabase.storage.from('gallery').list('images', {
