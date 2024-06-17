@@ -4,7 +4,7 @@
 
 	export let data;
 
-	const { galleryImages } = data;
+	const { galleryVideos } = data;
 
 	let input: any;
 
@@ -34,7 +34,7 @@
 	}
 
 	async function deleteBuketImage(name: string) {
-		const { data, error } = await supabase.storage.from('gallery').remove([`images/${name}`]);
+		const { data, error } = await supabase.storage.from('gallery').remove([`video/${name}`]);
 
 		if (data) {
 			browser && window.location.reload();
@@ -46,7 +46,7 @@
 		try {
 			const { data, error } = await supabase.storage
 				.from('gallery')
-				.upload(`images/${fil.name}`, fil);
+				.upload(`video/${fil.name}`, fil);
 
 			if (error) {
 				console.error('Error uploading file:', error);
@@ -118,7 +118,7 @@
 					</label>
 				{/if}
 
-				{#each galleryImages as item}
+				{#each galleryVideos as item}
 					<div
 						class="z-depth-2-hover z-depth-1 relative flex h-[166px] w-full max-w-[231px] flex-shrink-0 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[25px] bg-base-200 px-[15] py-[15px] hover:bg-base-300"
 					>
