@@ -31,13 +31,15 @@
 				<div class="mt-2 w-full">
 					<div class="grid grid-cols-1 place-items-center gap-3 p-4 md:grid-cols-2 lg:grid-cols-3">
 						{#each galleryImages as item, i}
-							<img
-								class="shadow-md hover:opacity-75"
-								src={`https://itkrfzkrbqgsscxcveae.supabase.co/storage/v1/object/public/gallery/images/${item?.name}`}
-								alt="gallery image {i}"
-								width="100%"
-								height="100%"
-							/>
+							<div class="flex h-full w-full items-center justify-center">
+								<img
+									class="h-full w-full shadow-md hover:opacity-75"
+									src={`https://itkrfzkrbqgsscxcveae.supabase.co/storage/v1/object/public/gallery/images/${item?.name}`}
+									alt="gallery image {i}"
+									width="100%"
+									height="100%"
+								/>
+							</div>
 						{/each}
 					</div>
 				</div>
