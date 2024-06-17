@@ -28,7 +28,7 @@
 				password: formFields.password
 			});
 
-			if (data) {
+			if (data?.session?.user) {
 				$userStore = data?.session?.user;
 				goto('/admin/dashboard');
 			}

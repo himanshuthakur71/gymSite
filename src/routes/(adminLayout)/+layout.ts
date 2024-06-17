@@ -5,7 +5,7 @@ import type { LayoutLoad } from './admin/$types';
 export const load: LayoutLoad = async () => {
 	const getSession = async () => {
 		const { data, error } = await supabase.auth.getSession();
-		if (data) {
+		if (data?.session?.user) {
 			return data;
 		} else {
 			return false;
