@@ -41,12 +41,12 @@
 
 	<p class="flex flex-col text-lg">
 		<span>Available Limit:</span>
-		<strong>{totalMemberInBtach}</strong>
+		<strong>{batch?.batch_limit - totalMemberInBtach}</strong>
 	</p>
 
 	<p class="flex flex-col text-lg">
 		<span>Total Member in Batch:</span>
-		<strong>{batch?.batch_limit - totalMemberInBtach}</strong>
+		<strong>{totalMemberInBtach}</strong>
 	</p>
 
 	<p class="flex flex-col text-lg">
