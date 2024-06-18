@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
 
-	let formfields = {
+	export let data;
+
+	const gym_plans: any = data?.gym_plans;
+	const gym_batches: any = data?.gym_batches;
+
+	let formfields: any = {
 		first_name: '',
 		last_name: '',
 		phone_number: '',
@@ -43,25 +48,11 @@
 		}
 	};
 
-	// function getOneMonthLaterDate() {
-	// 	// Parse the selected date
-	// 	const date = new Date(formfields.joining_date);
-
-	// 	// Add one month
-	// 	date.setMonth(date.getMonth() + 1);
-
-	// 	// Handle edge cases where adding a month exceeds the month's days
-	// 	if (date.getDate() < new Date(formfields.joining_date).getDate()) {
-	// 		date.setDate(0); // Set to the last day of the previous month
-	// 	}
-
-	// 	// Format the date to yyyy-mm-dd
-	// 	const year = date.getFullYear();
-	// 	const month = String(date.getMonth() + 1).padStart(2, '0');
-	// 	const day = String(date.getDate()).padStart(2, '0');
-
-	// 	formfields.end_date = `${year}-${month}-${day}`;
-	// }
+	const updateDueAmount = () => {
+		if (formfields?.fee_received) {
+			formfields.due_amount = Number(formfields.fee_pm) - Number(formfields.fee_received);
+		}
+	};
 </script>
 
 <section class="h-full w-full">
@@ -163,9 +154,9 @@
 						</div>
 						<select class="select select-bordered" required bind:value={formfields.gym_time}>
 							<option disabled selected value="">Select</option>
-							<option value="morning">Morning </option>
-							<option value="afternoon">Afternoon </option>
-							<option value="evening">Evening </option>
+							{#each gym_batches as batch}
+								<option value={batch?.batch_name}>{batch?.batch_name}</option>
+							{/each}
 						</select>
 					</label>
 					<label class="form-control w-full">
@@ -175,16 +166,10 @@
 
 						<select class="select select-bordered" required bind:value={formfields.fee_pm}>
 							<option disabled selected value="">Select</option>
-							<option value="xxxxx">xxxxx </option>
+							{#each gym_plans as plan}
+								<option value={plan?.plan_amount}>{plan?.plan_name} </option>
+							{/each}
 						</select>
-						<!-- <input
-							type="number"
-							placeholder="Type here"
-							class="input input-bordered w-full"
-							required
-							bind:value={formfields.fee_pm}
-							on:change={checkPayment}
-						/> -->
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
@@ -197,6 +182,7 @@
 							required
 							bind:value={formfields.fee_received}
 							on:change={checkPayment}
+							on:change={updateDueAmount}
 						/>
 					</label>
 
