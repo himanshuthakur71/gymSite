@@ -1,5 +1,33 @@
 <script lang="ts">
+	import { supabase } from '$lib/supabaseClient';
+
 	let loading = false;
+	let saveSucess = false;
+
+	let formFeilds = {
+		batch_name: '',
+		batch_limit: '',
+		batch_open_time: '',
+		batch_close_time: ''
+	};
+
+	const addGymBatch = async () => {
+		loading = true;
+		try {
+			const { data, error } = await supabase.from('gym_batches').insert([formFeilds]).select();
+
+			console.log({
+				data,
+				error
+			});
+
+			if (data) {
+				saveSucess = true;
+			}
+		} finally {
+			loading = false;
+		}
+	};
 </script>
 
 <section class="my-16">
@@ -11,7 +39,7 @@
 		</div>
 
 		<div class="my-16 w-full">
-			<form>
+			<form on:submit|preventDefault={addGymBatch}>
 				<div class="grid w-full grid-cols-1 gap-4 bg-base-300 p-4">
 					<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
 						<label class="form-control w-full">
@@ -23,6 +51,7 @@
 								placeholder="Type here"
 								class="input input-bordered w-full"
 								required
+								bind:value={formFeilds.batch_name}
 							/>
 						</label>
 
@@ -35,6 +64,7 @@
 								placeholder="Type here"
 								class="input input-bordered w-full"
 								required
+								bind:value={formFeilds.batch_limit}
 							/>
 						</label>
 
@@ -47,6 +77,7 @@
 								placeholder="Type here"
 								class="input input-bordered w-full"
 								required
+								bind:value={formFeilds.batch_open_time}
 							/>
 						</label>
 
@@ -59,6 +90,7 @@
 								placeholder="Type here"
 								class="input input-bordered w-full"
 								required
+								bind:value={formFeilds.batch_close_time}
 							/>
 						</label>
 					</div>
