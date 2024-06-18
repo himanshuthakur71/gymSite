@@ -17,7 +17,8 @@
 		father_name: '',
 		mother_name: '',
 		address: '',
-		is_paid: false
+		is_paid: false,
+		due_amount: ''
 	};
 	let loading = false;
 	let saveSucess = false;
