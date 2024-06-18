@@ -1,3 +1,9 @@
+<script lang="ts">
+	export let data;
+
+	const gym_plans: any = data?.gym_plans;
+</script>
+
 <section class="my-16">
 	<div class="hms-container">
 		<div
@@ -10,26 +16,30 @@
 
 		<div class="my-16">
 			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
-				<div class="relative grid w-full grid-cols-1 gap-4 bg-base-200 p-4 shadow-md">
-					<div class=" absolute right-2 top-2 flex gap-4">
-						<a href="/admin/dashboard/plans" class="btn btn-primary btn-sm">Edit</a>
-						<button type="button" class="btn btn-error btn-sm">Delete</button>
+				{#each gym_plans as plan}
+					<div class="relative grid w-full grid-cols-1 gap-4 bg-base-200 p-4 shadow-md">
+						<div class=" absolute right-2 top-2 flex gap-4">
+							<a href="/admin/dashboard/plans/{plan?.plan_id}" class="btn btn-primary btn-sm"
+								>Edit</a
+							>
+							<button type="button" class="btn btn-error btn-sm">Delete</button>
+						</div>
+						<h2 class="flex flex-col text-lg">
+							<span>Plan Name:</span>
+							<strong>{plan?.plan_name}</strong>
+						</h2>
+
+						<p class="flex flex-col text-lg">
+							<span>Complete Amount:</span>
+							<strong>{plan?.plan_amount}</strong>
+						</p>
+
+						<p class="flex flex-col text-lg">
+							<span>Month:</span>
+							<strong>{plan?.plan_time}</strong>
+						</p>
 					</div>
-					<h2 class="flex flex-col text-lg">
-						<span>Plan Name:</span>
-						<strong>xxxxxxx</strong>
-					</h2>
-
-					<p class="flex flex-col text-lg">
-						<span>Complete Amount:</span>
-						<strong>00</strong>
-					</p>
-
-					<p class="flex flex-col text-lg">
-						<span>Month:</span>
-						<strong>00</strong>
-					</p>
-				</div>
+				{/each}
 			</div>
 		</div>
 	</div>
