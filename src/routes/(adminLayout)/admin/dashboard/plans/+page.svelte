@@ -32,11 +32,11 @@
 							<a href="/admin/dashboard/plans/{plan?.plan_id}" class="btn btn-primary btn-sm"
 								>Edit</a
 							>
-							<button
+							<!-- <button
 								on:click={() => deletePlan(plan?.plan_id)}
 								type="button"
 								class="btn btn-error btn-sm">Delete</button
-							>
+							> -->
 						</div>
 						<h2 class="flex flex-col text-lg">
 							<span>Plan Name:</span>
