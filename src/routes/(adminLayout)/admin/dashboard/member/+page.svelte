@@ -6,6 +6,10 @@
 
 	let members: any = data?.members;
 
+	const gym_batches: any = data?.gym_batches;
+
+	const gym_plans: any = data?.gym_plans;
+
 	// Helper function to map month numbers to month names
 	function getMonthName(monthIndex: any) {
 		const monthNames = [
@@ -57,6 +61,52 @@
 				<a href="/admin/dashboard/member/add" class=" link-hover text-blue-500">Add New</a>
 			</h1>
 		</div>
+
+		<section class="mb-16">
+			<legend
+				class=" mb-4 max-w-[160px] border-b-4 border-primary pb-2 text-xl font-semibold text-primary"
+				>Find Member:</legend
+			>
+			<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">First name</span>
+					</div>
+					<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+				</label>
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">Phone no</span>
+					</div>
+					<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+				</label>
+
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">Select Batch</span>
+					</div>
+					<select class="select select-bordered">
+						<option disabled selected value="">Select</option>
+						{#each gym_batches as batch}
+							<option value={batch?.batch_name}>{batch?.batch_name}</option>
+						{/each}
+					</select>
+				</label>
+
+				<label class="form-control w-full">
+					<div class="label">
+						<span class="label-text">Plan</span>
+					</div>
+
+					<select class="select select-bordered" required>
+						<option disabled selected value="">Select</option>
+						{#each gym_plans as plan}
+							<option value={plan?.plan_amount}>{plan?.plan_name} </option>
+						{/each}
+					</select>
+				</label>
+			</div>
+		</section>
 
 		<div class="w-full">
 			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
