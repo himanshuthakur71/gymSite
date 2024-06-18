@@ -6,6 +6,8 @@
 	const gym_plans: any = data?.gym_plans;
 	const gym_batches: any = data?.gym_batches;
 
+	let currentPlan: any;
+
 	let formfields: any = {
 		first_name: '',
 		last_name: '',
@@ -42,6 +44,14 @@
 		}
 	};
 
+	const getCurrentPlan = (amt: any = formfields.fee_pm) => {
+		gym_plans.forEach((plan: any) => {
+			if (plan?.plan_amount == amt) {
+				currentPlan = plan;
+			}
+		});
+	};
+
 	const checkPayment = () => {
 		if (formfields?.fee_pm == formfields?.fee_received) {
 			formfields.is_paid = true;
@@ -53,6 +63,61 @@
 			formfields.due_amount = Number(formfields.fee_pm) - Number(formfields.fee_received);
 		}
 	};
+
+	// Helper function to format date in YYYY-MM-DD format
+	function formatDate(date: any) {
+		let year = date.getFullYear();
+		let month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based in JavaScript
+		let day = String(date.getDate()).padStart(2, '0');
+		return `${year}-${month}-${day}`;
+	}
+
+	// Function to add months to the base date
+	function addMonths(date: any, months: any) {
+		const result = new Date(date);
+		result.setMonth(result.getMonth() + months);
+		return result;
+	}
+
+	// Main function to calculate the dates
+	function getFutureDates(inputDate: any) {
+		if (typeof inputDate !== 'string') {
+			throw new Error('Input date must be a string in YYYY-MM-DD format');
+		}
+
+		// Split the input date string and create a new Date object
+		const [year, month, day] = inputDate.split('-').map(Number);
+		const baseDate = new Date(year, month - 1, day);
+
+		// Calculate the future dates
+		const oneMonthLater = addMonths(baseDate, 1);
+		const threeMonthsLater = addMonths(baseDate, 3);
+		const sixMonthsLater = addMonths(baseDate, 6);
+		const twelveMonthsLater = addMonths(baseDate, 12);
+
+		// console.log({
+		// 	oneMonth: formatDate(oneMonthLater),
+		// 	threeMonths: formatDate(threeMonthsLater),
+		// 	sixMonths: formatDate(sixMonthsLater),
+		// 	twelveMonths: formatDate(twelveMonthsLater)
+		// });
+
+		if (currentPlan?.plan_time == 1) {
+			formfields.end_date = formatDate(oneMonthLater);
+		}
+
+		if (currentPlan?.plan_time == 3) {
+			formfields.end_date = formatDate(threeMonthsLater);
+		}
+
+		if (currentPlan?.plan_time == 6) {
+			formfields.end_date = formatDate(sixMonthsLater);
+		}
+
+		if (currentPlan?.plan_time == 12) {
+			formfields.end_date = formatDate(twelveMonthsLater);
+		}
+	}
 </script>
 
 <section class="h-full w-full">
@@ -60,7 +125,7 @@
 		<div class="my-16">
 			<h1 class=" text-2xl lg:text-3xl">Add New Members</h1>
 		</div>
-		{formfields.joining_date}
+
 		<form on:submit|preventDefault={add_member}>
 			<div class="grid w-full grid-cols-1 gap-4 bg-base-300 p-4">
 				<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
@@ -164,7 +229,12 @@
 							<span class="label-text">Plan</span>
 						</div>
 
-						<select class="select select-bordered" required bind:value={formfields.fee_pm}>
+						<select
+							class="select select-bordered"
+							required
+							bind:value={formfields.fee_pm}
+							on:change={() => getCurrentPlan(formfields.fee_pm)}
+						>
 							<option disabled selected value="">Select</option>
 							{#each gym_plans as plan}
 								<option value={plan?.plan_amount}>{plan?.plan_name} </option>
@@ -186,31 +256,35 @@
 						/>
 					</label>
 
-					<label class="form-control w-full">
-						<div class="label">
-							<span class="label-text">Joining Date *</span>
-						</div>
-						<input
-							type="date"
-							placeholder="Type here"
-							class="input input-bordered w-full"
-							bind:value={formfields.joining_date}
-							required
-						/>
-					</label>
-					<label class="form-control w-full">
-						<div class="label">
-							<span class="label-text">End Date *</span>
-						</div>
-						<input
-							type="date"
-							placeholder="Type here"
-							class="input input-bordered w-full"
-							bind:value={formfields.end_date}
-							required
-							disabled
-						/>
-					</label>
+					{#if currentPlan}
+						<label class="form-control w-full">
+							<div class="label">
+								<span class="label-text">Joining Date *</span>
+							</div>
+							<input
+								type="date"
+								placeholder="Type here"
+								class="input input-bordered w-full"
+								bind:value={formfields.joining_date}
+								required
+								on:change={() => getFutureDates(formfields.joining_date)}
+							/>
+						</label>
+						<label class="form-control w-full">
+							<div class="label">
+								<span class="label-text">End Date *</span>
+							</div>
+
+							<input
+								type="date"
+								placeholder="Type here"
+								class="input input-bordered w-full"
+								bind:value={formfields.end_date}
+								required
+								disabled
+							/>
+						</label>
+					{/if}
 
 					<label class="form-control w-full">
 						<div class="label">
