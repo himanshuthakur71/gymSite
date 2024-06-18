@@ -4,7 +4,10 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async () => {
 	try {
-		let { data: gym_plans, error } = await supabase.from('gym_plans').select('*');
+		let { data: gym_plans, error } = await supabase
+			.from('gym_plans')
+			.select('*')
+			.order('plan_id', { ascending: true });
 
 		if (gym_plans) {
 			return {

@@ -1,19 +1,28 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { supabase } from '$lib/supabaseClient';
+
+	export let data;
+
+	const { gym_plan } = data;
 
 	let loading = false;
 	let saveSucess = false;
 
 	let formFeilds = {
-		plan_name: '',
-		plan_amount: '',
-		plan_time: ''
+		plan_name: gym_plan?.plan_name || '',
+		plan_amount: gym_plan?.plan_amount || '',
+		plan_time: gym_plan?.plan_time || ''
 	};
 
 	const addGymPlan = async () => {
 		loading = true;
 		try {
-			const { data, error } = await supabase.from('gym_plans').insert([formFeilds]).select();
+			const { data, error } = await supabase
+				.from('gym_plans')
+				.update([formFeilds])
+				.eq('plan_id', $page?.params.plan_id)
+				.select();
 
 			// console.log({
 			// 	data,
@@ -75,7 +84,7 @@
 						<select class="select select-bordered" required bind:value={formFeilds.plan_time}>
 							<option disabled selected value="">Select</option>
 							{#each Array(24) as _, i}
-								<option value={i + 1}>{i + 1} Month</option>
+								<option value={`${i + 1}`}>{i + 1} Month</option>
 							{/each}
 						</select>
 					</label>

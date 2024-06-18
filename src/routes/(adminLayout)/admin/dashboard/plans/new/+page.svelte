@@ -75,7 +75,7 @@
 						<select class="select select-bordered" required bind:value={formFeilds.plan_time}>
 							<option disabled selected value="">Select</option>
 							{#each Array(24) as _, i}
-								<option value={i + 1}>{i + 1} Month</option>
+								<option value={`${i + 1}`}>{i + 1} Month</option>
 							{/each}
 						</select>
 					</label>
