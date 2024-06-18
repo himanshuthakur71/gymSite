@@ -27,6 +27,29 @@
 	onMount(async () => {
 		getBatchTotalMember();
 	});
+
+	function formatTime(timeString: string) {
+		// Split the input string into components
+		const [hours, minutes, seconds] = timeString.split(':').map(Number);
+
+		// Create a Date object with the given time components
+		const date = new Date();
+		date.setHours(hours, minutes, seconds);
+
+		// Extract the hours and minutes from the Date object
+		let formattedHours = date.getHours();
+		const formattedMinutes = date.getMinutes();
+		const period = formattedHours >= 12 ? 'PM' : 'AM';
+
+		// Convert hours from 24-hour to 12-hour format
+		formattedHours = formattedHours % 12 || 12;
+
+		// Format the minutes to always have two digits
+		const formattedMinutesString = formattedMinutes.toString().padStart(2, '0');
+
+		// Return the formatted time string
+		return `${formattedHours}:${formattedMinutesString} ${period}`;
+	}
 </script>
 
 <div class="relative grid w-full grid-cols-1 gap-4 bg-base-200 p-4 shadow-md md:grid-cols-2">
@@ -36,7 +59,7 @@
 	</div>
 	<h2 class="flex flex-col text-lg">
 		<span>Batch Name:</span>
-		<strong>{batch?.batch_name}</strong>
+		<strong class="text-primary">{batch?.batch_name}</strong>
 	</h2>
 
 	<p class="flex flex-col text-lg">
@@ -56,6 +79,6 @@
 
 	<p class="flex flex-col text-lg">
 		<span>Batch Timing:</span>
-		<strong>{batch?.batch_open_time} to {batch?.batch_close_time}</strong>
+		<strong>{formatTime(batch?.batch_open_time)} to {formatTime(batch?.batch_close_time)}</strong>
 	</p>
 </div>
