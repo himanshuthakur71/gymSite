@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { supabase } from '$lib/supabaseClient';
+	import { onMount } from 'svelte';
 
 	export let data;
 
@@ -60,6 +61,12 @@
 			}
 		});
 	};
+
+	onMount(() => {
+		if (formfields.fee_pm) {
+			getCurrentPlan(formfields.fee_pm);
+		}
+	});
 
 	const checkPayment = () => {
 		if (formfields?.fee_pm == formfields?.fee_received) {
