@@ -6,7 +6,7 @@
 	import WhyUsFaq from '$lib/Components/WhyUsFAQ.svelte';
 
 	export let data;
-	const { blogs } = data;
+	const { blogs, gymPlans } = data;
 </script>
 
 <svelte:head>
@@ -80,7 +80,7 @@
 	</section>
 
 	<Parallax />
-	<PriceBox />
+	<PriceBox {gymPlans} />
 
 	<section class="my-16 w-full lg:my-32">
 		<div class="hms-container">

@@ -1,6 +1,10 @@
 <script>
 	import Header from '$lib/Components/Header.svelte';
 	import PriceBox from '$lib/Components/PriceBox.svelte';
+
+	export let data;
+
+	const { gymPlans } = data;
 </script>
 
 <svelte:head>
@@ -22,7 +26,7 @@
 </div>
 
 <div class="">
-	<PriceBox />
+	<PriceBox {gymPlans} />
 
 	<div class="hms-container py-16">
 		<a href="/" class="btn btn-primary px-8 text-xl font-[600] uppercase">Back</a>

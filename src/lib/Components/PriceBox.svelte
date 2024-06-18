@@ -1,3 +1,7 @@
+<script lang="ts">
+	export let gymPlans: any;
+</script>
+
 <section class="w-full">
 	<div class="w-full py-16">
 		<div class="hms-container">
@@ -11,81 +15,33 @@
 			</div>
 		</div>
 	</div>
-	<div class="w-full bg-white py-16">
-		<div class="hms-container">
-			<div class="w-full">
-				<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-					<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
-						<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
-							<sup class="text-primary">₹</sup>
-							700
-						</p>
-						<h4 class=" lg:3xl text-center text-2xl">MONTHLY PACK</h4>
+	{#if gymPlans}
+		<div class="w-full bg-white py-16">
+			<div class="hms-container">
+				<div class="w-full">
+					<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+						{#each gymPlans as plan}
+							<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
+								<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
+									<sup class="text-primary">₹</sup>
+									{plan?.plan_amount}
+								</p>
+								<h4 class=" lg:3xl text-center text-2xl">{plan?.plan_name}</h4>
 
-						<ul
-							class="mt-6 grid list-none grid-cols-1 gap-2 border-t border-primary pt-4 text-center md:text-lg"
-						>
-							<li><strong>28 days</strong> membership</li>
-							<li>Personalized Fitness Program Design</li>
-							<li>8 Semi-Private Traning Sessions</li>
-							<li>Great Coaching</li>
-							<li>Awesome Community</li>
-						</ul>
-					</div>
-					<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
-						<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
-							<sup class="text-primary">₹</sup>
-							1800
-						</p>
-						<h4 class=" lg:3xl text-center text-2xl">QUARTERLY PACK</h4>
-
-						<ul
-							class="mt-6 grid list-none grid-cols-1 gap-2 border-t border-primary pt-4 text-center md:text-lg"
-						>
-							<li><strong>80 days</strong> membership</li>
-							<li>Personalized Fitness Program Design</li>
-							<li>8 Semi-Private Traning Sessions</li>
-							<li>Great Coaching</li>
-							<li>Awesome Community</li>
-						</ul>
-					</div>
-
-					<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
-						<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
-							<sup class="text-primary">₹</sup>
-							3000
-						</p>
-						<h4 class=" lg:3xl text-center text-2xl">HALF YEARLY PACK</h4>
-
-						<ul
-							class="mt-6 grid list-none grid-cols-1 gap-2 border-t border-primary pt-4 text-center md:text-lg"
-						>
-							<li><strong>120 days</strong> membership</li>
-							<li>Personalized Fitness Program Design</li>
-							<li>8 Semi-Private Traning Sessions</li>
-							<li>Great Coaching</li>
-							<li>Awesome Community</li>
-						</ul>
-					</div>
-					<div class="w-full rounded bg-base-200 px-4 py-8 shadow-md">
-						<p class=" mb-4 text-center text-3xl font-black lg:text-4xl">
-							<sup class="text-primary">₹</sup>
-							5000
-						</p>
-						<h4 class=" lg:3xl text-center text-2xl">YEARLY PACK</h4>
-
-						<ul
-							class="mt-6 grid list-none grid-cols-1 gap-2 border-t border-primary pt-4 text-center md:text-lg"
-						>
-							<li><strong>365 days</strong> membership</li>
-							<li>Personalized Fitness Program Design</li>
-							<li>8 Semi-Private Traning Sessions</li>
-							<li>Great Coaching</li>
-							<li>Awesome Community</li>
-						</ul>
+								<ul
+									class="mt-6 grid list-none grid-cols-1 gap-2 border-t border-primary pt-4 text-center md:text-lg"
+								>
+									<li><strong>{plan?.plan_time} Month</strong> membership</li>
+									<li>Personalized Fitness Program Design</li>
+									<li>8 Semi-Private Traning Sessions</li>
+									<li>Great Coaching</li>
+									<li>Awesome Community</li>
+								</ul>
+							</div>
+						{/each}
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	{/if}
 </section>
