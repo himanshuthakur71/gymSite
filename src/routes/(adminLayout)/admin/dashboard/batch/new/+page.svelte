@@ -119,3 +119,17 @@
 		</div>
 	</div>
 </section>
+
+{#if saveSucess}
+	<dialog id="my_modal_1" class="modal" open>
+		<div class="modal-box bg-base-300">
+			<h3 class="text-lg font-bold">Sucess</h3>
+			<p class="py-4">Gym Batch add sucessfully</p>
+			<div class=" mt-8 flex justify-center">
+				<a data-sveltekit-reload href="/admin/dashboard/batch" class="btn btn-primary btn-wide"
+					>Continue</a
+				>
+			</div>
+		</div>
+	</dialog>
+{/if}
