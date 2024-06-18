@@ -1,46 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-
-	export let data;
-
-	let members: any = data?.members || [];
-
-	const onClickGoTo = (id: string) => {
-		goto(`/admin/dashboard/member/${id}`);
-	};
-
-	// Filter criteria
-	let filterFirstName = '';
-	let filterEmail = '';
-	let filterPhone = '';
-	let filterIsPaid = false;
-
-	// Function to filter Members based on criteria
-	function filterMembers() {
-		members = data?.members || [];
-		members = members.filter((member: any) => {
-			return (
-				(!filterFirstName || member?.first_name.includes(filterFirstName)) &&
-				(!filterEmail || member?.email.includes(filterEmail)) &&
-				(!filterPhone || member?.phone_number.includes(filterPhone))
-			);
-		});
-	}
-
-	// Function to clear all filters
-	function clearFilters() {
-		filterFirstName = '';
-		filterEmail = '';
-		filterPhone = '';
-		filterIsPaid = false;
-	}
-
-	const showUnPaidOnly = () => {
-		members = data?.members || [];
-		members = members.filter((member: any) => {
-			return !filterIsPaid || !member?.is_paid;
-		});
-	};
 </script>
 
 <section class="h-full w-full">
