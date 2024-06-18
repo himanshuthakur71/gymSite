@@ -33,11 +33,13 @@
 			</a>
 		</div>
 		<div class="flex-none gap-2">
-			<a href="/admin/dashboard" class="btn btn-ghost text-xl">Dashboard</a>
-			<a href="/admin/dashboard/member" class="btn btn-ghost text-xl">Members</a>
-			<a href="/admin/dashboard/plans" class="btn btn-ghost text-xl">Plans</a>
-			<a href="/admin/dashboard/batch" class="btn btn-ghost text-xl">Batch</a>
-			<a href="/admin/dashboard/gallery" class="btn btn-ghost text-xl">Gallery</a>
+			<div class="hidden items-center gap-2 lg:flex">
+				<a href="/admin/dashboard" class="btn btn-ghost text-xl">Dashboard</a>
+				<a href="/admin/dashboard/member" class="btn btn-ghost text-xl">Members</a>
+				<a href="/admin/dashboard/plans" class="btn btn-ghost text-xl">Plans</a>
+				<a href="/admin/dashboard/batch" class="btn btn-ghost text-xl">Batch</a>
+				<a href="/admin/dashboard/gallery" class="btn btn-ghost text-xl">Gallery</a>
+			</div>
 			<button type="button" class=" btn btn-error font-bold uppercase" on:click={logout}>
 				Logout
 			</button>
