@@ -53,95 +53,37 @@
 			</h1>
 		</div>
 
-		<div class="mb-8 w-full bg-base-300 p-4">
-			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-3">
-				<label class="form-control w-full">
-					<div class="label">
-						<span class="label-text">First name</span>
-					</div>
-					<input
-						type="text"
-						placeholder="Type here"
-						class="input input-bordered w-full"
-						bind:value={filterFirstName}
-						on:input={filterMembers}
-					/>
-				</label>
+		<div class="w-full">
+			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
+				<div class="grid w-full grid-cols-1 gap-4 bg-base-200 p-4 shadow-md">
+					<div class="grid w-full grid-cols-1 gap-4 bg-base-200 p-4 md:grid-cols-2">
+						<p class="flex flex-col text-lg">
+							<span>Name:</span>
+							<strong>xxxxxxx</strong>
+						</p>
 
-				<label class="form-control w-full">
-					<div class="label">
-						<span class="label-text">Email</span>
-					</div>
-					<input
-						type="text"
-						placeholder="Type here"
-						class="input input-bordered w-full"
-						bind:value={filterEmail}
-						on:input={filterMembers}
-					/>
-				</label>
+						<p class="flex flex-col text-lg">
+							<span>Mobile:</span>
+							<strong>xxxxxxxxxx</strong>
+						</p>
 
-				<label class="form-control w-full">
-					<div class="label">
-						<span class="label-text">Phone Number</span>
+						<p class="flex flex-col text-lg">
+							<span>Plan Expiry:</span>
+							<strong>xxxxxxx</strong>
+						</p>
+
+						<p class="flex flex-col text-lg">
+							<span>Due Amount:</span>
+							<strong>xxxxxxx</strong>
+						</p>
+						<div class="flex w-full gap-4">
+							<a href="/admin/dashboard/member" class="btn btn-accent btn-sm">View</a>
+							<a href="/admin/dashboard/member" class="btn btn-primary btn-sm">Edit</a>
+							<button type="button" class="btn btn-error btn-sm">Delete</button>
+						</div>
 					</div>
-					<input
-						type="text"
-						placeholder="Type here"
-						class="input input-bordered w-full"
-						bind:value={filterPhone}
-						on:input={filterMembers}
-					/>
-				</label>
+				</div>
 			</div>
-		</div>
-
-		<div class="my-4 flex justify-end">
-			<div class=" text-end">
-				<span class="label-text mb-2 block">Unpaid only</span>
-				<input
-					type="checkbox"
-					class="toggle"
-					bind:checked={filterIsPaid}
-					on:change={showUnPaidOnly}
-				/>
-			</div>
-		</div>
-
-		<div class="w-full bg-base-200 p-4">
-			<table class="w-full text-left text-[18px]">
-				<thead class=" text-primary">
-					<th class="border-b border-r p-2 pb-4">First name</th>
-					<th class="border-b border-r p-2 pb-4">Last name</th>
-					<th class="border-b border-r p-2 pb-4">Phone number</th>
-					<th class="border-b border-r p-2 pb-4">Email</th>
-					<th class="border-b border-r p-2 pb-4">Gender</th>
-					<th class="border-b border-r p-2 pb-4">Joining Date</th>
-					<th class="border-b border-r p-2 pb-4">Free P/M</th>
-					<th class="border-b border-r p-2 pb-4">Free Received</th>
-					<th class="border-b p-2 pb-4">Timing</th>
-				</thead>
-				<tbody>
-					{#each members as member}
-						<tr
-							on:click={() => onClickGoTo(member?.id)}
-							class="cursor-pointer hover:link-info hover:bg-base-100"
-							class:!bg-success={member?.fee_pm == member?.fee_received}
-							class:text-success-content={member?.fee_pm == member?.fee_received}
-						>
-							<td class="border-b border-r p-2">{member?.first_name}</td>
-							<td class="border-b border-r p-2">{member?.last_name}</td>
-							<td class="border-b border-r p-2">{member?.phone_number}</td>
-							<td class="border-b border-r p-2">{member?.email}</td>
-							<td class="border-b border-r p-2">{member?.gender}</td>
-							<td class="border-b border-r p-2">{member?.joining_date}</td>
-							<td class="border-b border-r p-2">{member?.fee_pm}</td>
-							<td class="border-b border-r p-2">{member?.fee_received}</td>
-							<td class="border-b p-2">{member?.gym_time}</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
 		</div>
 
 		<div class=" mt-32">
