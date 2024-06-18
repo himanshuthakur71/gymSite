@@ -1,7 +1,17 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { supabase } from '$lib/supabaseClient.js';
+
 	export let data;
 
 	const gym_plans: any = data?.gym_plans;
+
+	const deletePlan = async (id: any) => {
+		const { error } = await supabase.from('gym_plans').delete().eq('plan_id', id);
+		if (!error) {
+			browser && window.location.reload();
+		}
+	};
 </script>
 
 <section class="my-16">
@@ -22,7 +32,11 @@
 							<a href="/admin/dashboard/plans/{plan?.plan_id}" class="btn btn-primary btn-sm"
 								>Edit</a
 							>
-							<button type="button" class="btn btn-error btn-sm">Delete</button>
+							<button
+								on:click={() => deletePlan(plan?.plan_id)}
+								type="button"
+								class="btn btn-error btn-sm">Delete</button
+							>
 						</div>
 						<h2 class="flex flex-col text-lg">
 							<span>Plan Name:</span>
