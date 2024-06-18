@@ -85,7 +85,7 @@
 						</div>
 						<div class="flex w-full gap-4">
 							<a href="/admin/dashboard/member" class="btn btn-accent btn-sm">View</a>
-							<a href="/admin/dashboard/member" class="btn btn-primary btn-sm">Edit</a>
+							<a href="/admin/dashboard/member/{member?.id}" class="btn btn-primary btn-sm">Edit</a>
 							<button
 								on:click={() => deleteMember(member?.id)}
 								type="button"
