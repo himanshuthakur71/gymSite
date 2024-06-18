@@ -60,7 +60,7 @@
 		<div class="my-16">
 			<h1 class=" text-2xl lg:text-3xl">Add New Members</h1>
 		</div>
-
+		{formfields.joining_date}
 		<form on:submit|preventDefault={add_member}>
 			<div class="grid w-full grid-cols-1 gap-4 bg-base-300 p-4">
 				<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
