@@ -68,9 +68,9 @@
 		<div class="my-16">
 			<h1 class=" text-2xl lg:text-3xl">Add New Members</h1>
 		</div>
-		{formfields.is_paid}
+
 		<form on:submit|preventDefault={add_member}>
-			<div class="grid w-full grid-cols-1 gap-4 bg-base-200 p-4">
+			<div class="grid w-full grid-cols-1 gap-4 bg-base-300 p-4">
 				<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
 					<label class="form-control w-full">
 						<div class="label">
@@ -123,31 +123,6 @@
 
 					<label class="form-control w-full">
 						<div class="label">
-							<span class="label-text">Joining Date *</span>
-						</div>
-						<input
-							type="date"
-							placeholder="Type here"
-							class="input input-bordered w-full"
-							bind:value={formfields.joining_date}
-							required
-						/>
-					</label>
-					<label class="form-control w-full">
-						<div class="label">
-							<span class="label-text">End Date *</span>
-						</div>
-						<input
-							type="date"
-							placeholder="Type here"
-							class="input input-bordered w-full"
-							bind:value={formfields.end_date}
-							required
-						/>
-					</label>
-
-					<label class="form-control w-full">
-						<div class="label">
 							<span class="label-text">Gender *</span>
 						</div>
 
@@ -183,7 +158,7 @@
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
-							<span class="label-text">Gym Time</span>
+							<span class="label-text">Select Batch</span>
 						</div>
 						<select class="select select-bordered" required bind:value={formfields.gym_time}>
 							<option disabled selected value="">Select</option>
@@ -194,16 +169,21 @@
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
-							<span class="label-text">Amount to pay/month</span>
+							<span class="label-text">Plan</span>
 						</div>
-						<input
+
+						<select class="select select-bordered" required bind:value={formfields.fee_pm}>
+							<option disabled selected value="">Select</option>
+							<option value="xxxxx">xxxxx </option>
+						</select>
+						<!-- <input
 							type="number"
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							required
 							bind:value={formfields.fee_pm}
 							on:change={checkPayment}
-						/>
+						/> -->
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
@@ -216,6 +196,32 @@
 							required
 							bind:value={formfields.fee_received}
 							on:change={checkPayment}
+						/>
+					</label>
+
+					<label class="form-control w-full">
+						<div class="label">
+							<span class="label-text">Joining Date *</span>
+						</div>
+						<input
+							type="date"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.joining_date}
+							required
+						/>
+					</label>
+					<label class="form-control w-full">
+						<div class="label">
+							<span class="label-text">End Date *</span>
+						</div>
+						<input
+							type="date"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.end_date}
+							required
+							disabled
 						/>
 					</label>
 
