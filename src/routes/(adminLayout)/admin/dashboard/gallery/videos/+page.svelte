@@ -63,7 +63,9 @@
 <section class="h-full w-full">
 	<div class="hms-container">
 		<div class="my-16">
-			<h1 class=" text-2xl lg:text-3xl">Upload & Delete Photos in Gallery Page..</h1>
+			<h1 class=" border-b border-b-gray-600 pb-4 text-2xl lg:text-3xl">
+				Upload & Delete Photos in Gallery Page..
+			</h1>
 		</div>
 
 		<div class="w-full">

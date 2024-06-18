@@ -7,7 +7,9 @@
 <section class="h-full w-full">
 	<div class="hms-container">
 		<div class="my-16">
-			<h1 class=" text-2xl lg:text-3xl">Update your site gallery here.</h1>
+			<h1 class=" border-b border-b-gray-600 pb-4 text-2xl lg:text-3xl">
+				Update your site gallery here.
+			</h1>
 		</div>
 
 		<div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
