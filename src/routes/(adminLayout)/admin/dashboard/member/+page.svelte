@@ -55,7 +55,7 @@
 	let filterFirstName = '';
 	let filterPhone = '';
 	let filterBatch = '';
-	let filterPlan = '';
+	let filteraadhar_number = '';
 
 	// Function to filter societies based on criteria
 	function filterSocieties() {
@@ -64,7 +64,8 @@
 			return (
 				(!filterFirstName || member.first_name.includes(filterFirstName)) &&
 				(!filterPhone || member.phone_number.includes(filterPhone)) &&
-				(!filterBatch || member.gym_time.includes(filterBatch))
+				(!filterBatch || member.gym_time.includes(filterBatch)) &&
+				(!filteraadhar_number || member.aadhar_number.includes(filteraadhar_number))
 			);
 		});
 	}
@@ -74,7 +75,6 @@
 		filterFirstName = '';
 		filterPhone = '';
 		filterBatch = '';
-		filterPlan = '';
 	}
 </script>
 
@@ -121,6 +121,19 @@
 
 				<label class="form-control w-full">
 					<div class="label">
+						<span class="label-text">Aadhar no</span>
+					</div>
+					<input
+						type="text"
+						placeholder="Type here"
+						class="input input-bordered w-full"
+						bind:value={filteraadhar_number}
+						on:input={filterSocieties}
+					/>
+				</label>
+
+				<label class="form-control w-full">
+					<div class="label">
 						<span class="label-text">Select Batch</span>
 					</div>
 					<select
@@ -131,19 +144,6 @@
 						<option value="">Select</option>
 						{#each gym_batches as batch}
 							<option value={batch?.batch_name}>{batch?.batch_name}</option>
-						{/each}
-					</select>
-				</label>
-
-				<label class="form-control w-full">
-					<div class="label">
-						<span class="label-text">Plan</span>
-					</div>
-
-					<select class="select select-bordered" required>
-						<option disabled selected value="">Select</option>
-						{#each gym_plans as plan}
-							<option value={plan?.plan_amount}>{plan?.plan_name} </option>
 						{/each}
 					</select>
 				</label>
