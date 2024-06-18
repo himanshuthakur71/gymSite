@@ -50,6 +50,32 @@
 			browser && window.location.reload();
 		}
 	};
+
+	// Filter criteria
+	let filterFirstName = '';
+	let filterPhone = '';
+	let filterBatch = '';
+	let filterPlan = '';
+
+	// Function to filter societies based on criteria
+	function filterSocieties() {
+		members = data?.members;
+		members = members.filter((member: any) => {
+			return (
+				(!filterFirstName || member.first_name.includes(filterFirstName)) &&
+				(!filterPhone || member.phone_number.includes(filterPhone)) &&
+				(!filterBatch || member.gym_time.includes(filterBatch))
+			);
+		});
+	}
+
+	// Function to clear all filters
+	function clearFilters() {
+		filterFirstName = '';
+		filterPhone = '';
+		filterBatch = '';
+		filterPlan = '';
+	}
 </script>
 
 <section class="h-full w-full">
@@ -72,21 +98,37 @@
 					<div class="label">
 						<span class="label-text">First name</span>
 					</div>
-					<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+					<input
+						type="text"
+						placeholder="Type here"
+						class="input input-bordered w-full"
+						bind:value={filterFirstName}
+						on:input={filterSocieties}
+					/>
 				</label>
 				<label class="form-control w-full">
 					<div class="label">
 						<span class="label-text">Phone no</span>
 					</div>
-					<input type="text" placeholder="Type here" class="input input-bordered w-full" />
+					<input
+						type="text"
+						placeholder="Type here"
+						class="input input-bordered w-full"
+						bind:value={filterPhone}
+						on:input={filterSocieties}
+					/>
 				</label>
 
 				<label class="form-control w-full">
 					<div class="label">
 						<span class="label-text">Select Batch</span>
 					</div>
-					<select class="select select-bordered">
-						<option disabled selected value="">Select</option>
+					<select
+						class="select select-bordered"
+						bind:value={filterBatch}
+						on:change={filterSocieties}
+					>
+						<option value="">Select</option>
 						{#each gym_batches as batch}
 							<option value={batch?.batch_name}>{batch?.batch_name}</option>
 						{/each}
