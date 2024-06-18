@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { supabase } from '$lib/supabaseClient.js';
+
 	export let data;
 
 	let members: any = data?.members;
@@ -36,6 +39,13 @@
 		// Return the formatted date string
 		return `${dayOfMonth} ${monthName}, ${fullYear}`;
 	}
+
+	const deleteMember = async (id: any) => {
+		const { error } = await supabase.from('members').delete().eq('id', id);
+		if (!error) {
+			browser && window.location.reload();
+		}
+	};
 </script>
 
 <section class="h-full w-full">
@@ -76,7 +86,11 @@
 						<div class="flex w-full gap-4">
 							<a href="/admin/dashboard/member" class="btn btn-accent btn-sm">View</a>
 							<a href="/admin/dashboard/member" class="btn btn-primary btn-sm">Edit</a>
-							<button type="button" class="btn btn-error btn-sm">Delete</button>
+							<button
+								on:click={() => deleteMember(member?.id)}
+								type="button"
+								class="btn btn-error btn-sm">Delete</button
+							>
 						</div>
 					</div>
 				{/each}
