@@ -4,7 +4,10 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async () => {
 	try {
-		let { data: members, error } = await supabase.from('members').select('*');
+		let { data: members, error } = await supabase
+			.from('members')
+			.select('*')
+			.order('end_date', { ascending: true });
 
 		if (members) {
 			return {
