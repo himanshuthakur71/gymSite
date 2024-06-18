@@ -1,5 +1,32 @@
 <script lang="ts">
+	import { supabase } from '$lib/supabaseClient';
+	import { onMount } from 'svelte';
+
 	export let batch: any;
+
+	let totalMemberInBtach = 0;
+
+	const getBatchTotalMember = async () => {
+		let { data: members, error } = await supabase
+			.from('members')
+			.select('*')
+
+			// Filters
+			.eq('gym_time', batch?.batch_name);
+
+		// console.log({
+		// 	members,
+		// 	error
+		// });
+
+		if (members) {
+			totalMemberInBtach = members.length;
+		}
+	};
+
+	onMount(async () => {
+		getBatchTotalMember();
+	});
 </script>
 
 <div class="relative grid w-full grid-cols-1 gap-4 bg-base-200 p-4 shadow-md md:grid-cols-2">
@@ -14,12 +41,12 @@
 
 	<p class="flex flex-col text-lg">
 		<span>Available Limit:</span>
-		<strong>00</strong>
+		<strong>{totalMemberInBtach}</strong>
 	</p>
 
 	<p class="flex flex-col text-lg">
 		<span>Total Member in Batch:</span>
-		<strong>00</strong>
+		<strong>{batch?.batch_limit - totalMemberInBtach}</strong>
 	</p>
 
 	<p class="flex flex-col text-lg">
