@@ -2,18 +2,6 @@ import { supabase } from '$lib/supabaseClient';
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async () => {
-	const getAllMembers = async () => {
-		try {
-			let { data: members, error } = await supabase.from('members').select('*');
-
-			if (members) {
-				return members;
-			}
-		} catch {
-			return [];
-		}
-	};
-
 	const getAllBatches = async () => {
 		try {
 			let { data: gym_batches, error } = await supabase
@@ -45,7 +33,6 @@ export const load: LayoutLoad = async () => {
 	};
 
 	return {
-		members: await getAllMembers(),
 		gym_batches: await getAllBatches(),
 		gym_plans: await getAllPlans()
 	};
