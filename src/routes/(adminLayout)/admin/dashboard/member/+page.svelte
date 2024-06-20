@@ -159,8 +159,14 @@
 								class=" flex h-[25px] w-[50px] items-center justify-center rounded-br bg-primary text-[14px] font-[700] text-primary-content shadow-lg"
 								>{member?.id}</span
 							>
-							<span class="badge badge-accent">Active</span>
-							<span class="badge badge-error">In Active</span>
+
+							{#if member?.status == 'active'}
+								<span class="badge badge-accent">Active</span>
+							{/if}
+
+							{#if member?.status == 'in-active'}
+								<span class="badge badge-error">In Active</span>
+							{/if}
 						</div>
 						<div class="grid w-full grid-cols-1 gap-4 bg-base-200 p-4 md:grid-cols-2">
 							<p class="flex flex-col text-lg">

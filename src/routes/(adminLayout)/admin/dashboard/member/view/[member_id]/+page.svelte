@@ -76,8 +76,13 @@
 					class="mb-4 flex max-w-[320px] flex-wrap items-center gap-2 border-b-2 border-secondary pb-2 text-2xl font-bold text-primary"
 				>
 					Personal Info
-					<span class="badge badge-accent">Active</span>
-					<span class="badge badge-error">In Active</span>
+					{#if member?.status == 'active'}
+						<span class="badge badge-accent">Active</span>
+					{/if}
+
+					{#if member?.status == 'in-active'}
+						<span class="badge badge-error">In Active</span>
+					{/if}
 				</h2>
 				<div class="grid w-full grid-cols-1 gap-4 bg-base-300 p-4 text-base-content lg:grid-cols-2">
 					<p>
