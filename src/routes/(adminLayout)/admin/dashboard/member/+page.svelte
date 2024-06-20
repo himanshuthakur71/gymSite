@@ -153,7 +153,11 @@
 		<div class="w-full">
 			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
 				{#each members as member}
-					<div class="grid w-full grid-cols-1 gap-4 bg-base-200 p-4 shadow-md">
+					<div class="relative grid w-full grid-cols-1 gap-4 bg-base-200 p-4 shadow-md">
+						<span
+							class="absolute flex h-[25px] w-[50px] items-center justify-center rounded-br bg-primary text-[14px] font-[700] text-primary-content shadow-lg"
+							>{member?.id}</span
+						>
 						<div class="grid w-full grid-cols-1 gap-4 bg-base-200 p-4 md:grid-cols-2">
 							<p class="flex flex-col text-lg">
 								<span>Name:</span>
