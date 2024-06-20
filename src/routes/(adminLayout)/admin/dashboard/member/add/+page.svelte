@@ -25,7 +25,8 @@
 		mother_name: '',
 		address: '',
 		is_paid: false,
-		due_amount: ''
+		due_amount: '',
+		status: 'active'
 	};
 	let loading = false;
 	let saveSucess = false;
@@ -309,18 +310,29 @@
 							bind:value={formfields.mother_name}
 						/>
 					</label>
+					<label class="form-control w-full">
+						<div class="label">
+							<span class="label-text">Address</span>
+						</div>
+						<input
+							type="text"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							bind:value={formfields.address}
+						/>
+					</label>
+
+					<label class="form-control w-full">
+						<div class="label">
+							<span class="label-text">Member Status</span>
+						</div>
+						<select class="select select-bordered" required bind:value={formfields.status}>
+							<option disabled selected value="">Select</option>
+							<option value="active">Active </option>
+							<option value="in-active">Active </option>
+						</select>
+					</label>
 				</div>
-				<label class="form-control w-full">
-					<div class="label">
-						<span class="label-text">Address</span>
-					</div>
-					<input
-						type="text"
-						placeholder="Type here"
-						class="input input-bordered w-full"
-						bind:value={formfields.address}
-					/>
-				</label>
 			</div>
 
 			<div class="mt-6 flex justify-between">
