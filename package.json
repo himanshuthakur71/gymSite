@@ -36,6 +36,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@emailjs/browser": "^4.3.3",
 		"@supabase/supabase-js": "^2.43.5"
 	}
 }
