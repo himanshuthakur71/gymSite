@@ -73,11 +73,17 @@
 		<section class="grid grid-cols-1 gap-10 text-lg">
 			<div class="w-full">
 				<h2
-					class="mb-4 max-w-[320px] border-b-2 border-secondary pb-2 text-2xl font-bold text-primary"
+					class="mb-4 flex max-w-[320px] flex-wrap items-center gap-2 border-b-2 border-secondary pb-2 text-2xl font-bold text-primary"
 				>
 					Personal Info
+					<span class="badge badge-accent">Active</span>
+					<span class="badge badge-error">In Active</span>
 				</h2>
 				<div class="grid w-full grid-cols-1 gap-4 bg-base-300 p-4 text-base-content lg:grid-cols-2">
+					<p>
+						<strong>Member ID:</strong>
+						{member?.id}
+					</p>
 					<p>
 						<strong>Name:</strong>
 						{member?.first_name}
