@@ -1,3 +1,48 @@
+<script lang="ts">
+	import emailjs from '@emailjs/browser';
+	import { fly } from 'svelte/transition';
+
+	let sucess = false;
+
+	let formFields = {
+		first_name: '',
+		last_name: '',
+		email: '',
+		phone: '',
+		mesaage: 'Hi I want a SPECIAL TRIAL OFFER'
+	};
+
+	const sendEmail = async () => {
+		var templateParams = {
+			from_name: `${formFields?.first_name} ${formFields?.last_name}`,
+			from_mobile: formFields?.phone,
+			from_email: formFields?.email,
+			message: formFields?.mesaage
+		};
+
+		emailjs.init({
+			publicKey: 'fxNNEM5-t8JUTaGVl'
+		});
+
+		emailjs.send('service_yg3x2wb', 'template_d9a0hf7', templateParams).then(
+			(response) => {
+				// console.log('SUCCESS!', response.status, response.text);
+				sucess = true;
+				formFields = {
+					first_name: '',
+					last_name: '',
+					email: '',
+					phone: '',
+					mesaage: 'Hi I want a SPECIAL TRIAL OFFER'
+				};
+			},
+			(error) => {
+				console.log('FAILED...', error);
+			}
+		);
+	};
+</script>
+
 <section class="w-full">
 	<div class="parallax bg-cover">
 		<div class="w-full">
@@ -35,24 +80,57 @@
 									<p class=" mb-6 text-center">
 										Sign up to begin your 1-week trial membership for only ₹399.
 									</p>
-									<form>
+									{#if sucess}
+										<div
+											role="alert"
+											class="alert alert-success mb-4"
+											transition:fly={{ y: -50, duration: 500 }}
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												class="h-6 w-6 shrink-0 stroke-current"
+												fill="none"
+												viewBox="0 0 24 24"
+												><path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="2"
+													d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+												/></svg
+											>
+											<span>We will Contact you Shrotly...</span>
+										</div>
+									{/if}
+									<form on:submit|preventDefault={sendEmail}>
 										<div class="grid w-full grid-cols-1 gap-4">
 											<input
 												type="text"
 												placeholder="First name *"
 												class="input input-bordered w-full"
+												required
+												bind:value={formFields.first_name}
 											/>
 											<input
 												type="text"
 												placeholder="Last name *"
 												class="input input-bordered w-full"
+												required
+												bind:value={formFields.last_name}
 											/>
 											<input
 												type="text"
 												placeholder="Phone *"
 												class="input input-bordered w-full"
+												required
+												bind:value={formFields.phone}
 											/>
-											<input type="email" placeholder="Email" class="input input-bordered w-full" />
+											<input
+												type="email"
+												placeholder="Email"
+												class="input input-bordered w-full"
+												required
+												bind:value={formFields.email}
+											/>
 
 											<button type="submit" class="btn btn-primary text-xl font-semibold uppercase"
 												>Submit</button
