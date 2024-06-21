@@ -62,7 +62,8 @@
 		members = data?.members;
 		members = members.filter((member: any) => {
 			return (
-				(!filterFirstName || member.first_name.includes(filterFirstName)) &&
+				(!filterFirstName ||
+					member.first_name?.toLowerCase().includes(filterFirstName?.toLowerCase())) &&
 				(!filterPhone || member.phone_number.includes(filterPhone)) &&
 				(!filterBatch || member.gym_time.includes(filterBatch)) &&
 				(!filteraadhar_number || member.aadhar_number.includes(filteraadhar_number))

@@ -329,7 +329,7 @@
 						<select class="select select-bordered" required bind:value={formfields.status}>
 							<option disabled selected value="">Select</option>
 							<option value="active">Active </option>
-							<option value="in-active">Active </option>
+							<option value="in-active">In Active </option>
 						</select>
 					</label>
 				</div>
