@@ -45,17 +45,17 @@
 				</h2>
 				<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
-						<h2 class="text-lg font-[500]">Today</h2>
+						<h2 class="text-lg font-[500]">Today <small>(Active)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
 					</div>
 
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
-						<h2 class="text-lg font-[500]">Week</h2>
+						<h2 class="text-lg font-[500]">Week <small>(Active)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
 					</div>
 
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
-						<h2 class="text-lg font-[500]">Month</h2>
+						<h2 class="text-lg font-[500]">Month <small>(Active)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
 					</div>
 				</div>
