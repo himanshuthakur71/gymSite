@@ -4,6 +4,9 @@
 	export let data;
 
 	const todayExpricesmembers: any = data?.todayExpricesmembers;
+	const todayMembers: any = data?.todayMembers;
+	const weekMembers: any = data?.weekMembers;
+	const monthMembers: any = data?.monthMembers;
 </script>
 
 <section class="my-16">
@@ -45,18 +48,18 @@
 				</h2>
 				<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
-						<h2 class="text-lg font-[500]">Today <small>(Active)</small></h2>
-						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
+						<h2 class="text-lg font-[500]">Today <small>(New)</small></h2>
+						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{todayMembers?.length}</p>
 					</div>
 
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
-						<h2 class="text-lg font-[500]">Week <small>(Active)</small></h2>
-						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
+						<h2 class="text-lg font-[500]">Week <small>(New)</small></h2>
+						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{weekMembers?.length}</p>
 					</div>
 
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
-						<h2 class="text-lg font-[500]">Month <small>(Active)</small></h2>
-						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
+						<h2 class="text-lg font-[500]">Month <small>(New)</small></h2>
+						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{monthMembers?.length}</p>
 					</div>
 				</div>
 			</div>
