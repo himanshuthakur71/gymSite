@@ -168,13 +168,12 @@
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
-							<span class="label-text">Email *</span>
+							<span class="label-text">Email</span>
 						</div>
 						<input
 							type="email"
 							placeholder="Type here"
 							class="input input-bordered w-full"
-							required
 							bind:value={formfields.email}
 						/>
 					</label>
