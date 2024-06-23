@@ -12,7 +12,7 @@
 			<h1>Hello, {$userStore?.user_metadata?.first_name}</h1>
 		</div>
 
-		<section class="mt-16">
+		<section class="mt-2">
 			{#if todayExpricesmembers}
 				<div class="mb-16 grid w-full grid-cols-1 gap-4">
 					{#each todayExpricesmembers as member}
@@ -39,32 +39,59 @@
 				</div>
 			{/if}
 
-			<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-				<a
-					href="/admin/dashboard/member"
-					class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
-				>
-					Members
-				</a>
-				<a
-					href="/admin/dashboard/plans"
-					class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
-				>
-					Plans
-				</a>
+			<div class="mb-16 w-full">
+				<h2 class="mb-8 border-b border-primary pb-2 text-xl font-semibold text-primary">
+					Members Details
+				</h2>
+				<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
+						<h2 class="text-lg font-[500]">Today</h2>
+						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
+					</div>
 
-				<a
-					href="/admin/dashboard/batch"
-					class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
-				>
-					Batch
-				</a>
-				<a
-					href="/admin/dashboard/gallery"
-					class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
-				>
-					Gallery
-				</a>
+					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
+						<h2 class="text-lg font-[500]">Week</h2>
+						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
+					</div>
+
+					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
+						<h2 class="text-lg font-[500]">Month</h2>
+						<p class="text-[42px] font-bold text-accent lg:text-[52px]">00</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="w-full">
+				<h2 class="mb-8 border-b border-primary pb-2 text-xl font-semibold text-primary">
+					Quick Access Links
+				</h2>
+				<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+					<a
+						href="/admin/dashboard/member"
+						class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
+					>
+						Members
+					</a>
+					<a
+						href="/admin/dashboard/plans"
+						class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
+					>
+						Plans
+					</a>
+
+					<a
+						href="/admin/dashboard/batch"
+						class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
+					>
+						Batch
+					</a>
+					<a
+						href="/admin/dashboard/gallery"
+						class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
+					>
+						Gallery
+					</a>
+				</div>
 			</div>
 		</section>
 	</div>
