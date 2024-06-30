@@ -108,6 +108,7 @@
 
 		// Calculate the future dates
 		const oneMonthLater = addMonths(baseDate, 1);
+		const twoMonthLater = addMonths(baseDate, 2);
 		const threeMonthsLater = addMonths(baseDate, 3);
 		const sixMonthsLater = addMonths(baseDate, 6);
 		const twelveMonthsLater = addMonths(baseDate, 12);
@@ -118,9 +119,14 @@
 		// 	sixMonths: formatDate(sixMonthsLater),
 		// 	twelveMonths: formatDate(twelveMonthsLater)
 		// });
+		
 
 		if (currentPlan?.plan_time == 1) {
 			formfields.end_date = formatDate(oneMonthLater);
+		}
+
+		if (currentPlan?.plan_time == 2) {
+			formfields.end_date = formatDate(twoMonthLater);
 		}
 
 		if (currentPlan?.plan_time == 3) {
@@ -140,7 +146,7 @@
 <section class="h-full w-full">
 	<div class="hms-container">
 		<div class="my-16">
-			<h1 class="border-b border-b-gray-600 pb-4 text-2xl lg:text-3xl">Add New Members</h1>
+			<h1 class=" border-b border-b-gray-600 pb-4 text-2xl lg:text-3xl">Add New Members</h1>
 		</div>
 
 		<form on:submit|preventDefault={add_member}>
@@ -199,7 +205,7 @@
 							<span class="label-text">Gender *</span>
 						</div>
 
-						<select class="select select-bordered" bind:value={formfields.gender}>
+						<select class="select select-bordered" bind:value={formfields.gender} required>
 							<option disabled selected value="">Select</option>
 							<option value="male">Male</option>
 							<option value="female">Female</option>
@@ -220,18 +226,19 @@
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
-							<span class="label-text">Age</span>
+							<span class="label-text">Age *</span>
 						</div>
 						<input
 							type="text"
 							placeholder="Type here"
 							class="input input-bordered w-full"
 							bind:value={formfields.age}
+							required
 						/>
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
-							<span class="label-text">Select Batch</span>
+							<span class="label-text">Select Batch *</span>
 						</div>
 						<select class="select select-bordered" required bind:value={formfields.gym_time}>
 							<option disabled selected value="">Select</option>
@@ -242,7 +249,7 @@
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
-							<span class="label-text">Plan</span>
+							<span class="label-text">Plan *</span>
 						</div>
 
 						<select
@@ -253,13 +260,13 @@
 						>
 							<option disabled selected value="">Select</option>
 							{#each gym_plans as plan}
-								<option value={plan?.plan_amount}>{plan?.plan_name} </option>
+								<option value={plan?.plan_amount}>{plan?.plan_name} - {plan?.plan_amount} </option>
 							{/each}
 						</select>
 					</label>
 					<label class="form-control w-full">
 						<div class="label">
-							<span class="label-text">Amount Recived</span>
+							<span class="label-text">Amount Recived *</span>
 						</div>
 						<input
 							type="number"
