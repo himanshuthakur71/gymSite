@@ -161,6 +161,7 @@
 					Quick Access Links
 				</h2>
 				<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+					<a href="/admin/dashboard/employee"class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold">Employee</a>
 					<a
 						href="/admin/dashboard/member"
 						class="link-hover link-primary flex w-full items-center justify-center bg-base-200 px-4 py-16 text-3xl font-semibold"
