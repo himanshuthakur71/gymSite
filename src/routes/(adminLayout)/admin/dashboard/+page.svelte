@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { userStore } from '$lib/Stores/userStore';
+	import { onMount } from 'svelte';
 
 	export let data;
 
@@ -7,6 +8,38 @@
 	const todayMembers: any = data?.todayMembers;
 	const weekMembers: any = data?.weekMembers;
 	const monthMembers: any = data?.monthMembers;
+
+	// console.log(todayMembers)
+
+	let todayfee_received = 0;
+	let weekfee_received = 0;
+	let monthfee_received = 0;
+
+	function formatNumber(number: Number) {
+		return number.toLocaleString('en-IN');
+	}
+
+	onMount(() => {
+		todayfee_received = 0;
+		weekfee_received = 0;
+		monthfee_received = 0;
+
+		todayMembers.forEach((mem: any) => {
+			if (mem?.fee_received) {
+				todayfee_received = todayfee_received + Number(mem.fee_received);
+			}
+		});
+		weekMembers.forEach((mem: any) => {
+			if (mem?.fee_received) {
+				weekfee_received = weekfee_received + Number(mem.fee_received);
+			}
+		});
+		monthMembers.forEach((mem: any) => {
+			if (mem?.fee_received) {
+				monthfee_received = monthfee_received + Number(mem.fee_received);
+			}
+		});
+	});
 </script>
 
 <section class="my-16">
@@ -50,16 +83,25 @@
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
 						<h2 class="text-lg font-[500]">Today <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{todayMembers?.length}</p>
+						<p class="text-xl text-red-500">
+							<strong class="text-white">Amount Recived: </strong> ₹{formatNumber(todayfee_received)}
+						</p>
 					</div>
 
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
 						<h2 class="text-lg font-[500]">Week <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{weekMembers?.length}</p>
+						<p class="text-xl text-red-500">
+							<strong class="text-white">Amount Recived: </strong> ₹{formatNumber(weekfee_received)}
+						</p>
 					</div>
 
 					<div class="w-full bg-base-300 px-6 py-2 shadow-md">
 						<h2 class="text-lg font-[500]">Month <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{monthMembers?.length}</p>
+						<p class="text-xl text-red-500">
+							<strong class="text-white">Amount Recived: </strong> ₹{formatNumber(monthfee_received)}
+						</p>
 					</div>
 				</div>
 			</div>
