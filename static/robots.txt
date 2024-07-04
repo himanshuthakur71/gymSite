@@ -1,4 +1,5 @@
 User-agent: *
-Disallow: 
+Allow: /
 Disallow: /admin/
+Disallow: /employee/
 Sitemap: https://www.fitnessacademygym.com/sitemap.xml
