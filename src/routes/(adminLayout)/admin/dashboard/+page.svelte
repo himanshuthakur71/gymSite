@@ -15,26 +15,42 @@
 	let weekfee_received = 0;
 	let monthfee_received = 0;
 
+	let todayTotalSell = 0;
+	let weekTotalSell = 0;
+	let monthTotalSell = 0;
+
 	function formatNumber(number: Number) {
 		return number.toLocaleString('en-IN');
 	}
 
 	onMount(() => {
+		todayTotalSell = 0;
+		weekTotalSell = 0;
+		monthTotalSell = 0;
 		todayfee_received = 0;
 		weekfee_received = 0;
 		monthfee_received = 0;
 
 		todayMembers.forEach((mem: any) => {
+			if (mem?.fee_pm) {
+				todayTotalSell = todayTotalSell + Number(mem?.fee_pm);
+			}
 			if (mem?.fee_received) {
 				todayfee_received = todayfee_received + Number(mem.fee_received);
 			}
 		});
 		weekMembers.forEach((mem: any) => {
+			if (mem?.fee_pm) {
+				weekTotalSell = weekTotalSell + Number(mem?.fee_pm);
+			}
 			if (mem?.fee_received) {
 				weekfee_received = weekfee_received + Number(mem.fee_received);
 			}
 		});
 		monthMembers.forEach((mem: any) => {
+			if (mem?.fee_pm) {
+				monthTotalSell = monthTotalSell + Number(mem?.fee_pm);
+			}
 			if (mem?.fee_received) {
 				monthfee_received = monthfee_received + Number(mem.fee_received);
 			}
@@ -84,7 +100,19 @@
 						<h2 class="text-lg font-[500]">Today <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{todayMembers?.length}</p>
 						<p class="text-xl text-red-500">
-							<strong class="text-white">Amount Recived: </strong> ₹{formatNumber(todayfee_received)}
+							<strong class="text-white">Total Sell: </strong> ₹{formatNumber(
+								todayTotalSell
+							)}
+						</p>
+						<p class="text-xl text-red-500">
+							<strong class="text-white">Amount Recived: </strong> ₹{formatNumber(
+								todayfee_received
+							)}
+						</p>
+						<p class="text-xl text-red-500 pt-[3px] border-t mt-[5px]">
+							<strong class="text-white">Amount Due: </strong> ₹{formatNumber(
+								todayTotalSell - todayfee_received
+							)}
 						</p>
 					</div>
 
@@ -92,7 +120,17 @@
 						<h2 class="text-lg font-[500]">Week <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{weekMembers?.length}</p>
 						<p class="text-xl text-red-500">
+							<strong class="text-white">Total Sell: </strong> ₹{formatNumber(
+								weekTotalSell
+							)}
+						</p>
+						<p class="text-xl text-red-500">
 							<strong class="text-white">Amount Recived: </strong> ₹{formatNumber(weekfee_received)}
+						</p>
+						<p class="text-xl text-red-500 pt-[3px] border-t mt-[5px]">
+							<strong class="text-white">Amount Due: </strong> ₹{formatNumber(
+								weekTotalSell - weekfee_received
+							)}
 						</p>
 					</div>
 
@@ -100,7 +138,19 @@
 						<h2 class="text-lg font-[500]">Month <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{monthMembers?.length}</p>
 						<p class="text-xl text-red-500">
-							<strong class="text-white">Amount Recived: </strong> ₹{formatNumber(monthfee_received)}
+							<strong class="text-white">Total Sell: </strong> ₹{formatNumber(
+								monthTotalSell
+							)}
+						</p>
+						<p class="text-xl text-red-500">
+							<strong class="text-white">Amount Recived: </strong> ₹{formatNumber(
+								monthfee_received
+							)}
+						</p>
+						<p class="text-xl text-red-500 pt-[3px] border-t mt-[5px]">
+							<strong class="text-white">Amount Due: </strong> ₹{formatNumber(
+								monthTotalSell - monthfee_received
+							)}
 						</p>
 					</div>
 				</div>
