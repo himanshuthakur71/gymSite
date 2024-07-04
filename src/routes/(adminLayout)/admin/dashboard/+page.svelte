@@ -100,7 +100,7 @@
 						<h2 class="text-lg font-[500]">Today <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{todayMembers?.length}</p>
 						<p class="text-xl text-red-500">
-							<strong class="text-white">Total Sell: </strong> ₹{formatNumber(
+							<strong class="text-white">Total Sales: </strong> ₹{formatNumber(
 								todayTotalSell
 							)}
 						</p>
@@ -120,7 +120,7 @@
 						<h2 class="text-lg font-[500]">Week <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{weekMembers?.length}</p>
 						<p class="text-xl text-red-500">
-							<strong class="text-white">Total Sell: </strong> ₹{formatNumber(
+							<strong class="text-white">Total Sales: </strong> ₹{formatNumber(
 								weekTotalSell
 							)}
 						</p>
@@ -138,7 +138,7 @@
 						<h2 class="text-lg font-[500]">Month <small>(New)</small></h2>
 						<p class="text-[42px] font-bold text-accent lg:text-[52px]">{monthMembers?.length}</p>
 						<p class="text-xl text-red-500">
-							<strong class="text-white">Total Sell: </strong> ₹{formatNumber(
+							<strong class="text-white">Total Sales: </strong> ₹{formatNumber(
 								monthTotalSell
 							)}
 						</p>
