@@ -1,21 +1,18 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import 'nprogress/nprogress.css';
 	import '../app.css';
-
 	import NProgress from 'nprogress';
-	import { navigating } from '$app/stores';
+	import { navigating } from '$app/state';
 
-	NProgress.configure({
-		// Full list: https://github.com/rstacruz/nprogress#configuration
-		minimum: 0.16,
-		showSpinner: false
+	let { children }: { children: Snippet } = $props();
+
+	NProgress.configure({ minimum: 0.16, showSpinner: false });
+
+	$effect(() => {
+		if (navigating.to) NProgress.start();
+		else NProgress.done();
 	});
-
-	$: {
-		if ($navigating) {
-			NProgress.start();
-		} else NProgress.done();
-	}
 </script>
 
-<slot></slot>
+{@render children()}

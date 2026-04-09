@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
+	import type { Snippet } from 'svelte';
 	import Footer from '$lib/Components/Footer.svelte';
+
+	let { children }: { children: Snippet } = $props();
 </script>
 
-<slot />
+{@render children()}
 
 <Footer />

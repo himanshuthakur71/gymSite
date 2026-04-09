@@ -1,7 +1,7 @@
-<script>
-	export let data;
+<script lang="ts">
+	import type { Snippet } from 'svelte';
 
-	const { galleryImages, galleryVideos } = data;
+	let { data, children }: { data: any; children: Snippet } = $props();
 </script>
 
-<slot />
+{@render children()}

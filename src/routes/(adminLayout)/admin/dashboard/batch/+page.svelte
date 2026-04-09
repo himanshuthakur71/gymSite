@@ -1,28 +1,24 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
+	import { invalidateAll } from '$app/navigation';
 	import BatchCard from '$lib/Components/BatchCard.svelte';
 	import { supabase } from '$lib/supabaseClient.js';
 
-	export let data;
+	let { data }: { data: any } = $props();
 
-	const gym_batches: any = data?.gym_batches;
+	const gym_batches: any[] = data?.gym_batches ?? [];
 
-	const deletePlan = async (id: any) => {
+	const deleteBatch = async (id: any) => {
 		const { error } = await supabase.from('gym_batches').delete().eq('id', id);
-		if (!error) {
-			browser && window.location.reload();
-		}
+		if (!error) await invalidateAll();
 	};
 </script>
 
 <section class="my-16">
 	<div class="hms-container">
-		<div
-			class="flex items-center gap-4 border-b border-b-gray-600 pb-2 text-2xl font-semibold lg:text-3xl"
-		>
+		<div class="flex items-center gap-4 border-b border-b-gray-600 pb-2 text-2xl font-semibold lg:text-3xl">
 			<h1>Batch</h1>
-			<span class=" text-gray-600">|</span>
-			<a href="/admin/dashboard/batch/new" class=" link-hover font-[500] text-blue-500">Add</a>
+			<span class="text-gray-600">|</span>
+			<a href="/admin/dashboard/batch/new" class="link-hover font-[500] text-blue-500">Add</a>
 		</div>
 
 		<div class="my-16">
@@ -33,11 +29,8 @@
 			</div>
 		</div>
 
-		<div class=" mt-32">
-			<a
-				href="/admin/dashboard"
-				class="btn btn-outline btn-primary btn-block max-w-[120px] text-xl font-[500]">Back</a
-			>
+		<div class="mt-32">
+			<a href="/admin/dashboard" class="btn btn-outline btn-primary btn-block max-w-[120px] text-xl font-[500]">Back</a>
 		</div>
 	</div>
 </section>
