@@ -36,5 +36,5 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 			.then(({ data }) => data ?? [])
 	]);
 
-	return { todayExpricesmembers, todayMembers, weekMembers, monthMembers };
+	return { todayExpricesmembers, todayMembers, weekMembers, monthMembers, session: locals.session };
 };

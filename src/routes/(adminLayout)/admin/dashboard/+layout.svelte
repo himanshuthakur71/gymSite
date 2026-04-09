@@ -6,6 +6,13 @@
 
 	let { data, children }: { data: any; children: Snippet } = $props();
 
+	// Sync the server session to the browser client so mutations are authenticated
+	$effect(() => {
+		if (data.session) {
+			supabase.auth.setSession(data.session);
+		}
+	});
+
 	const logout = async () => {
 		const { error } = await supabase.auth.signOut();
 		if (!error) goto('/admin/login');
