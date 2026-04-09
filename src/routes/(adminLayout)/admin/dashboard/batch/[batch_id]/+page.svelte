@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 	import { supabase } from '$lib/supabaseClient';
 
 	let { data }: { data: any } = $props();
@@ -22,7 +22,7 @@
 			const { data, error } = await supabase
 				.from('gym_batches')
 				.update([formFields])
-				.eq('id', page.params.batch_id)
+				.eq('id', $page.params.batch_id)
 				.select();
 			if (data) saveSuccess = true;
 		} finally {

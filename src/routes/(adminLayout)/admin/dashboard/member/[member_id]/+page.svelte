@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 	import { supabase } from '$lib/supabaseClient';
 
 	let { data }: { data: any } = $props();
@@ -30,7 +30,7 @@
 			const { data, error } = await supabase
 				.from('members')
 				.update([formfields])
-				.eq('id', page.params.member_id)
+				.eq('id', $page.params.member_id)
 				.select();
 			if (data) saveSuccess = true;
 		} finally {
