@@ -1,22 +1,15 @@
 <script lang="ts">
-	import { userStore } from '$lib/Stores/userStore';
+	import type { Snippet } from 'svelte';
 	import Footer from '$lib/Components/Footer.svelte';
 	import { goto } from '$app/navigation';
 	import { supabase } from '$lib/supabaseClient';
-	import { onMount } from 'svelte';
+
+	let { data, children }: { data: any; children: Snippet } = $props();
 
 	const logout = async () => {
-		let { error } = await supabase.auth.signOut();
-		if (!error) {
-			goto('/admin/login');
-		}
+		const { error } = await supabase.auth.signOut();
+		if (!error) goto('/admin/login');
 	};
-
-	onMount(async () => {
-		if (!$userStore?.user_metadata?.first_name) {
-			goto('/admin/login');
-		}
-	});
 </script>
 
 <div class="grid h-full min-h-screen w-full grid-rows-[auto_1fr_auto]">
@@ -41,14 +34,14 @@
 				<a href="/admin/dashboard/batch" class="btn btn-ghost text-xl">Batch</a>
 				<a href="/admin/dashboard/gallery" class="btn btn-ghost text-xl">Gallery</a>
 			</div>
-			<button type="button" class=" btn btn-error font-bold uppercase" on:click={logout}>
+			<button type="button" class="btn btn-error font-bold uppercase" onclick={logout}>
 				Logout
 			</button>
 		</div>
 	</header>
 
 	<main class="mb-16 lg:mb-32">
-		<slot />
+		{@render children()}
 	</main>
 
 	<Footer />

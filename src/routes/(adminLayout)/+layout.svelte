@@ -1,10 +1,7 @@
 <script lang="ts">
-	import { userStore } from '$lib/Stores/userStore';
-	export let data: any;
+	import type { Snippet } from 'svelte';
 
-	const { session } = data;
-
-	$userStore = session?.session?.user;
+	let { data, children }: { data: any; children: Snippet } = $props();
 </script>
 
-<slot />
+{@render children()}
