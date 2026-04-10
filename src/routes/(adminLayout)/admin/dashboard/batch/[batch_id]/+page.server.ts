@@ -1,19 +1,18 @@
 import { fail, redirect } from '@sveltejs/kit';
+import { getDb } from '$lib/server/getDb';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
-	const { data } = await locals.supabase
-		.from('gym_batches')
-		.select('*')
-		.eq('id', params.batch_id)
-		.single();
+	const db = getDb(locals);
+	const { data } = await db.from('gym_batches').select('*').eq('id', params.batch_id).single();
 	return { gym_batch: data ?? null };
 };
 
 export const actions: Actions = {
 	default: async ({ request, locals, params }) => {
+		const db = getDb(locals);
 		const fd = await request.formData();
-		const { error } = await locals.supabase
+		const { error } = await db
 			.from('gym_batches')
 			.update({
 				batch_name: fd.get('batch_name'),

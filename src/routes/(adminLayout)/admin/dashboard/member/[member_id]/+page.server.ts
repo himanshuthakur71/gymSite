@@ -1,17 +1,20 @@
 import { fail, redirect } from '@sveltejs/kit';
+import { getDb } from '$lib/server/getDb';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
+	const db = getDb(locals);
 	const [m, b, p] = await Promise.all([
-		locals.supabase.from('members').select('*').eq('id', params.member_id).single(),
-		locals.supabase.from('gym_batches').select('*').order('id', { ascending: true }),
-		locals.supabase.from('gym_plans').select('*').order('plan_id', { ascending: true })
+		db.from('members').select('*').eq('id', params.member_id).single(),
+		db.from('gym_batches').select('*').order('id', { ascending: true }),
+		db.from('gym_plans').select('*').order('plan_id', { ascending: true })
 	]);
 	return { member: m.data ?? null, gym_batches: b.data ?? [], gym_plans: p.data ?? [] };
 };
 
 export const actions: Actions = {
 	default: async ({ request, locals, params }) => {
+		const db = getDb(locals);
 		const fd = await request.formData();
 		const fields = {
 			first_name: fd.get('first_name'),
@@ -33,10 +36,7 @@ export const actions: Actions = {
 			is_paid: fd.get('fee_pm') === fd.get('fee_received'),
 			due_amount: Number(fd.get('fee_pm')) - Number(fd.get('fee_received'))
 		};
-		const { error } = await locals.supabase
-			.from('members')
-			.update(fields)
-			.eq('id', params.member_id);
+		const { error } = await db.from('members').update(fields).eq('id', params.member_id);
 		if (error) return fail(500, { error: error.message });
 		redirect(303, '/admin/dashboard/member');
 	}

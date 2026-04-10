@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 
-	let { data }: { data: any } = $props();
+	let { data, form }: { data: any; form: any } = $props();
 
 	const employee: any = data?.employee;
 	const perms: any = employee?.permissions ?? {};
@@ -15,6 +15,9 @@
 		</div>
 
 		<div class="my-16 w-full">
+			{#if form?.error}
+				<div class="alert alert-error mb-4"><span>{form.error}</span></div>
+			{/if}
 			<form
 				method="POST"
 				action="?/update"
@@ -72,6 +75,17 @@
 						<label class="form-control w-full lg:col-span-2">
 							<div class="label"><span class="label-text">Notes</span></div>
 							<textarea name="notes" placeholder="Type here" class="textarea textarea-bordered w-full" rows="3">{employee?.notes ?? ''}</textarea>
+						</label>
+					</div>
+
+					<h2 class="mt-4 border-b border-primary pb-2 text-lg font-semibold text-primary">Change Password</h2>
+					<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
+						<label class="form-control w-full">
+							<div class="label">
+								<span class="label-text">New Password</span>
+								<span class="label-text-alt text-gray-400">Leave blank to keep current</span>
+							</div>
+							<input type="password" name="password" placeholder="Enter new password" class="input input-bordered w-full" minlength="6" />
 						</label>
 					</div>
 

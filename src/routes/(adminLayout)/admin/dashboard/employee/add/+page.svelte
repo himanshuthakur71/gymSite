@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 
+	let { form }: { form: any } = $props();
 	let loading = $state(false);
 </script>
 
@@ -11,6 +12,9 @@
 		</div>
 
 		<div class="my-16 w-full">
+			{#if form?.error}
+				<div class="alert alert-error mb-4"><span>{form.error}</span></div>
+			{/if}
 			<form
 				method="POST"
 				use:enhance={() => {
@@ -67,6 +71,17 @@
 						<label class="form-control w-full lg:col-span-2">
 							<div class="label"><span class="label-text">Notes</span></div>
 							<textarea name="notes" placeholder="Type here" class="textarea textarea-bordered w-full" rows="3"></textarea>
+						</label>
+					</div>
+
+					<h2 class="mt-4 border-b border-primary pb-2 text-lg font-semibold text-primary">Login Credentials</h2>
+					<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
+						<label class="form-control w-full">
+							<div class="label">
+								<span class="label-text">Password *</span>
+								<span class="label-text-alt text-gray-400">Min 6 characters</span>
+							</div>
+							<input type="password" name="password" placeholder="Set login password" class="input input-bordered w-full" minlength="6" required />
 						</label>
 					</div>
 
