@@ -1,20 +1,7 @@
 <script lang="ts">
-	import { supabase } from '$lib/supabaseClient';
+	import { enhance } from '$app/forms';
 
 	let loading = $state(false);
-	let saveSuccess = $state(false);
-
-	let formFields = $state({ plan_name: '', plan_amount: '', plan_time: '' });
-
-	const addGymPlan = async () => {
-		loading = true;
-		try {
-			const { data, error } = await supabase.from('gym_plans').insert([formFields]).select();
-			if (data) saveSuccess = true;
-		} finally {
-			loading = false;
-		}
-	};
 </script>
 
 <section class="my-16">
@@ -24,24 +11,33 @@
 		</div>
 
 		<div class="my-16 w-full">
-			<form onsubmit={(e) => { e.preventDefault(); addGymPlan(); }}>
+			<form
+				method="POST"
+				use:enhance={() => {
+					loading = true;
+					return async ({ update }) => {
+						loading = false;
+						await update();
+					};
+				}}
+			>
 				<div class="grid w-full grid-cols-1 gap-4 bg-base-300 p-4">
 					<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
 						<label class="form-control w-full">
 							<div class="label"><span class="label-text">Plan Name *</span></div>
-							<input type="text" placeholder="Type here" class="input input-bordered w-full" required bind:value={formFields.plan_name} />
+							<input type="text" name="plan_name" placeholder="Type here" class="input input-bordered w-full" required />
 						</label>
 						<label class="form-control w-full">
 							<div class="label"><span class="label-text">Plan Amount *</span></div>
-							<input type="number" placeholder="Type here" class="input input-bordered w-full" required bind:value={formFields.plan_amount} />
+							<input type="number" name="plan_amount" placeholder="Type here" class="input input-bordered w-full" required />
 						</label>
 					</div>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Plan Time (Months) *</span></div>
-						<select class="select select-bordered" required bind:value={formFields.plan_time}>
+						<select name="plan_time" class="select select-bordered" required>
 							<option disabled selected value="">Select</option>
 							{#each Array(24) as _, i}
-								<option value={`${i + 1}`}>{i + 1} Month</option>
+								<option value={`${i + 1}`}>{i + 1} Month{i > 0 ? 's' : ''}</option>
 							{/each}
 						</select>
 					</label>
@@ -50,7 +46,7 @@
 				<div class="mt-6 flex justify-between">
 					<button disabled={loading} type="submit" class="btn btn-primary btn-lg btn-block max-w-[140px] text-2xl font-[600]">
 						Save
-						{#if loading}<span class="loading"></span>{/if}
+						{#if loading}<span class="loading loading-spinner loading-sm"></span>{/if}
 					</button>
 					<a href="/admin/dashboard/plans" class="btn btn-outline btn-primary btn-lg btn-block max-w-[140px] text-2xl font-[600]">Cancel</a>
 				</div>
@@ -58,15 +54,3 @@
 		</div>
 	</div>
 </section>
-
-{#if saveSuccess}
-	<dialog class="modal" open>
-		<div class="modal-box bg-base-300">
-			<h3 class="text-lg font-bold">Success</h3>
-			<p class="py-4">Gym Plan added successfully</p>
-			<div class="mt-8 flex justify-center">
-				<a data-sveltekit-reload href="/admin/dashboard/plans" class="btn btn-primary btn-wide">Continue</a>
-			</div>
-		</div>
-	</dialog>
-{/if}

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { supabase } from '$lib/supabaseClient';
+	import { enhance } from '$app/forms';
 
 	let { data }: { data: any } = $props();
 
@@ -8,66 +7,36 @@
 	const gym_plans: any[] = data?.gym_plans ?? [];
 	const gym_batches: any[] = data?.gym_batches ?? [];
 
-	let currentPlan: any = $state(gym_plans.find((p) => p?.plan_amount == member?.fee_pm) ?? null);
+	let currentPlan: any = $state(gym_plans.find((p) => String(p?.plan_amount) === String(member?.fee_pm)) ?? null);
 	let loading = $state(false);
-	let saveSuccess = $state(false);
+	let endDate = $state(member?.end_date ?? '');
+	let joiningDate = $state(member?.joining_date ?? '');
 
-	let formfields: any = $state({
-		first_name: member?.first_name || '', last_name: member?.last_name || '',
-		phone_number: member?.phone_number || '', email: member?.email || '',
-		gender: member?.gender || '', joining_date: member?.joining_date || '',
-		end_date: member?.end_date || '', aadhar_number: member?.aadhar_number || '',
-		age: member?.age || '', gym_time: member?.gym_time || '',
-		fee_pm: member?.fee_pm || '', fee_received: member?.fee_received || '',
-		father_name: member?.father_name || '', mother_name: member?.mother_name || '',
-		address: member?.address || '', is_paid: member?.is_paid || false,
-		due_amount: member?.due_amount || '', status: member?.status || ''
-	});
-
-	const update_member = async () => {
-		loading = true;
-		try {
-			const { data, error } = await supabase
-				.from('members')
-				.update([formfields])
-				.eq('id', $page.params.member_id)
-				.select();
-			if (data) saveSuccess = true;
-		} finally {
-			loading = false;
-		}
-	};
-
-	const getCurrentPlan = (amt: any) => {
-		currentPlan = gym_plans.find((p) => p?.plan_amount == amt) ?? null;
-	};
-
-	const checkPayment = () => {
-		if (formfields?.fee_pm == formfields?.fee_received) formfields.is_paid = true;
-	};
-
-	const updateDueAmount = () => {
-		if (formfields?.fee_received) {
-			formfields.due_amount = Number(formfields.fee_pm) - Number(formfields.fee_received);
-		}
-	};
-
-	function formatDate(date: Date) {
+	function fmtYMD(date: Date) {
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 	}
 
 	function addMonths(date: Date, months: number) {
-		const result = new Date(date);
-		result.setMonth(result.getMonth() + months);
-		return result;
+		const r = new Date(date);
+		r.setMonth(r.getMonth() + months);
+		return r;
 	}
 
-	function getFutureDates(inputDate: string) {
-		const [year, month, day] = inputDate.split('-').map(Number);
-		const baseDate = new Date(year, month - 1, day);
-		const monthsMap: Record<number, number> = { 1: 1, 2: 2, 3: 3, 6: 6, 12: 12 };
-		const m = monthsMap[currentPlan?.plan_time];
-		if (m) formfields.end_date = formatDate(addMonths(baseDate, m));
+	function onPlanChange(planAmount: string) {
+		const plan = gym_plans.find((p) => String(p?.plan_amount) === planAmount) ?? null;
+		currentPlan = plan;
+		if (joiningDate && plan?.plan_time) {
+			const [y, m, d] = joiningDate.split('-').map(Number);
+			endDate = fmtYMD(addMonths(new Date(y, m - 1, d), Number(plan.plan_time)));
+		}
+	}
+
+	function onJoiningDateChange(val: string) {
+		joiningDate = val;
+		if (currentPlan?.plan_time) {
+			const [y, m, d] = val.split('-').map(Number);
+			endDate = fmtYMD(addMonths(new Date(y, m - 1, d), Number(currentPlan.plan_time)));
+		}
 	}
 </script>
 
@@ -77,92 +46,114 @@
 			<h1 class="border-b border-b-gray-600 pb-4 text-2xl lg:text-3xl">Edit Member</h1>
 		</div>
 
-		<form onsubmit={(e) => { e.preventDefault(); update_member(); }}>
+		<form
+			method="POST"
+			use:enhance={() => {
+				loading = true;
+				return async ({ update }) => {
+					loading = false;
+					await update();
+				};
+			}}
+		>
+			<input type="hidden" name="end_date" value={endDate} />
+
 			<div class="grid w-full grid-cols-1 gap-4 bg-base-300 p-4">
 				<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">First name *</span></div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" required bind:value={formfields.first_name} />
+						<input type="text" name="first_name" value={member?.first_name ?? ''} placeholder="Type here" class="input input-bordered w-full" required />
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Last name *</span></div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" required bind:value={formfields.last_name} />
+						<input type="text" name="last_name" value={member?.last_name ?? ''} placeholder="Type here" class="input input-bordered w-full" required />
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Phone number *</span></div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" required bind:value={formfields.phone_number} />
+						<input type="text" name="phone_number" value={member?.phone_number ?? ''} placeholder="Type here" class="input input-bordered w-full" required />
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Email</span></div>
-						<input type="email" placeholder="Type here" class="input input-bordered w-full" bind:value={formfields.email} />
+						<input type="email" name="email" value={member?.email ?? ''} placeholder="Type here" class="input input-bordered w-full" />
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Gender *</span></div>
-						<select class="select select-bordered" bind:value={formfields.gender} required>
+						<select name="gender" class="select select-bordered" required>
 							<option disabled value="">Select</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-							<option value="other">Other</option>
+							<option value="male" selected={member?.gender === 'male'}>Male</option>
+							<option value="female" selected={member?.gender === 'female'}>Female</option>
+							<option value="other" selected={member?.gender === 'other'}>Other</option>
 						</select>
 					</label>
 					<label class="form-control w-full">
-						<div class="label"><span class="label-text">Aadhar number(Unique ID)</span></div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" bind:value={formfields.aadhar_number} />
+						<div class="label"><span class="label-text">Aadhar number (Unique ID)</span></div>
+						<input type="text" name="aadhar_number" value={member?.aadhar_number ?? ''} placeholder="Type here" class="input input-bordered w-full" />
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Age *</span></div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" required bind:value={formfields.age} />
+						<input type="number" name="age" value={member?.age ?? ''} placeholder="Type here" class="input input-bordered w-full" required />
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Select Batch *</span></div>
-						<select class="select select-bordered" required bind:value={formfields.gym_time}>
+						<select name="gym_time" class="select select-bordered" required>
 							<option disabled value="">Select</option>
 							{#each gym_batches as batch}
-								<option value={batch?.batch_name}>{batch?.batch_name}</option>
+								<option value={batch?.batch_name} selected={member?.gym_time === batch?.batch_name}>{batch?.batch_name}</option>
 							{/each}
 						</select>
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Plan *</span></div>
-						<select class="select select-bordered" required bind:value={formfields.fee_pm} onchange={() => getCurrentPlan(formfields.fee_pm)}>
+						<select
+							name="fee_pm"
+							class="select select-bordered"
+							required
+							onchange={(e) => onPlanChange((e.target as HTMLSelectElement).value)}
+						>
 							<option disabled value="">Select</option>
 							{#each gym_plans as plan}
-								<option value={plan?.plan_amount}>{plan?.plan_name} - {plan?.plan_amount}</option>
+								<option value={plan?.plan_amount} selected={String(member?.fee_pm) === String(plan?.plan_amount)}>
+									{plan?.plan_name} - ₹{plan?.plan_amount} ({plan?.plan_time} month)
+								</option>
 							{/each}
 						</select>
 					</label>
 					<label class="form-control w-full">
-						<div class="label"><span class="label-text">Amount Recived *</span></div>
-						<input type="number" placeholder="Type here" class="input input-bordered w-full" required bind:value={formfields.fee_received} onchange={() => { checkPayment(); updateDueAmount(); }} />
+						<div class="label"><span class="label-text">Amount Received *</span></div>
+						<input type="number" name="fee_received" value={member?.fee_received ?? ''} placeholder="Type here" class="input input-bordered w-full" required />
 					</label>
-					{#if currentPlan}
-						<label class="form-control w-full">
-							<div class="label"><span class="label-text">Joining Date *</span></div>
-							<input type="date" class="input input-bordered w-full" required bind:value={formfields.joining_date} onchange={() => getFutureDates(formfields.joining_date)} />
-						</label>
-						<label class="form-control w-full">
-							<div class="label"><span class="label-text">End Date *</span></div>
-							<input type="date" class="input input-bordered w-full" required bind:value={formfields.end_date} disabled />
-						</label>
-					{/if}
+					<label class="form-control w-full">
+						<div class="label"><span class="label-text">Joining Date *</span></div>
+						<input
+							type="date"
+							name="joining_date"
+							class="input input-bordered w-full"
+							required
+							value={joiningDate}
+							onchange={(e) => onJoiningDateChange((e.target as HTMLInputElement).value)}
+						/>
+					</label>
+					<label class="form-control w-full">
+						<div class="label"><span class="label-text">End Date (auto-calculated)</span></div>
+						<input type="date" class="input input-bordered w-full" value={endDate} disabled />
+					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Father's name</span></div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" bind:value={formfields.father_name} />
+						<input type="text" name="father_name" value={member?.father_name ?? ''} placeholder="Type here" class="input input-bordered w-full" />
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Mother's name</span></div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" bind:value={formfields.mother_name} />
+						<input type="text" name="mother_name" value={member?.mother_name ?? ''} placeholder="Type here" class="input input-bordered w-full" />
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Address</span></div>
-						<input type="text" placeholder="Type here" class="input input-bordered w-full" bind:value={formfields.address} />
+						<input type="text" name="address" value={member?.address ?? ''} placeholder="Type here" class="input input-bordered w-full" />
 					</label>
 					<label class="form-control w-full">
-						<div class="label"><span class="label-text">Member Status</span></div>
-						<select class="select select-bordered" required bind:value={formfields.status}>
-							<option disabled value="">Select</option>
-							<option value="active">Active</option>
-							<option value="in-active">In Active</option>
+						<div class="label"><span class="label-text">Member Status *</span></div>
+						<select name="status" class="select select-bordered" required>
+							<option value="active" selected={member?.status === 'active'}>Active</option>
+							<option value="in-active" selected={member?.status === 'in-active'}>In Active</option>
 						</select>
 					</label>
 				</div>
@@ -171,22 +162,10 @@
 			<div class="mt-6 flex justify-between">
 				<button disabled={loading} type="submit" class="btn btn-primary btn-lg btn-block max-w-[140px] text-2xl font-[600]">
 					Save
-					{#if loading}<span class="loading"></span>{/if}
+					{#if loading}<span class="loading loading-spinner loading-sm"></span>{/if}
 				</button>
 				<a href="/admin/dashboard/member" class="btn btn-outline btn-primary btn-lg btn-block max-w-[140px] text-2xl font-[600]">Cancel</a>
 			</div>
 		</form>
 	</div>
 </section>
-
-{#if saveSuccess}
-	<dialog class="modal" open>
-		<div class="modal-box bg-base-300">
-			<h3 class="text-lg font-bold">Success</h3>
-			<p class="py-4">Member updated successfully</p>
-			<div class="mt-8 flex justify-center">
-				<a data-sveltekit-reload href="/admin/dashboard/member" class="btn btn-primary btn-wide">Continue</a>
-			</div>
-		</div>
-	</dialog>
-{/if}

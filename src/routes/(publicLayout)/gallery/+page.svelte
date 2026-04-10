@@ -34,7 +34,7 @@
 							<div class="flex h-full w-full items-center justify-center">
 								<img
 									class="h-full w-full shadow-md hover:opacity-75"
-									src={`https://itkrfzkrbqgsscxcveae.supabase.co/storage/v1/object/public/gallery/images/${item?.name}`}
+									src={`https://xyoimdcmengysvjcdpnj.supabase.co/storage/v1/object/public/gallery/images/${item?.name}`}
 									alt="gallery image {i}"
 									width="100%"
 									height="100%"
@@ -55,7 +55,7 @@
 							<!-- svelte-ignore a11y-media-has-caption -->
 							<video controls class=" shadow-md">
 								<source
-									src={`https://itkrfzkrbqgsscxcveae.supabase.co/storage/v1/object/public/gallery/video/${item?.name}`}
+									src={`https://xyoimdcmengysvjcdpnj.supabase.co/storage/v1/object/public/gallery/video/${item?.name}`}
 									type="video/mp4"
 								/>
 
