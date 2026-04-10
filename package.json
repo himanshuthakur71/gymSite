@@ -38,12 +38,13 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": "20.x"
+		"node": ">=20 <25"
 	},
 	"dependencies": {
 		"@emailjs/browser": "^4.3.3",
 		"@supabase/ssr": "^0.5.0",
 		"@supabase/supabase-js": "^2.43.5",
+		"@sveltejs/adapter-vercel": "^6.3.3",
 		"bcryptjs": "^3.0.3",
 		"nodemailer": "^6.9.0"
 	}
