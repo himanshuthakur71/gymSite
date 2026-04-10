@@ -3,7 +3,7 @@
 
 	let { data }: { data: any } = $props();
 
-	const gym_plans: any[] = data?.gym_plans ?? [];
+	const gym_plans = $derived(data?.gym_plans ?? []);
 	let confirmDeleteId = $state<string | null>(null);
 </script>
 

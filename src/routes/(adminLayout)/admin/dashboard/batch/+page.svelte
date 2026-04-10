@@ -3,8 +3,8 @@
 
 	let { data }: { data: any } = $props();
 
-	const gym_batches: any[] = data?.gym_batches ?? [];
-	const batchCounts: Record<string, number> = data?.batchCounts ?? {};
+	const gym_batches = $derived(data?.gym_batches ?? []);
+	const batchCounts = $derived<Record<string, number>>(data?.batchCounts ?? {});
 	let confirmDeleteId = $state<string | null>(null);
 
 	function formatTime12hr(time: string): string {

@@ -3,7 +3,7 @@
 
 	let { data }: { data: any } = $props();
 
-	const gym_batches: any[] = data?.gym_batches ?? [];
+	const gym_batches = $derived(data?.gym_batches ?? []);
 
 	function formatDate(inputDate: string) {
 		const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
