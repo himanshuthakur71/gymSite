@@ -5,7 +5,7 @@
 
 	let { data }: { data: any } = $props();
 
-	const galleryImages: any[] = data?.galleryImages ?? [];
+	let galleryImages = $derived(data?.galleryImages ?? []);
 
 	let input: HTMLInputElement;
 	let showImage = $state('');

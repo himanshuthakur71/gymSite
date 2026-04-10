@@ -1,8 +1,8 @@
 <script lang="ts">
 	let { data }: { data: any } = $props();
 
-	const galleryImages: any[] = data?.galleryImages ?? [];
-	const galleryVideos: any[] = data?.galleryVideos ?? [];
+	let galleryImages = $derived(data?.galleryImages ?? []);
+	let galleryVideos = $derived(data?.galleryVideos ?? []);
 </script>
 
 <section class="h-full w-full">
