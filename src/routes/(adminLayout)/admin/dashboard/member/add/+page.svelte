@@ -17,10 +17,20 @@
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 	}
 
-	function addMonths(date: Date, months: number) {
-		const r = new Date(date);
-		r.setMonth(r.getMonth() + months);
-		return r;
+	function calcEndDate(joining: string, plan: any): string {
+		if (!joining || !plan) return '';
+		const [y, m, d] = joining.split('-').map(Number);
+		const base = new Date(y, m - 1, d);
+		if (Number(plan.plan_days) > 0) {
+			// Day pass: add plan_days days
+			base.setDate(base.getDate() + Number(plan.plan_days));
+		} else if (Number(plan.plan_time) > 0) {
+			// Monthly plan: add plan_time months
+			base.setMonth(base.getMonth() + Number(plan.plan_time));
+		} else {
+			return joining; // fallback: same day
+		}
+		return fmtYMD(base);
 	}
 
 	function onPlanChange(planAmount: string) {
@@ -28,18 +38,12 @@
 		currentPlan = plan;
 		planName = plan?.plan_name ?? '';
 		feePm = planAmount;
-		if (joiningDate && plan?.plan_time) {
-			const [y, m, d] = joiningDate.split('-').map(Number);
-			endDate = fmtYMD(addMonths(new Date(y, m - 1, d), Number(plan.plan_time)));
-		}
+		endDate = calcEndDate(joiningDate, plan);
 	}
 
 	function onJoiningDateChange(val: string) {
 		joiningDate = val;
-		if (currentPlan?.plan_time) {
-			const [y, m, d] = val.split('-').map(Number);
-			endDate = fmtYMD(addMonths(new Date(y, m - 1, d), Number(currentPlan.plan_time)));
-		}
+		endDate = calcEndDate(val, currentPlan);
 	}
 </script>
 
@@ -116,7 +120,10 @@
 						>
 							<option disabled selected value="">Select</option>
 							{#each gym_plans as plan}
-								<option value={plan?.plan_amount}>{plan?.plan_name} - ₹{plan?.plan_amount} ({plan?.plan_time} month)</option>
+								<option value={plan?.plan_amount}>
+									{plan?.plan_name} - ₹{plan?.plan_amount}
+									({plan?.plan_days > 0 ? `${plan.plan_days} day` : `${plan?.plan_time} month`})
+								</option>
 							{/each}
 						</select>
 					</label>

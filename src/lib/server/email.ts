@@ -133,6 +133,33 @@ export async function sendPaymentDueNotification(member: any) {
 	});
 }
 
+// ─── Contact Form Enquiry ────────────────────────────────────────────────────
+export async function sendContactEmail(fields: {
+	first_name: string;
+	last_name: string;
+	email: string;
+	phone: string;
+	message: string;
+	subject?: string;
+}) {
+	const html = baseTemplate(`
+    <p>You have received a new enquiry via the website contact form.</p>
+    <table>
+      <tr><td>Name</td><td>${fields.first_name} ${fields.last_name}</td></tr>
+      <tr><td>Email</td><td>${fields.email}</td></tr>
+      <tr><td>Phone</td><td>${fields.phone}</td></tr>
+      <tr><td>Message</td><td>${fields.message.replace(/\n/g, '<br>')}</td></tr>
+    </table>
+  `);
+	await transporter.sendMail({
+		from: `"${gymName} Website" <${SMTP_FROM}>`,
+		to: SMTP_FROM,
+		replyTo: fields.email,
+		subject: fields.subject || `New Enquiry from ${fields.first_name} ${fields.last_name}`,
+		html
+	});
+}
+
 // ─── Announcement Broadcast ──────────────────────────────────────────────────
 export async function sendAnnouncement(emails: string[], title: string, message: string) {
 	if (!emails.length) return;
