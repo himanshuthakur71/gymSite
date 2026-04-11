@@ -10,6 +10,9 @@
 	const paymentDueMembers: any[] = data?.paymentDueMembers ?? [];
 	const totalMembersCount: number = data?.totalMembersCount ?? 0;
 	const user: any = data?.session?.user;
+	const isAdmin: boolean = data?.isAdmin ?? false;
+	const employee: any = data?.employee ?? null;
+	const canViewReports: boolean = isAdmin || !!(employee?.permissions?.reports);
 
 	function formatNumber(number: number) {
 		return number.toLocaleString('en-IN');
@@ -24,21 +27,22 @@
 	const monthTotalSell = $derived(monthMembers.reduce((sum, m) => sum + Number(m?.fee_pm ?? 0), 0));
 	const monthReceived = $derived(monthMembers.reduce((sum, m) => sum + Number(m?.fee_received ?? 0), 0));
 
-	const quickLinks = [
-		{ href: '/admin/dashboard/member', label: 'Members' },
-		{ href: '/admin/dashboard/plans', label: 'Plans' },
-		{ href: '/admin/dashboard/batch', label: 'Batch' },
-		{ href: '/admin/dashboard/gallery', label: 'Gallery' },
-		{ href: '/admin/dashboard/employee', label: 'Employees' },
-		{ href: '/admin/dashboard/announcements', label: 'Announcements' },
-		{ href: '/admin/dashboard/notifications', label: 'Notifications' }
-	];
+	const perms = employee?.permissions ?? {};
+	const quickLinks = $derived([
+		{ href: '/admin/dashboard/member', label: 'Members', show: isAdmin || !!perms.members },
+		{ href: '/admin/dashboard/plans', label: 'Plans', show: isAdmin || !!perms.plans },
+		{ href: '/admin/dashboard/batch', label: 'Batch', show: isAdmin || !!perms.batch },
+		{ href: '/admin/dashboard/gallery', label: 'Gallery', show: isAdmin || !!perms.gallery },
+		{ href: '/admin/dashboard/employee', label: 'Employees', show: isAdmin },
+		{ href: '/admin/dashboard/announcements', label: 'Announcements', show: isAdmin },
+		{ href: '/admin/dashboard/notifications', label: 'Notifications', show: isAdmin }
+	].filter(l => l.show));
 </script>
 
 <section class="my-16">
 	<div class="hms-container">
 		<div class="flex items-center gap-4 text-2xl font-semibold lg:text-3xl">
-			<h1>Hello, {user?.user_metadata?.first_name ?? 'Admin'}</h1>
+			<h1>Hello, {employee ? `${employee.first_name} ${employee.last_name}` : (user?.user_metadata?.first_name ?? 'Admin')}</h1>
 		</div>
 
 		<!-- Alert Section -->
@@ -106,7 +110,8 @@
 			</div>
 		</section>
 
-		<!-- Financial Overview -->
+		<!-- Financial Overview — admin or employees with reports permission only -->
+		{#if canViewReports}
 		<section class="mb-16 mt-8">
 			<h2 class="mb-6 border-b border-primary pb-2 text-xl font-semibold text-primary">Financial Overview</h2>
 			<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -135,6 +140,7 @@
 				</div>
 			</div>
 		</section>
+		{/if}
 
 		<!-- Quick Access -->
 		<section class="w-full">
