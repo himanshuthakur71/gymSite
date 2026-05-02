@@ -89,7 +89,14 @@
 							<p class="flex flex-col text-lg"><span>Name:</span><strong>{member?.first_name} {member?.last_name}</strong></p>
 							<p class="flex flex-col text-lg"><span>Mobile:</span><strong>{member?.phone_number}</strong></p>
 							<p class="flex flex-col text-lg"><span>Plan Expiry:</span><strong>{member?.end_date ? formatDate(member.end_date) : '-'}</strong></p>
-							<p class="flex flex-col text-lg"><span>Due Amount:</span><strong>{member?.due_amount || '-'}</strong></p>
+							<p class="flex flex-col text-lg">
+								<span>Due Amount:</span>
+								{#if Number(member?.due_amount) > 0}
+									<strong class="text-error">₹{Number(member.due_amount).toLocaleString('en-IN')}</strong>
+								{:else}
+									<strong class="text-success">Paid ✓</strong>
+								{/if}
+							</p>
 						</div>
 						<div class="flex w-full gap-4">
 							<a href="/admin/dashboard/member/view/{member?.id}" class="btn btn-accent btn-sm">View</a>

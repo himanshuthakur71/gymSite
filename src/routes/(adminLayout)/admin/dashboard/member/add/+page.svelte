@@ -12,6 +12,13 @@
 	let joiningDate = $state('');
 	let endDate = $state('');
 	let feePm = $state('');
+	let feeReceived = $state('');
+
+	const dueAmount = $derived(
+		feePm && feeReceived !== ''
+			? Math.max(0, Number(feePm) - Number(feeReceived))
+			: null
+	);
 
 	function fmtYMD(date: Date) {
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -128,8 +135,22 @@
 						</select>
 					</label>
 					<label class="form-control w-full">
-						<div class="label"><span class="label-text">Amount Received *</span></div>
-						<input type="number" name="fee_received" placeholder="Type here" class="input input-bordered w-full" required />
+						<div class="label">
+							<span class="label-text">Amount Received *</span>
+							{#if dueAmount !== null}
+								<span class="label-text-alt {dueAmount > 0 ? 'text-error font-semibold' : 'text-success font-semibold'}">
+									{dueAmount > 0 ? `Due: ₹${dueAmount}` : '✓ Fully Paid'}
+								</span>
+							{/if}
+						</div>
+						<input
+							type="number"
+							name="fee_received"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							required
+							bind:value={feeReceived}
+						/>
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Joining Date *</span></div>

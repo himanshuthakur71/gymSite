@@ -77,9 +77,13 @@
 					<p><strong>Batch:</strong> {member?.gym_time}</p>
 					<p><strong>Joining Date:</strong> {member?.joining_date ? formatDate(member.joining_date) : '-'}</p>
 					<p><strong>End Date:</strong> {member?.end_date ? formatDate(member.end_date) : '-'}</p>
-					<p><strong>Total Amount:</strong> ₹{currentPlan?.plan_amount ?? member?.fee_pm}</p>
-					<p><strong>Amount Received:</strong> ₹{member?.fee_received}</p>
-					<p class="text-error"><strong>Amount Due:</strong> ₹{member?.due_amount ?? 0}</p>
+					<p><strong>Plan Fee:</strong> ₹{currentPlan?.plan_amount ?? member?.fee_pm ?? 0}</p>
+					<p><strong>Amount Received:</strong> ₹{member?.fee_received ?? 0}</p>
+					{#if Number(member?.due_amount) > 0}
+						<p class="font-bold text-error"><strong>Amount Due:</strong> ₹{Number(member.due_amount).toLocaleString('en-IN')}</p>
+					{:else}
+						<p class="font-bold text-success"><strong>Amount Due:</strong> Paid ✓</p>
+					{/if}
 				</div>
 			</div>
 		</section>

@@ -11,6 +11,14 @@
 	let loading = $state(false);
 	let endDate = $state(member?.end_date ?? '');
 	let joiningDate = $state(member?.joining_date ?? '');
+	let feePm = $state(String(member?.fee_pm ?? ''));
+	let feeReceived = $state(String(member?.fee_received ?? ''));
+
+	const dueAmount = $derived(
+		feePm && feeReceived !== ''
+			? Math.max(0, Number(feePm) - Number(feeReceived))
+			: null
+	);
 
 	function fmtYMD(date: Date) {
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -110,6 +118,7 @@
 							name="fee_pm"
 							class="select select-bordered"
 							required
+							onchange={(e) => { feePm = (e.target as HTMLSelectElement).value; onPlanChange(feePm); }}
 							onchange={(e) => onPlanChange((e.target as HTMLSelectElement).value)}
 						>
 							<option disabled value="">Select</option>
@@ -122,8 +131,22 @@
 						</select>
 					</label>
 					<label class="form-control w-full">
-						<div class="label"><span class="label-text">Amount Received *</span></div>
-						<input type="number" name="fee_received" value={member?.fee_received ?? ''} placeholder="Type here" class="input input-bordered w-full" required />
+						<div class="label">
+							<span class="label-text">Amount Received *</span>
+							{#if dueAmount !== null}
+								<span class="label-text-alt {dueAmount > 0 ? 'text-error font-semibold' : 'text-success font-semibold'}">
+									{dueAmount > 0 ? `Due: ₹${dueAmount}` : '✓ Fully Paid'}
+								</span>
+							{/if}
+						</div>
+						<input
+							type="number"
+							name="fee_received"
+							placeholder="Type here"
+							class="input input-bordered w-full"
+							required
+							bind:value={feeReceived}
+						/>
 					</label>
 					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Joining Date *</span></div>
