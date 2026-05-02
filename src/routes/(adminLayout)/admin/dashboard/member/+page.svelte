@@ -12,6 +12,7 @@
 		return `${String(date.getDate()).padStart(2, '0')} ${months[date.getMonth()]}, ${date.getFullYear()}`;
 	}
 
+	let filterId = $state('')
 	let filterFirstName = $state('');
 	let filterPhone = $state('');
 	let filterBatch = $state('');
@@ -20,6 +21,7 @@
 
 	const filteredMembers = $derived(
 		(data?.members ?? []).filter((member: any) =>
+			(!filterId || member.id == filterId) &&
 			(!filterFirstName || member.first_name?.toLowerCase().includes(filterFirstName.toLowerCase())) &&
 			(!filterPhone || member.phone_number?.includes(filterPhone)) &&
 			(!filterBatch || member.gym_time?.includes(filterBatch)) &&
@@ -40,7 +42,11 @@
 
 		<section class="mb-16">
 			<legend class="mb-4 max-w-[160px] border-b-4 border-primary pb-2 text-xl font-semibold text-primary">Find Member:</legend>
-			<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+			<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
+				<label class="form-control w-full">
+					<div class="label"><span class="label-text">Id</span></div>
+					<input type="number" placeholder="Type here" class="input input-bordered w-full" bind:value={filterId} />
+				</label>
 				<label class="form-control w-full">
 					<div class="label"><span class="label-text">First name</span></div>
 					<input type="text" placeholder="Type here" class="input input-bordered w-full" bind:value={filterFirstName} />
@@ -65,12 +71,14 @@
 			</div>
 		</section>
 
+		<!-- <pre class=" text-xs w-full max-h-[512px] overflow-auto bg-black text-white p-2">{JSON.stringify(filteredMembers, null , 2)}</pre> -->
+
 		<div class="w-full">
 			<div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
 				{#each filteredMembers as member}
 					<div class="relative grid w-full grid-cols-1 gap-4 bg-base-200 p-4 shadow-md">
 						<div class="flex items-center gap-3">
-							<span class="flex h-[25px] w-[50px] items-center justify-center rounded-br bg-primary text-[14px] font-[700] text-primary-content shadow-lg">{member?.id}</span>
+							<span class="flex h-[25px] w-[50px] items-center justify-center rounded-br bg-primary text-[14px] font-[700] text-primary-content shadow-lg">FA-{member?.id}</span>
 							{#if member?.status === 'active'}
 								<span class="badge badge-accent">Active</span>
 							{:else if member?.status === 'in-active'}

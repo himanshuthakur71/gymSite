@@ -13,6 +13,9 @@
 	}
 </script>
 
+<!-- Email - himanshupundir71@gmail.com
+Password - password@fitnessacademygym -->
+
 <section>
 	<div class="hms-container">
 		<div class="flex h-full min-h-screen w-full items-center justify-center">
