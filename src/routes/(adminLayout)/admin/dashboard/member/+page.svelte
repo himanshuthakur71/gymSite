@@ -17,6 +17,7 @@
 	let filterPhone = $state('');
 	let filterBatch = $state('');
 	let filterAadhar = $state('');
+	let showDueOnly = $state(false);
 	let confirmDeleteId = $state<string | null>(null);
 
 	const filteredMembers = $derived(
@@ -25,7 +26,8 @@
 			(!filterFirstName || member.first_name?.toLowerCase().includes(filterFirstName.toLowerCase())) &&
 			(!filterPhone || member.phone_number?.includes(filterPhone)) &&
 			(!filterBatch || member.gym_time?.includes(filterBatch)) &&
-			(!filterAadhar || member.aadhar_number?.includes(filterAadhar))
+			(!filterAadhar || member.aadhar_number?.includes(filterAadhar)) &&
+			(!showDueOnly || Number(member?.due_amount) > 0)
 		)
 	);
 </script>
@@ -41,7 +43,13 @@
 		</div>
 
 		<section class="mb-16">
-			<legend class="mb-4 max-w-[160px] border-b-4 border-primary pb-2 text-xl font-semibold text-primary">Find Member:</legend>
+			<div class="mb-4 flex items-center justify-between">
+				<legend class="max-w-[160px] border-b-4 border-primary pb-2 text-xl font-semibold text-primary">Find Member:</legend>
+				<label class="flex cursor-pointer items-center gap-2">
+					<span class="text-sm font-semibold {showDueOnly ? 'text-error' : 'text-base-content'}">Due Amount Only</span>
+					<input type="checkbox" class="toggle toggle-error" bind:checked={showDueOnly} />
+				</label>
+			</div>
 			<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
 				<label class="form-control w-full">
 					<div class="label"><span class="label-text">Id</span></div>
