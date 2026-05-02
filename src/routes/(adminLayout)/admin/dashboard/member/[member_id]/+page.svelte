@@ -119,7 +119,6 @@
 							class="select select-bordered"
 							required
 							onchange={(e) => { feePm = (e.target as HTMLSelectElement).value; onPlanChange(feePm); }}
-							onchange={(e) => onPlanChange((e.target as HTMLSelectElement).value)}
 						>
 							<option disabled value="">Select</option>
 							{#each gym_plans as plan}
