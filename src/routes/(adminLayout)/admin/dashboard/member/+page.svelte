@@ -17,8 +17,50 @@
 	let filterPhone = $state('');
 	let filterBatch = $state('');
 	let filterAadhar = $state('');
+	let filterPaymentRange = $state('');
 	let showDueOnly = $state(false);
 	let confirmDeleteId = $state<string | null>(null);
+
+	function getPaymentRangeBounds(range: string): { start: Date | null; end: Date | null } {
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+		const end = new Date(today);
+		end.setHours(23, 59, 59, 999);
+
+		if (range === 'today') {
+			return { start: today, end };
+		}
+		if (range === 'yesterday') {
+			const yStart = new Date(today);
+			yStart.setDate(yStart.getDate() - 1);
+			const yEnd = new Date(yStart);
+			yEnd.setHours(23, 59, 59, 999);
+			return { start: yStart, end: yEnd };
+		}
+		const daysMap: Record<string, number> = {
+			'7': 7,
+			'15': 15,
+			'30': 30,
+			'60': 60,
+			'90': 90
+		};
+		const days = daysMap[range];
+		if (!days) return { start: null, end: null };
+		const start = new Date(today);
+		start.setDate(start.getDate() - (days - 1));
+		return { start, end };
+	}
+
+	function matchesPaymentRange(member: any, range: string): boolean {
+		if (!range) return true;
+		if (!member?.joining_date) return false;
+		const { start, end } = getPaymentRangeBounds(range);
+		if (!start || !end) return true;
+		const [y, m, d] = String(member.joining_date).split('-').map(Number);
+		if (!y || !m || !d) return false;
+		const memberDate = new Date(y, m - 1, d);
+		return memberDate >= start && memberDate <= end;
+	}
 
 	const filteredMembers = $derived(
 		(data?.members ?? []).filter((member: any) =>
@@ -27,7 +69,8 @@
 			(!filterPhone || member.phone_number?.includes(filterPhone)) &&
 			(!filterBatch || member.gym_time?.includes(filterBatch)) &&
 			(!filterAadhar || member.aadhar_number?.includes(filterAadhar)) &&
-			(!showDueOnly || Number(member?.due_amount) > 0)
+			(!showDueOnly || Number(member?.due_amount) > 0) &&
+			matchesPaymentRange(member, filterPaymentRange)
 		)
 	);
 </script>
@@ -76,7 +119,40 @@
 						{/each}
 					</select>
 				</label>
+				<label class="form-control w-full">
+					<div class="label"><span class="label-text">Payment Received</span></div>
+					<select class="select select-bordered" bind:value={filterPaymentRange}>
+						<option value="">Any Time</option>
+						<option value="today">Today</option>
+						<option value="yesterday">Yesterday</option>
+						<option value="7">Last 7 days</option>
+						<option value="15">Last 15 days</option>
+						<option value="30">Last 30 days</option>
+						<option value="60">Last 60 days</option>
+						<option value="90">Last 90 days</option>
+					</select>
+				</label>
 			</div>
+			{#if filterPaymentRange || filterId || filterFirstName || filterPhone || filterAadhar || filterBatch || showDueOnly}
+				<div class="mt-4 flex items-center justify-between">
+					<p class="text-sm text-base-content/70">
+						Showing <strong>{filteredMembers.length}</strong> member{filteredMembers.length === 1 ? '' : 's'}
+					</p>
+					<button
+						type="button"
+						class="btn btn-sm btn-outline"
+						onclick={() => {
+							filterId = '';
+							filterFirstName = '';
+							filterPhone = '';
+							filterAadhar = '';
+							filterBatch = '';
+							filterPaymentRange = '';
+							showDueOnly = false;
+						}}
+					>Clear Filters</button>
+				</div>
+			{/if}
 		</section>
 
 		<!-- <pre class=" text-xs w-full max-h-[512px] overflow-auto bg-black text-white p-2">{JSON.stringify(filteredMembers, null , 2)}</pre> -->
