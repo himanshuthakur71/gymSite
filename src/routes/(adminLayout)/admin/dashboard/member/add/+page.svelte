@@ -12,13 +12,6 @@
 	let joiningDate = $state('');
 	let endDate = $state('');
 	let feePm = $state('');
-	let feeReceived = $state('');
-
-	const dueAmount = $derived(
-		feePm && feeReceived !== ''
-			? Math.max(0, Number(feePm) - Number(feeReceived))
-			: null
-	);
 
 	function fmtYMD(date: Date) {
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -29,13 +22,11 @@
 		const [y, m, d] = joining.split('-').map(Number);
 		const base = new Date(y, m - 1, d);
 		if (Number(plan.plan_days) > 0) {
-			// Day pass: add plan_days days
 			base.setDate(base.getDate() + Number(plan.plan_days));
 		} else if (Number(plan.plan_time) > 0) {
-			// Monthly plan: add plan_time months
 			base.setMonth(base.getMonth() + Number(plan.plan_time));
 		} else {
-			return joining; // fallback: same day
+			return joining;
 		}
 		return fmtYMD(base);
 	}
@@ -135,24 +126,6 @@
 						</select>
 					</label>
 					<label class="form-control w-full">
-						<div class="label">
-							<span class="label-text">Amount Received *</span>
-							{#if dueAmount !== null}
-								<span class="label-text-alt {dueAmount > 0 ? 'text-error font-semibold' : 'text-success font-semibold'}">
-									{dueAmount > 0 ? `Due: ₹${dueAmount}` : '✓ Fully Paid'}
-								</span>
-							{/if}
-						</div>
-						<input
-							type="number"
-							name="fee_received"
-							placeholder="Type here"
-							class="input input-bordered w-full"
-							required
-							bind:value={feeReceived}
-						/>
-					</label>
-					<label class="form-control w-full">
 						<div class="label"><span class="label-text">Joining Date *</span></div>
 						<input
 							type="date"
@@ -189,10 +162,21 @@
 				</div>
 			</div>
 
+			<!-- Payment notice -->
+			<div class="alert mt-4 bg-base-200">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 text-info" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+				</svg>
+				<span class="text-sm">After saving, you'll be taken to the member profile to record the payment.</span>
+			</div>
+
 			<div class="mt-6 flex justify-between">
 				<button disabled={loading} type="submit" class="btn btn-primary btn-lg btn-block max-w-[140px] text-2xl font-[600]">
-					Save
-					{#if loading}<span class="loading loading-spinner loading-sm"></span>{/if}
+					{#if loading}
+						<span class="loading loading-spinner loading-sm"></span>
+					{:else}
+						Save
+					{/if}
 				</button>
 				<a href="/admin/dashboard/member" class="btn btn-outline btn-primary btn-lg btn-block max-w-[140px] text-2xl font-[600]">Cancel</a>
 			</div>
