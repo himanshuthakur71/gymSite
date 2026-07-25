@@ -18,6 +18,8 @@
 	let filterBatch = $state('');
 	let filterAadhar = $state('');
 	let filterPaymentRange = $state('');
+	let filterDateFrom = $state('');
+	let filterDateTo = $state('');
 	let showDueOnly = $state(false);
 	let confirmDeleteId = $state<string | null>(null);
 
@@ -54,11 +56,20 @@
 	function matchesPaymentRange(member: any, range: string): boolean {
 		if (!range) return true;
 		if (!member?.joining_date) return false;
-		const { start, end } = getPaymentRangeBounds(range);
-		if (!start || !end) return true;
 		const [y, m, d] = String(member.joining_date).split('-').map(Number);
 		if (!y || !m || !d) return false;
 		const memberDate = new Date(y, m - 1, d);
+		if (range === 'custom') {
+			const from = filterDateFrom ? new Date(filterDateFrom) : null;
+			const to = filterDateTo ? new Date(filterDateTo) : null;
+			if (from) from.setHours(0, 0, 0, 0);
+			if (to) to.setHours(23, 59, 59, 999);
+			if (from && memberDate < from) return false;
+			if (to && memberDate > to) return false;
+			return true;
+		}
+		const { start, end } = getPaymentRangeBounds(range);
+		if (!start || !end) return true;
 		return memberDate >= start && memberDate <= end;
 	}
 
@@ -130,10 +141,21 @@
 						<option value="30">Last 30 days</option>
 						<option value="60">Last 60 days</option>
 						<option value="90">Last 90 days</option>
+						<option value="custom">Custom Range...</option>
 					</select>
 				</label>
+				{#if filterPaymentRange === 'custom'}
+					<label class="form-control w-full">
+						<div class="label"><span class="label-text">From Date</span></div>
+						<input type="date" class="input input-bordered w-full" bind:value={filterDateFrom} max={filterDateTo || undefined} />
+					</label>
+					<label class="form-control w-full">
+						<div class="label"><span class="label-text">To Date</span></div>
+						<input type="date" class="input input-bordered w-full" bind:value={filterDateTo} min={filterDateFrom || undefined} />
+					</label>
+				{/if}
 			</div>
-			{#if filterPaymentRange || filterId || filterFirstName || filterPhone || filterAadhar || filterBatch || showDueOnly}
+			{#if filterPaymentRange || filterId || filterFirstName || filterPhone || filterAadhar || filterBatch || showDueOnly || filterDateFrom || filterDateTo}
 				<div class="mt-4 flex items-center justify-between">
 					<p class="text-sm text-base-content/70">
 						Showing <strong>{filteredMembers.length}</strong> member{filteredMembers.length === 1 ? '' : 's'}
@@ -148,6 +170,8 @@
 							filterAadhar = '';
 							filterBatch = '';
 							filterPaymentRange = '';
+							filterDateFrom = '';
+							filterDateTo = '';
 							showDueOnly = false;
 						}}
 					>Clear Filters</button>
