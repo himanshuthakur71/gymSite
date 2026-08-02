@@ -209,6 +209,10 @@
 						<div class="flex w-full gap-4">
 							<a href="/admin/dashboard/member/view/{member?.id}" class="btn btn-accent btn-sm">View</a>
 							<a href="/admin/dashboard/member/{member?.id}" class="btn btn-primary btn-sm">Edit</a>
+							<a
+								href="/admin/dashboard/member/view/{member?.id}?openRenew=1"
+								class="btn btn-sm {member?.status === 'in-active' || (member?.end_date && new Date(member.end_date) < new Date()) ? 'btn-warning' : 'btn-outline btn-warning'}"
+							>Renew</a>
 							<button
 								type="button"
 								class="btn btn-error btn-sm"
